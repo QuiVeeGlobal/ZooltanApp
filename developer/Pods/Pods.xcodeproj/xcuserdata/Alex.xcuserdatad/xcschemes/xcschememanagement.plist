@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MoABContactsManager-MoABContactsManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MoABContactsManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>OCGoogleDirectionsAPI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Zooltan.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3EFED0DFA5FE63506F293877E8A6D6F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4D63DF4DAA16ED9F295E54A547F62462</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CF223A74276CC05E34321681820A8AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D66C139D0AD2EC91F13A7E19F5334389</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E516FD170C67B84D56DC2EB941DBCE8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,522 @@
+//
+//  ViewController.m
+//  Zooltan
+//
+//  Created by Grigoriy Zaliva on 6/22/15.
+//  Copyright (c) 2015 Grigoriy Zaliva. All rights reserved.
+
+
+#import "CreateViewController.h"
+#import "RegistrationViewController.h"
+#import "RecoveryPasswordViewController.h"
+#import "DLRadioButton.h"
+#import "FromViewController.h"
+#import "AFNetworking.h"
+#import "TrackingSearchViewController.h"
+#import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
+
+#define METERS_PER_MILE 1609.344
+#define layerCornerRadius 2.5
+#define durationAnimation 0.3f
+#define REQUEST self.manager
+
+@interface CreateViewController () <TextFieldButtonDelegate, UITextFieldDelegate, UIScrollViewDelegate, GMSMapViewDelegate, CLLocationManagerDelegate>
+{
+    BOOL pressedLastFrom;
+    BOOL pressedLastTo;
+}
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *mainTitleLabel;
+
+@property (weak, nonatomic) IBOutlet TextField *receiverNameField;
+@property (weak, nonatomic) IBOutlet TextField *receiverNumberField;
+
+@property (weak, nonatomic) IBOutlet UILabel *receiverNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *receiverNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fromAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toAddressLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *mapBGView;
+
+@property (strong, nonatomic) IBOutlet UIImageView *packageIcon;
+@property (strong, nonatomic) IBOutlet UILabel *packageWeightLabel;
+
+@property (strong, nonatomic) NSString *packageSize;
+
+@property (nonatomic, retain) PlaceModel *fromAddress;
+@property (nonatomic, retain) PlaceModel *toAddress;
+
+@property (nonatomic, strong) IBOutlet GMSMapView *mapView_;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+
+@end
+
+@implementation CreateViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
+//    self.scrollView.contentSize = CGSizeMake(self.view.width, self.mapBGView.bottom);
+    
+    self.packageSize = @"LETTER";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearOrderData)
+                                                 name:clearOrder
+                                               object:nil];
+    
+    [self setOrderData];
+}
+
+- (void) setOrderData
+{
+    self.fromAddress = [[Settings instance] fromAddress];
+    self.toAddress = [[Settings instance] toAddress];
+    
+    STLogDebug(@"fromAddress %@", self.fromAddress.formatted_address);
+    STLogDebug(@"toAddress %@", self.toAddress.formatted_address);
+    
+    self.fromAddressLabel.text = self.fromAddress.formatted_address;
+    self.toAddressLabel.text = self.toAddress.formatted_address;
+    
+    if ([self.fromAddressLabel.text isEqualToString:self.toAddressLabel.text]) {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredSameAdresses", nil) target:self];
+        self.toAddressLabel.text = @"";
+        //self.toAddress.location = CLLocationCoordinate2DMake(0, 0);
+        
+        if (pressedLastFrom) {
+            self.fromAddressLabel.text = @"";
+        }
+        if (pressedLastTo) {
+            self.toAddressLabel.text = @"";
+        }
+    }
+    
+    if (self.fromAddress.formatted_address != nil && self.toAddress.formatted_address != nil) {
+        [self showRoute];
+    }
+}
+
+- (void)configureView
+{
+    [super configureView];
+    
+    [self setMapView];
+    
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
+    [keyboardToolbar sizeToFit];
+    
+    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                     target:self
+                                                                                     action:@selector(cancelAction)];
+    
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                   target:self
+                                                                                   action:@selector(doneAction)];
+    
+    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
+    
+    [keyboardToolbar setTintColor:[UIColor blackColor]];
+    
+    self.receiverNameField.inputAccessoryView = keyboardToolbar;
+    self.receiverNumberField.inputAccessoryView = keyboardToolbar;
+    
+    [self addCornerRadius:self.sendBtn radius:layerCornerRadius];
+    
+    self.receiverNameField.tintColor = [Colors yellowColor];
+    self.receiverNumberField.tintColor = [Colors yellowColor];
+    
+    self.segmentedControl.tintColor = [Colors yellowColor];
+    self.sendBtn.backgroundColor = [Colors yellowColor];
+    
+    self.navItem.title = NSLocalizedString(@"ctrl.create.navigation.title", nil);
+    
+    [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title1", nil) forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title2", nil) forSegmentAtIndex:1];
+    [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title3", nil) forSegmentAtIndex:2];
+    
+    self.mainTitleLabel.text = NSLocalizedString(@"ctrl.create.mainlabel.text", nil);
+    self.receiverNameLabel.text = NSLocalizedString(@"ctrl.create.placeholder.receiverName", nil);
+    self.receiverNumberLabel.text = NSLocalizedString(@"ctrl.create.placeholder.receiverNumber", nil);
+    self.sendBtn.titleLabel.text = NSLocalizedString(@"ctrl.create.button.request", nil);
+    
+    NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                 NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
+    [[UINavigationBar appearance] setTitleTextAttributes:titleParam];
+    
+    UIButton * customButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [customButton setBackgroundColor:[UIColor clearColor]];
+    customButton.frame=CGRectMake(0.0, 0.0, 10.0, 10.0);
+    [customButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [customButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * customItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
+    customItem.tintColor=[UIColor blackColor];
+    self.navigationItem.leftBarButtonItem = customItem;
+}
+
+- (void) addCornerRadius:(UIButton *) btn radius:(float) radius
+{
+    btn.layer.cornerRadius = radius;
+    btn.clipsToBounds = YES;
+}
+
+#pragma mark - set Googl map
+#pragma mark -
+
+- (void) setMapView
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude zoom:15];
+    self.mapView_.camera = camera;
+    self.mapView_.myLocationEnabled = YES;
+    self.mapView_.userInteractionEnabled = NO;
+}
+
+- (void) showRoute
+{
+    CLLocationCoordinate2D fromLoc = CLLocationCoordinate2DMake(self.fromAddress.location.latitude, self.fromAddress.location.longitude);
+    CLLocationCoordinate2D toLoc = CLLocationCoordinate2DMake(self.toAddress.location.latitude, self.toAddress.location.longitude);
+    
+    GMSMarker *fromMarker = [GMSMarker markerWithPosition:fromLoc];
+    GMSMarker *toMarker = [GMSMarker markerWithPosition:toLoc];
+    
+    fromMarker.icon = [UIImage imageNamed:@"pickup_dot"];
+    toMarker.icon = [UIImage imageNamed:@"reciver_dot"];
+    
+    fromMarker.map = self.mapView_;
+    toMarker.map = self.mapView_;
+    
+    CLLocation *from = [[CLLocation alloc] initWithLatitude:self.fromAddress.location.latitude longitude:self.fromAddress.location.longitude];
+    CLLocation *to = [[CLLocation alloc] initWithLatitude:self.toAddress.location.latitude longitude:self.toAddress.location.longitude];
+    
+    OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginLocation:from andDestinationLocation:to];
+    OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
+    [request setTravelMode:OCDirectionsRequestTravelModeDriving];
+    [client directions:request response:^(OCDirectionsResponse *response,  NSError *error) {
+        
+        if (error)
+            return;
+        
+        if (response.status != OCDirectionsResponseStatusOK)
+            return;
+        
+        NSString *points = response.dictionary[@"routes"][0][@"overview_polyline"][@"points"];
+        
+//        GMSPolyline *polyPath       = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:points]];
+//        polyPath.strokeColor        = [UIColor blueColor];
+//        polyPath.strokeWidth        = 3.0f;
+//        polyPath.map                = self.mapView_;
+        
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[GMSPath pathFromEncodedPath:points]];
+        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withEdgeInsets:UIEdgeInsetsMake(70, 70, 70, 70)];
+        [self.mapView_ moveCamera:update];
+        
+        //NSLog(@"RESPONSE %@", response.dictionary);
+        
+    }];
+}
+
+- (void) setRadius
+{
+    
+}
+
+- (void) addBottomLineInTextFild:(TextField *) textFild
+{
+    textFild.textColor = [UIColor lightGrayColor];
+    
+    CALayer *border = [CALayer layer];
+    CGFloat borderWidth = 1;
+    border.borderColor = [UIColor lightGrayColor].CGColor;
+    border.frame = CGRectMake(0, textFild.height*2-31, textFild.width, textFild.height);//textFild.height - borderWidth
+    border.borderWidth = borderWidth;
+    [textFild.layer addSublayer:border];
+    textFild.clipsToBounds = YES;
+    textFild.layer.masksToBounds = YES;
+}
+
+- (void) addBottomLineInLabel:(UILabel *) label
+{
+    CALayer *border = [CALayer layer];
+    CGFloat borderWidth = 1;
+    border.borderColor = [UIColor lightGrayColor].CGColor;
+    border.frame = CGRectMake(0, label.height-1, label.width, label.height);//textFild.height - borderWidth
+    border.borderWidth = borderWidth;
+    [label.layer addSublayer:border];
+    label.clipsToBounds = YES;
+    label.layer.masksToBounds = YES;
+}
+
+#pragma mark - IBAction
+#pragma mark -
+
+- (void) backAction
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)segmentedAction:(id)sender
+{
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.packageIcon.image = [UIImage imageNamed:@"LetterPackageIcon"];
+            self.packageWeightLabel.text = NSLocalizedString(@"ctrl.create.package.weight.letter", nil);
+            self.packageSize = @"LETTER";
+            break;
+            
+        case 1:
+            self.packageIcon.image = [UIImage imageNamed:@"SmallPackageIcon"];
+            self.packageWeightLabel.text = NSLocalizedString(@"ctrl.create.package.weight.small", nil);
+            self.packageSize = @"SMALL_BOX";
+            break;
+            
+        case 2:
+            self.packageIcon.image = [UIImage imageNamed:@"BigPackageIcon"];
+            self.packageWeightLabel.text = NSLocalizedString(@"ctrl.create.package.weight.big", nil);
+            self.packageSize = @"BIG_BOX";
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (IBAction) fromAdressAction:(id)sender
+{
+    [self lowerKeyboard];
+    
+    FromViewController *fromViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FromViewController"];
+    fromViewController.addressType = FromAddress;
+    fromViewController.callController = Create;
+    pressedLastFrom = YES;
+    pressedLastTo = NO;
+    [self.mapView_ clear];
+
+    [self.navigationController pushViewController:fromViewController animated:YES];
+}
+
+- (IBAction) toAdressAction:(id)sender
+{
+    [self lowerKeyboard];
+    
+    FromViewController *fromViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FromViewController"];
+    fromViewController.addressType = ToAddress;
+    fromViewController.callController = Create;
+    pressedLastTo = YES;
+    pressedLastFrom = NO;
+    [self.mapView_ clear];
+    
+    [self.navigationController pushViewController:fromViewController animated:YES];
+}
+
+#pragma mark - validate Fields
+#pragma mark -
+
+- (BOOL) validateFields
+{
+    if (self.receiverNameField.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverName", nil) target:self];
+        return NO;
+    }
+    else if (self.receiverNumberField.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverPhone", nil) target:self];
+        return NO;
+    }
+    else if (self.fromAddressLabel.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredFromAddress", nil) target:self];
+        return NO;
+    }
+    else if (self.toAddressLabel.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredToAddress", nil) target:self];
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - POST methods
+
+- (AFHTTPRequestOperationManager *)manager
+{
+    if (!_manager)
+    {
+        _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[Constants baseURL]]];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
+        [jsonAcceptableContentTypes addObject:@"application/json"];
+        jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+        _manager.responseSerializer = jsonResponseSerializer;
+    }
+    
+    return _manager;
+}
+
+- (void) sendOrder
+{
+    [[AppDelegate instance] showLoadingView];
+    
+    CLLocation *fromLoc = [[CLLocation alloc] initWithLatitude:self.fromAddress.location.latitude longitude:self.fromAddress.location.longitude];
+    CLLocation *toLoc = [[CLLocation alloc] initWithLatitude:self.toAddress.location.latitude longitude:self.toAddress.location.longitude];
+    CLLocationDistance orderDist = [fromLoc distanceFromLocation:toLoc]/1000;
+    
+    NSString *fromLongitude = [NSString stringWithFormat:@"%f", self.fromAddress.location.longitude];
+    NSString *fromLatitude  = [NSString stringWithFormat:@"%f", self.fromAddress.location.latitude];
+    NSString *toLongitude   = [NSString stringWithFormat:@"%f", self.toAddress.location.longitude];
+    NSString *toLatitude    = [NSString stringWithFormat:@"%f", self.toAddress.location.latitude];
+    NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
+    NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    
+    STLogDebug(@"STEP 1");
+    
+    NSDictionary *param = @{@"size"         : NIL_TO_NULL(self.packageSize),
+                            @"receiver"     : NIL_TO_NULL(self.receiverNameField.text),
+                            @"phone"        : NIL_TO_NULL(phone),
+                            @"from_address" : NIL_TO_NULL(self.fromAddressLabel.text),
+                            @"from_lon"     : NIL_TO_NULL(fromLongitude),
+                            @"from_lat"     : NIL_TO_NULL(fromLatitude),
+                            @"to_address"   : NIL_TO_NULL(self.toAddressLabel.text),
+                            @"to_lon"       : NIL_TO_NULL(toLongitude),
+                            @"to_lat"       : NIL_TO_NULL(toLatitude),
+                            @"distance"     : NIL_TO_NULL(distance)};
+    
+    
+    STLogDebug(@"STEP 2");
+    
+    
+    STLogDebug(@"param___: %@",param);
+    
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+    
+    [REQUEST POST:@"/client/order/create" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSLog(@"formData %@", formData);
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[AppDelegate instance] hideLoadingView];
+        STLogSuccess(@"/client/order/create RESPONSE: %@",responseObject);
+        NSLog(@"statusCode %zd", operation.response.statusCode);
+        
+        __block OrderModel *order = [[OrderModel alloc] initWithDictionary:responseObject];
+        
+        if (operation.response.statusCode == 200 || operation.response.statusCode == 201) {
+            
+            TrackingSearchViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrackingSearchViewController"];
+            ctr.order = order;
+            [self.navigationController pushViewController:ctr animated:YES];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[AppDelegate instance] hideLoadingView];
+        STLogSuccess(@"/client/order/create FAILURE: %@",operation.responseString);
+    }];
+}
+
+- (IBAction) sendOrderAction:(id)sender
+{
+    if ([self validateFields]) {
+        [self sendOrder];
+    }
+}
+
+- (void) clearOrderData
+{
+    self.receiverNameField.text = @"";
+    self.receiverNumberField.text = @"";
+    self.fromAddressLabel.text = @"";
+    self.toAddressLabel.text = @"";
+    
+    [kUserDefaults removeObjectForKey:@"settings_fromAddress"];
+    [kUserDefaults removeObjectForKey:@"settings_toAddress"];
+}
+
+- (IBAction) paymentType:(DLRadioButton *)sender
+{
+    STLogDebug(@"paymentType");
+    sender.iconOnRight = !sender.iconOnRight;
+}
+
+- (IBAction) photoReport:(DLRadioButton *)sender
+{
+    STLogDebug(@"photoReport");
+    sender.iconOnRight = !sender.iconOnRight;
+}
+
+- (void)doneAction
+{
+    [self lowerKeyboard];
+}
+
+- (void) cancelAction
+{
+    [self lowerKeyboard];
+}
+
+- (void) setTextCololInField:(TextField *) textfild colol:(UIColor *) color
+{
+    [UIView animateWithDuration:durationAnimation
+                     animations:^{
+                         textfild.textColor = color;
+                         [textfild setValue:color forKeyPath:@"_placeholderLabel.textColor"];
+                     }];
+}
+
+#pragma mark - UITextFieldDelegate
+#pragma mark -
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
+    [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (self.receiverNumberField == textField)
+    {
+        return [[Phone instance] configurePhoneNumberFromTextField:textField
+                                             withCharactersInRange:range
+                                                            string:string];
+    }
+    
+    return true;
+}
+
+- (void) lowerKeyboard
+{
+    [self.receiverNameField resignFirstResponder];
+    [self.receiverNumberField resignFirstResponder];
+}
+
+#pragma mark -
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+@end

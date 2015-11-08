@@ -1,0 +1,286 @@
+
+// general
+"generic.ok"                                 = "Ok";
+"generic.yes"                                = "Yes";
+"generic.no"                                 = "No";
+"generic.call"                               = "Call";
+"generic.legalInf"                           = "Legal information";
+"generic.legalDoc"                           = "Legal documents";
+"generic.FAQ"                                = "FAQ";
+"generic.tariffs"                            = "Tariffs";
+"generic.privacyPolicy"                      = "Privacy Policy";
+"generic.cancel"                             = "Cancel";
+"generic.day"                                = "Day";
+"generic.week"                               = "Week";
+"generic.month"                              = "Month";
+
+
+// type of delivery
+"type.delivery.letter"                       = "LETTER";
+"type.delivery.smallBox"                     = "SMALL BOX";
+"type.delivery.bigBox"                       = "BIG BOX";
+
+
+// delivery status
+"status.delivery.canceled"                   = "Canceled";
+"status.delivery.inProgress"                 = "In progress...";
+"status.delivery.bigBox"                     = "Finished";
+
+
+// Authorization
+"ctrl.authorization.description"             = "TRY ZOOLTAN, THE FASTEST AND EASIEST WAY TO DELIVERY";
+"ctrl.authorization.placeholder.phone"       = "Phone number";
+"ctrl.authorization.placeholder.password"    = "Password";
+"ctrl.authorization.button.forgot"           = "Forgot password";
+"ctrl.authorization.button.login"            = "LOG IN";
+"ctrl.authorization.button.regestration"     = "REGISTRATION";
+"ctrl.authorization.button.fb"               = "ENTER WITH FACEBOOK";
+
+
+// Regestration
+"ctrl.regestration.main.title"               = "REGISTRATION";
+"ctrl.regestration.placeholder.name"         = "Name";
+"ctrl.regestration.placeholder.phone"        = "Phone number";
+"ctrl.regestration.placeholder.password"     = "Password";
+"ctrl.regestration.button.licence"           = "license agreement";
+"ctrl.regestration.button.sign_up"           = "SIGN UP";
+"ctrl.regestration.button.fb"                = "ENTER WITH FACEBOOK";
+"ctrl.regestration.button.call"              = "CALL AND BE REGISTERED";
+"ctrl.regestration.button.office_map"        = "SHOW OFFICE ON THE MAP";
+"ctrl.regestration.accept.title"             = "Registration confirms your acceptance of the";
+"ctrl.regestration.accept.title.courier"     = "You can contact our office manager and / or call him for details about the work in the service.\nThank you for choosing us!";
+"ctrl.regestration.call.incopatible"         = "Call facility is not available!";
+
+// Courier Registration
+"ctrl.courier.registration.msg.title"        = "COURIER REGISTRATION";
+"ctrl.courier.registration.msg"              = "Courier registration text";
+
+// Recovery Password
+"ctrl.recoveryPassword.main.title"           = "PASSWORD RECOVERY";
+"ctrl.recoveryPassword.main.description"     = "To recover your password, enter your phone number and click \"SEND\". You will come with a code to change the password.";
+"ctrl.recoveryPassword.placeholder.phone"    = "Phone number";
+"ctrl.recoveryPassword.button.send"          = "SEND";
+
+
+// New Password
+"ctrl.newPassword.main.title"                = "PASSWORD RECOVERY";
+"ctrl.newPassword.description.title"         = "Please enter a new password";
+"ctrl.newPassword.button.send"               = "SEND";
+"ctrl.newPassword.placeholder.newPassword"   = "New password";
+"ctrl.newPassword.placeholder.repeatPassword"= "Repeat new password";
+
+
+// Validation
+"ctrl.validation.main.title"                 = "Phone number validation";
+"ctrl.validation.description.title"          = "Please enter received code";
+"ctrl.validation.placeholder.code"           = "SMS code";
+"ctrl.validation.button.send"                = "SEND";
+"ctrl.validation.button.cancel"              = "CANCEL";
+
+
+// Complete Registration
+"ctrl.completeRegistration.main.title"       = "REGISTRATION";
+"ctrl.completeRegistration.main.description" = "To complete registration, enter your phone number";
+"ctrl.completeRegistration.placeholder.phone"= "Phone number";
+"ctrl.completeRegistration.button.send"      = "SEND";
+
+
+// Main
+"ctrl.main.title"                            = "OH, NO ACTIVE DELIVERIES... CREATE NEW RIGHT NOW";
+"ctrl.main.button.sendNew"                   = "SEND NEW";
+
+
+// LeftMenu
+"ctrl.menu.deliveres"                        = "DELIVERIES";
+"ctrl.menu.pickupList"                       = "PICKUP LIST";
+"ctrl.menu.expense"                          = "EXPENSE";
+"ctrl.menu.profile"                          = "PROFILE";
+"ctrl.menu.info"                             = "INFORMATION";
+"ctrl.menu.about"                            = "ABOUT US";
+"ctrl.menu.logout"                           = "LOG OUT";
+"ctrl.menu.sendNew"                          = "SEND NEW";
+
+
+// History || Deliveries
+"ctrl.history.navigation.title"              = "DELIVERIES";
+"ctrl.history.segmented.title1"              = "CURRENT DELIVERY";
+"ctrl.history.segmented.title2"              = "HISTORY";
+"ctrl.history.cell.address"                  = "Address:";
+"ctrl.history.cell.pickedUp"                 = "Picked Up:";
+"ctrl.history.cell.delivered"                = "Delivered:";
+
+"ctrl.courier.history.cell.pickupDistance"   = "Distance to the pickup location:";
+"ctrl.courier.history.cell.betweenDistance"  = "Distance between pickup and destination:";
+"ctrl.courier.history.cell.destination"      = "Address of destination:";
+
+"ctrl.courier.history.topnavigation.title0"  = "LOCAL";
+"ctrl.courier.history.topnavigation.title1"  = "ON THE WAY";
+"ctrl.courier.history.topnavigation.title2"  = "FULL TIME";
+
+"ctrl.courier.history.bottomnavigation.title0"  = "NEW";
+"ctrl.courier.history.bottomnavigation.title1"  = "ACTIVE";
+"ctrl.courier.history.bottomnavigation.title2"  = "HISTORY";
+
+
+// Send New Package || create
+"ctrl.create.navigation.title"               = "SEND NEW PACKAGE";
+"ctrl.create.segmented.title1"               = "LETTER";
+"ctrl.create.segmented.title2"               = "SMALL BOX";
+"ctrl.create.segmented.title3"               = "BIG BOX";
+"ctrl.create.mainlabel.text"                 = "SHIPPING INFO";
+"ctrl.create.placeholder.receiverName"       = "Receiver's name:";
+"ctrl.create.placeholder.receiverNumber"     = "Receiver's number:";
+"ctrl.create.placeholder.from"               = "From:";
+"ctrl.create.placeholder.to"                 = "To:";
+"ctrl.create.button.request"                 = "REQUEST";
+"ctrl.create.package.weight.letter"          = "< 1kg";
+"ctrl.create.package.weight.small"           = "1 - 5kg";
+"ctrl.create.package.weight.big"             = "5 - 7.5kg";
+
+
+// Traking
+"ctrl.traking.navigation.title"              = "TRACKING";
+"ctrl.traking.title.package"                 = "package";
+"ctrl.traking.title.trackId"                 = "track ID";
+"ctrl.traking.title.pickedUp"                = "PICKED UP";
+"ctrl.traking.title.enRoute"                 = "EN ROUTE";
+"ctrl.traking.title.currently"               = "CURRENTLY";
+"ctrl.traking.btn.call"                      = "CALL THE COURIER";
+
+
+// Package
+"ctrl.package.navigation.title"              = "PACKAGE";
+"ctrl.package.title.callSender"              = "CALL THE SENDER";
+"ctrl.package.title.package"                 = "package";
+"ctrl.package.title.status"                  = "status";
+"ctrl.package.title.trackId"                 = "tack ID";
+"ctrl.package.title.cost"                    = "Cost:";
+"ctrl.package.title.pickupDistance"          = "Distance to the pickup location:";
+"ctrl.package.title.betweenDistance"         = "From pickup to destination:";
+"ctrl.package.title.destinationArea"         = "Area of destination:";
+"ctrl.package.title.receiverName"            = "Receiver name:";
+"ctrl.package.title.receiverPhone"           = "Receiver phone:";
+
+// Orders status
+"ctrl.package.order.status.new"              = "New";
+"ctrl.package.order.status.new1"             = "Waiting for courier";
+"ctrl.package.order.status.accept"           = "Waiting for pickup";
+"ctrl.package.order.status.pickup"           = "Waiting for delivery";
+"ctrl.package.order.status.progress"         = "In progress";
+"ctrl.package.order.status.delivery"         = "Delivered";
+"ctrl.package.order.status.close"            = "Closed";
+
+// Button titles
+"ctrl.package.button.title.close"            = "CLOSE ORDER";
+"ctrl.package.button.title.finish"           = "FINISH DELIVERY/SCAN QR CODE";
+"ctrl.package.button.title.start"            = "START DELIVERY";
+"ctrl.package.button.title.take"             = "TAKE ORDER/SCAN QR CODE";
+"ctrl.package.button.title.accept"           = "ACCEPT ORDER";
+
+// Tracking
+"ctrl.tracking.button.title"                 = "TRACKING";
+"ctrl.tracking.section.title.pickedup"       = "PICKED UP";
+"ctrl.tracking.section.title.enroute"        = "EN ROUTE";
+"ctrl.tracking.section.title.currently"      = "CURRENTLY";
+
+// From
+"ctrl.from.navigation.title"                 = "FROM";
+"ctrl.from.segmented.title1"                 = "HOME";
+"ctrl.from.segmented.title2"                 = "WORK";
+"ctrl.from.placeholder.serach"               = "Search";
+"ctrl.from.title.current_location"           = "Current location";
+
+
+// To
+"ctrl.to.navigation.title"                   = "TO";
+"ctrl.destination.navigation.title"          = "FINAL DESTINATION";
+"ctrl.destination.label.title"               = "Final Destination";
+
+
+// Expense
+"ctrl.expense.navigation.title"              = "EXPENSE";
+"ctrl.expense.title.balance"                 = "BALANSE";
+"ctrl.expense.title.recharge"                = "Recharge";
+"ctrl.expense.title.promo"                   = "Promo";
+
+
+// Profile
+"ctrl.profile.navigation.title"              = "PROFILE";
+"ctrl.profile.title.phonenumber"             = "Phone number:";
+"ctrl.profile.title.homeAddress"             = "Home address:";
+"ctrl.profile.title.workAddress"             = "Work address:";
+"ctrl.profile.title.password"                = "Password:";
+"ctrl.profile.title.newPassword"             = "New password:";
+"ctrl.profile.title.repeatPassword"          = "Repeat password:";
+"ctrl.profile.button.save"                   = "SAVE CHANGES";
+"ctrl.profile.action.selectImage"            = "Select image from gallery";
+"ctrl.profile.action.makePhoto"              = "Make photo";
+"ctrl.profile.invalidRepearNewPass"          = "New password and Pepeat password must match";
+"ctrl.profile.invalidNewPassword"            = "Please enter New password";
+"ctrl.profile.invalidRepeatPassword"         = "Please repeat password";
+
+// Statistic
+"ctrl.statistic.navigation.title"            = "STATISTICS";
+"ctrl.statistic.title.profit"                = "Profit";
+"ctrl.statistic.title.rating"                = "Your rating";
+"ctrl.statistic.title.deliveries"            = "Deliveries";
+"ctrl.statistic.title.allDeliveries"         = "All deliveries";
+"ctrl.statistic.title.allMoneyRecived"       = "All money received";
+
+
+
+// About Us
+"ctrl.aboutus.navigation.title"              = "ABOUT US";
+"ctrl.aboutus.title.description"             = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"ctrl.aboutus.title.following"               = "following us";
+
+
+// Information
+"ctrl.information.navigation.title"          = "INFORMATION";
+
+// Legal information
+"ctrl.legalInformation.navigation.title"     = "LEGAL INFORMATION";
+"ctrl.legalInformation.cell.title_0"         = "User Agreement";
+"ctrl.legalInformation.cell.title_1"         = "Terms of Use";
+"ctrl.legalInformation.cell.title_2"         = "Dispute settlement procedure";
+
+
+// User Agreement
+"ctrl.useragreement.navigation.title"     = "USER AGREEMENT";
+"ctrl.useragreement.title.mainlabel"      = "USER AGREEMENT";
+"ctrl.useragreement.title.description"    = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+"ctrl.useragreement.title.treveltime"     = "TREVEL TIME";
+"ctrl.useragreement.title.additional"     = "ADDITIONAL EXPENSES";
+
+
+// Errors Messages
+"msg.error.general"                         = "Something has gone!";
+"msg.error.403"                             = "Bad authoriaztion";
+"msg.login.404"                             = "This user not register by this data. Please register.";
+"msg.error.updateOrder.404"                 = "Order not fonded";
+"msg.error.updateOrder.409"                 = "Stage already updated";
+
+"msg.error.facebook"                        = "This facebook account is already used";
+"msg.error.enteredData"                     = "Please сheck the entered data";
+"msg.error.phoneNumber"                     = "Please enter phone number";
+"msg.error.password"                        = "Please enter password";
+"msg.error.name"                            = "Please enter your name";
+"msg.error.pinCode"                         = "Please enter pin code";
+"msg.error.oldPassword"                     = "Please enter old password";
+"msg.error.newPassword"                     = "Please enter new password";
+"msg.error.repeatPassword"                  = "Please enter repeat password";
+"msg.error.enteredPhoneNumber"              = "Incorrect phone number";
+"msg.error.enteredPhoneNumberCharacters"    = "Phone number should contain minimum 9 characters";
+"msg.error.enteredOldPassword"              = "Incorrect password";
+"msg.error.enteredNameCharacters"           = "Name should contain minimum 3 characters";
+"msg.error.enteredDifferentPasswords"       = "New password and repeat password are different";
+"msg.error.enteredPinCode"                  = "Please enter a valid code";
+"msg.error.enteredPinCodeCharacters"        = "Pin code should contain 4 characters";
+
+"msg.error.enteredReciverName"              = "Please enter receiver name";
+"msg.error.enteredReciverPhone"             = "Please enter receiver phone number";
+"msg.error.enteredFromAddress"              = "Please enter from address";
+"msg.error.enteredToAddress"                = "Please enter to address";
+"msg.error.enteredSameAdresses"             = "From and To addresses can not be the same";
+"msg.error.userNotFound"                    = "User not found";
+

@@ -1,0 +1,80 @@
+//
+//  PrefixHeader.pch
+//  Zooltan
+//
+//  Created by Grigoriy Zaliva on 22.06.15.
+//  Copyright (c) 2015 Grigoriy Zaliva. All rights reserved.
+//
+
+#ifndef Zooltan_PrefixHeader_pch
+#define Zooltan_PrefixHeader_pch
+
+#define kUserDefaults [NSUserDefaults standardUserDefaults]
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); [__obj isKindOfClass: NSNull.class] ? nil : obj; })
+#define NIL_TO_NULL(obj) ({ __typeof__ (obj) __obj = (obj); (__obj == nil) ? [NSNull null] : obj; })
+
+#define STRING(obj) ({ __typeof__ (obj) __obj = (obj); [NSString stringWithFormat: @"%@", (__obj) ? obj : @""]; })
+
+#define IS_COURIER_APP  [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"TargetName"] isEqualToString:@"Courier"]
+#define IS_CUSTOMER_APP [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"TargetName"] isEqualToString:@"Customer"]
+#define STORYBOARD      [UIStoryboard storyboardWithName:[Constants currentStoryboardName] bundle:[NSBundle mainBundle]]
+
+#define showLogin @"showLoginView"
+#define showCenterView @"setCenterView"
+#define clearOrder @"clearOrder"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "Constants.h"
+
+//Categories
+#import "Interface.h"
+#import "Foundation.h"
+#import "Collections.h"
+#import "Logger.h"//#import "STLogger.h"
+#import "Phone.h"
+
+//App
+#import "AppDelegate.h"
+#import "BaseViewController.h"
+
+//Controllers
+
+//Helpers
+#import "Colors.h"
+#import "Fonts.h"
+#import "Animations.h"
+#import "PushAnimation.h"
+#import "PopAnimation.h"
+#import "Helpers.h"
+#import "TextFields.h"
+#import <sys/utsname.h>
+#import "ActivityIndicator.h"
+#import "CheckMobi.h"
+#import "Errors.h"
+
+//Auth
+//#import <Lock/Lock.h>
+
+//API
+#import "Server.h"
+
+//Models
+#import "UserModel.h"
+#import "OrderModel.h"
+#import "RoutModel.h"
+
+
+
+#import "Settings.h"
+#import "BaseModel.h"
+#import "PlaceModel.h"
+
+#import "Utilities.h"
+
+
+//Additions
+#import "UITextField+Additions.h"
+
+#endif
