@@ -247,6 +247,10 @@ NSString* deteckScreen()
         [[Server instance] loginWithModel:_userModel
                                   success:^(UserModel *userModel) {
                                       
+                                      [[Settings instance] setCurrentUser:userModel];
+                                      
+                                      [super getUserData];
+                                      
                                       [self dismissViewControllerAnimated:YES completion:^{
                                           [[NSNotificationCenter defaultCenter] postNotificationName:showCenterView object:nil];
                                       }];
