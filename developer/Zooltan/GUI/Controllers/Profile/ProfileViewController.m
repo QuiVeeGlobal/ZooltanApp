@@ -68,6 +68,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(lowerKeyboard)
+                                                 name:closeKeyboard
+                                               object:nil];
+    
     [self setProfileData];
 }
 
@@ -281,20 +287,6 @@
     if ([self validateFields]) {
         [self updateProfile:[self _getUserData] success:nil];
     }
-    
-//    if (!self.userModel.phone) {
-//        if ([self validateFields]) {
-//            [[CheckMobi instance] verifyPhoneNumber:self.phoneField.text completionBlock:^(NSError *error) {
-//                
-//                STLogDebug(@"verifyPhoneNumber");
-//                STLogError(error);
-//                
-//                if (error == nil) {
-//                    [self updateProfile:[self _getUserData]];
-//                }
-//            }];
-//        }
-//    }
 }
 
 - (IBAction) fbAction:(UIButton *)sender
@@ -326,7 +318,8 @@
     }];
 }
 
-- (IBAction)statisticAction:(UIButton *)sender {
+- (IBAction)statisticAction:(UIButton *)sender
+{
     StatisticViewController *ctrl = [self.storyboard instantiateViewControllerWithIdentifier:StatisticViewController.className];
     [self.navigationController pushViewController:ctrl animated:YES];
 }

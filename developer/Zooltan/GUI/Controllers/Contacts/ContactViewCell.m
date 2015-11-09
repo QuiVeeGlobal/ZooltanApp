@@ -8,25 +8,33 @@
 
 #import "ContactViewCell.h"
 
-#define kLineOffset 15
+//#define kLineOffset 15
 
 @implementation ContactViewCell
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CALayer *line = [CALayer new];
-    line.backgroundColor = [UIColor grayColor].CGColor;
-    line.borderWidth = 1;
-    line.frame = CGRectMake(kLineOffset,
-                            self.height-line.borderWidth,
-                            self.width - (kLineOffset*2),
-                            line.borderWidth);
-    [self.layer addSublayer:line];
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    CALayer *line = [CALayer new];
+//    line.backgroundColor = [UIColor lightGrayColor].CGColor;
+//    line.borderWidth = 1;
+//    line.frame = CGRectMake(kLineOffset,
+//                            self.height-line.borderWidth,
+//                            self.width - (kLineOffset*2),
+//                            line.borderWidth);
+//    [self.layer addSublayer:line];
+//}
+
+- (void) addCornerRadius:(UIImageView *)view radius:(float) radius
+{
+    view.layer.cornerRadius = radius;
+    view.clipsToBounds = YES;
 }
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)awakeFromNib
+{
+    [self addCornerRadius:self.photo radius:self.photo.height/2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

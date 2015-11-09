@@ -13,6 +13,7 @@
 #import "FromViewController.h"
 #import "AFNetworking.h"
 #import "TrackingSearchViewController.h"
+#import "ContactsViewController.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 #define METERS_PER_MILE 1609.344
@@ -76,6 +77,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearOrderData)
                                                  name:clearOrder
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(lowerKeyboard)
+                                                 name:closeKeyboard
                                                object:nil];
     
     [self setOrderData];
@@ -477,6 +483,13 @@
     [self lowerKeyboard];
 }
 
+- (void)addContactAction
+{
+    ContactsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
+    [self lowerKeyboard];
+    [self.navigationController pushViewController:ctr animated:YES];
+}
+
 - (void) setTextCololInField:(TextField *) textfild colol:(UIColor *) color
 {
     [UIView animateWithDuration:durationAnimation
@@ -493,6 +506,13 @@
 {
     [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
     [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
+    
+    if (textField == self.receiverNameField) {
+        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [addButton addTarget:self action:@selector(addContactAction) forControlEvents:UIControlEventTouchUpInside];
+        textField.rightViewMode = UITextFieldViewModeWhileEditing;
+        textField.rightView = addButton;
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

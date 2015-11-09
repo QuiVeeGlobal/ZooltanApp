@@ -35,11 +35,11 @@
 }
 
 + (NSString *)GMSApiKey {
-    return @"AIzaSyCQdShHJupGCd55bBhKTQgFUSRFOm4xwSw";
+    return @"AIzaSyClHLLZXMOEOYqOkmmvrIzLQIUHWjSYXzQ";
 }
 
 + (NSString *)browserGMSApiKey {
-    return @"AIzaSyDinP-qSs3CVqE-Ad6Vn6wSDESi3HLuZ7k";
+    return @"AIzaSyCZ5M52viG4_-xX-VAbTQnBBT03msCrvds";
 }
 
 + (NSString *)GAIKey {

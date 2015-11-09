@@ -109,9 +109,6 @@
             swingingDoorTransform = overshootTransform;
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MMDrawerSideRightPercentVisible"
-                                                            object:@(percentVisible)];
-        
         [sideDrawerViewController.view.layer setTransform:swingingDoorTransform];
     };
     return visualStateBlock;
@@ -148,6 +145,8 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MMDrawerSideRightPercentVisible"
                                                             object:@(percentVisible)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:closeKeyboard
+                                                            object:nil];
         
         [sideDrawerViewController.view.layer setTransform:transform];
     };

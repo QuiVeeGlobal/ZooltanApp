@@ -289,6 +289,7 @@ typedef enum : NSUInteger {
     [navCtr setViewControllers:@[ctr] animated:NO];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:clearOrder object:nil];
+    
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
 //    
 //    [self.mm_drawerController setCenterViewController:navCtr
