@@ -28,6 +28,22 @@
     return @[];
 }
 
+- (NSString*)phonesNumbers
+{
+    NSMutableString *phonesNumbers = [NSMutableString string];
+    
+    for (NSString *phone in self.phonesValues) {
+        [phonesNumbers appendString:phone];
+    }
+    
+    NSString *phonesString = [phonesNumbers stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    phonesString = [phonesString stringByReplacingOccurrencesOfString:@")" withString:@""];
+    phonesString = [phonesString stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    phonesString = [phonesString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return phonesString;
+}
+
 - (NSDictionary *)asDictionary
 {
     return [[MoContactSerializer sharedInstance] serializeContact:self];

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMapsM4B/GoogleMaps.h>
 #import <MapKit/MapKit.h>
-//#import <CoreLocation/CoreLocation.h>
-
+#import <MoABContactsManager/MoContact.h>
 
 @interface CreateViewController : BaseViewController
+
+@property (nonatomic, strong) MoContact *contact;
 
 @end
 

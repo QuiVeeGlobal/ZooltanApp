@@ -136,6 +136,8 @@
  */
 @property (strong, nonatomic, readonly) NSArray *phonesValues;
 
+@property (strong, nonatomic, readonly) NSString *phonesNumbers;
+
 - (NSDictionary *)asDictionary;
 
 @end

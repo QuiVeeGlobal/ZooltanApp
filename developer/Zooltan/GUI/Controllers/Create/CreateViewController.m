@@ -19,6 +19,7 @@
 #define METERS_PER_MILE 1609.344
 #define layerCornerRadius 2.5
 #define durationAnimation 0.3f
+#define keyboardHeight 260
 #define REQUEST self.manager
 
 @interface CreateViewController () <TextFieldButtonDelegate, UITextFieldDelegate, UIScrollViewDelegate, GMSMapViewDelegate, CLLocationManagerDelegate>
@@ -32,15 +33,20 @@
 
 @property (weak, nonatomic) IBOutlet TextField *receiverNameField;
 @property (weak, nonatomic) IBOutlet TextField *receiverNumberField;
+@property (weak, nonatomic) IBOutlet TextField *commentsTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *receiverNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *receiverNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fromAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *photoAttachedLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (weak, nonatomic) IBOutlet UIButton *photoViewBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *mapBGView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *packageIcon;
 @property (strong, nonatomic) IBOutlet UILabel *packageWeightLabel;
@@ -64,8 +70,6 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden = YES;
-    
-//    self.scrollView.contentSize = CGSizeMake(self.view.width, self.mapBGView.bottom);
     
     self.packageSize = @"LETTER";
 }
@@ -114,6 +118,13 @@
     if (self.fromAddress.formatted_address != nil && self.toAddress.formatted_address != nil) {
         [self showRoute];
     }
+    
+    if (self.contact) {
+        [self.receiverNameField becomeFirstResponder];
+        self.receiverNameField.text = self.contact.fullName;
+        if ([self.contact.phonesValues count] > 0)
+            self.receiverNumberField.text = self.contact.phonesValues[0];
+    }
 }
 
 - (void)configureView
@@ -141,38 +152,36 @@
     
     self.receiverNameField.inputAccessoryView = keyboardToolbar;
     self.receiverNumberField.inputAccessoryView = keyboardToolbar;
-    
-    [self addCornerRadius:self.sendBtn radius:layerCornerRadius];
+    self.commentsTextField.inputAccessoryView = keyboardToolbar;
     
     self.receiverNameField.tintColor = [Colors yellowColor];
     self.receiverNumberField.tintColor = [Colors yellowColor];
+    self.commentsTextField.tintColor = [Colors yellowColor];
     
     self.segmentedControl.tintColor = [Colors yellowColor];
     self.sendBtn.backgroundColor = [Colors yellowColor];
     
-    self.navItem.title = NSLocalizedString(@"ctrl.create.navigation.title", nil);
+    [self addCornerRadius:self.sendBtn radius:layerCornerRadius];
     
     [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title1", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title2", nil) forSegmentAtIndex:1];
     [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.create.segmented.title3", nil) forSegmentAtIndex:2];
     
-    self.mainTitleLabel.text = NSLocalizedString(@"ctrl.create.mainlabel.text", nil);
-    self.receiverNameLabel.text = NSLocalizedString(@"ctrl.create.placeholder.receiverName", nil);
-    self.receiverNumberLabel.text = NSLocalizedString(@"ctrl.create.placeholder.receiverNumber", nil);
-    self.sendBtn.titleLabel.text = NSLocalizedString(@"ctrl.create.button.request", nil);
+    self.navItem.title                 = NSLocalizedString(@"ctrl.create.navigation.title", nil);
+    self.mainTitleLabel.text           = NSLocalizedString(@"ctrl.create.mainlabel.title", nil);
+    self.receiverNameLabel.text        = NSLocalizedString(@"ctrl.create.receiverName.title", nil);
+    self.receiverNumberLabel.text      = NSLocalizedString(@"ctrl.create.receiverNumber.title", nil);
+    self.fromAddressLabel.text         = NSLocalizedString(@"ctrl.create.from.title", nil);
+    self.toAddressLabel.text           = NSLocalizedString(@"ctrl.create.to.title", nil);
+    self.commentsLabel.text            = NSLocalizedString(@"ctrl.create.comments.title", nil);
+    self.commentsTextField.placeholder = NSLocalizedString(@"ctrl.create.placeholder.comments", nil);
+    self.photoAttachedLabel.text       = NSLocalizedString(@"ctrl.create.photoAttached.title", nil);
+    self.photoViewBtn.titleLabel.text  = NSLocalizedString(@"ctrl.create.button.photoView", nil);
+    self.sendBtn.titleLabel.text       = NSLocalizedString(@"ctrl.create.button.request", nil);
     
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
     [[UINavigationBar appearance] setTitleTextAttributes:titleParam];
-    
-    UIButton * customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [customButton setBackgroundColor:[UIColor clearColor]];
-    customButton.frame=CGRectMake(0.0, 0.0, 10.0, 10.0);
-    [customButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [customButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * customItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
-    customItem.tintColor=[UIColor blackColor];
-    self.navigationItem.leftBarButtonItem = customItem;
 }
 
 - (void) addCornerRadius:(UIButton *) btn radius:(float) radius
@@ -241,37 +250,6 @@
     }];
 }
 
-- (void) setRadius
-{
-    
-}
-
-- (void) addBottomLineInTextFild:(TextField *) textFild
-{
-    textFild.textColor = [UIColor lightGrayColor];
-    
-    CALayer *border = [CALayer layer];
-    CGFloat borderWidth = 1;
-    border.borderColor = [UIColor lightGrayColor].CGColor;
-    border.frame = CGRectMake(0, textFild.height*2-31, textFild.width, textFild.height);//textFild.height - borderWidth
-    border.borderWidth = borderWidth;
-    [textFild.layer addSublayer:border];
-    textFild.clipsToBounds = YES;
-    textFild.layer.masksToBounds = YES;
-}
-
-- (void) addBottomLineInLabel:(UILabel *) label
-{
-    CALayer *border = [CALayer layer];
-    CGFloat borderWidth = 1;
-    border.borderColor = [UIColor lightGrayColor].CGColor;
-    border.frame = CGRectMake(0, label.height-1, label.width, label.height);//textFild.height - borderWidth
-    border.borderWidth = borderWidth;
-    [label.layer addSublayer:border];
-    label.clipsToBounds = YES;
-    label.layer.masksToBounds = YES;
-}
-
 #pragma mark - IBAction
 #pragma mark -
 
@@ -305,8 +283,14 @@
             break;
     }
 }
+- (IBAction)addContactAction:(id)sender
+{
+    ContactsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
+    [self lowerKeyboard];
+    [self.navigationController pushViewController:ctr animated:YES];
+}
 
-- (IBAction) fromAdressAction:(id)sender
+- (IBAction)fromAdressAction:(id)sender
 {
     [self lowerKeyboard];
     
@@ -320,7 +304,7 @@
     [self.navigationController pushViewController:fromViewController animated:YES];
 }
 
-- (IBAction) toAdressAction:(id)sender
+- (IBAction)toAdressAction:(id)sender
 {
     [self lowerKeyboard];
     
@@ -334,56 +318,19 @@
     [self.navigationController pushViewController:fromViewController animated:YES];
 }
 
-#pragma mark - validate Fields
-#pragma mark -
-
-- (BOOL) validateFields
+- (IBAction)photoViewAction:(id)sender
 {
-    if (self.receiverNameField.text.length <= 0)
-    {
-        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverName", nil) target:self];
-        return NO;
-    }
-    else if (self.receiverNumberField.text.length <= 0)
-    {
-        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverPhone", nil) target:self];
-        return NO;
-    }
-    else if (self.fromAddressLabel.text.length <= 0)
-    {
-        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredFromAddress", nil) target:self];
-        return NO;
-    }
-    else if (self.toAddressLabel.text.length <= 0)
-    {
-        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredToAddress", nil) target:self];
-        return NO;
-    }
     
-    return YES;
 }
 
-#pragma mark - POST methods
-
-- (AFHTTPRequestOperationManager *)manager
+- (IBAction)sendOrderAction:(id)sender
 {
-    if (!_manager)
-    {
-        _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[Constants baseURL]]];
-        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        
-        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
-        
-        NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
-        [jsonAcceptableContentTypes addObject:@"application/json"];
-        jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
-        _manager.responseSerializer = jsonResponseSerializer;
+    if ([self validateFields]) {
+        [self sendOrder];
     }
-    
-    return _manager;
 }
 
-- (void) sendOrder
+- (void)sendOrder
 {
     [[AppDelegate instance] showLoadingView];
     
@@ -443,14 +390,7 @@
     }];
 }
 
-- (IBAction) sendOrderAction:(id)sender
-{
-    if ([self validateFields]) {
-        [self sendOrder];
-    }
-}
-
-- (void) clearOrderData
+- (void)clearOrderData
 {
     self.receiverNameField.text = @"";
     self.receiverNumberField.text = @"";
@@ -461,36 +401,60 @@
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
 }
 
-- (IBAction) paymentType:(DLRadioButton *)sender
-{
-    STLogDebug(@"paymentType");
-    sender.iconOnRight = !sender.iconOnRight;
-}
-
-- (IBAction) photoReport:(DLRadioButton *)sender
-{
-    STLogDebug(@"photoReport");
-    sender.iconOnRight = !sender.iconOnRight;
-}
-
 - (void)doneAction
 {
     [self lowerKeyboard];
 }
 
-- (void) cancelAction
+- (void)cancelAction
 {
     [self lowerKeyboard];
 }
 
-- (void)addContactAction
+- (void)lowerKeyboard
 {
-    ContactsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
-    [self lowerKeyboard];
-    [self.navigationController pushViewController:ctr animated:YES];
+    [self.receiverNameField resignFirstResponder];
+    [self.receiverNumberField resignFirstResponder];
+    [self.commentsTextField resignFirstResponder];
 }
 
-- (void) setTextCololInField:(TextField *) textfild colol:(UIColor *) color
+- (void)scrollRectToVisible:(CGRect) rect
+{
+    [self performBlock:^{
+        [self.scrollView scrollRectToVisible:rect animated:YES];
+    } afterDelay:durationAnimation];
+}
+
+#pragma mark - validate Fields
+#pragma mark -
+
+- (BOOL)validateFields
+{
+    if (self.receiverNameField.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverName", nil) target:self];
+        return NO;
+    }
+    else if (self.receiverNumberField.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredReciverPhone", nil) target:self];
+        return NO;
+    }
+    else if (self.fromAddressLabel.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredFromAddress", nil) target:self];
+        return NO;
+    }
+    else if (self.toAddressLabel.text.length <= 0)
+    {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredToAddress", nil) target:self];
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)setTextCololInField:(TextField *)textfild colol:(UIColor *)color
 {
     [UIView animateWithDuration:durationAnimation
                      animations:^{
@@ -504,14 +468,16 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [self performBlock:^{
+        self.scrollView.contentSize = CGSizeMake(self.view.width, self.commentsTextField.bottom+keyboardHeight);
+    } afterDelay:0];
+    
     [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
     [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
+    [self setTextCololInField:self.commentsTextField colol:[UIColor darkGrayColor]];
     
-    if (textField == self.receiverNameField) {
-        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        [addButton addTarget:self action:@selector(addContactAction) forControlEvents:UIControlEventTouchUpInside];
-        textField.rightViewMode = UITextFieldViewModeWhileEditing;
-        textField.rightView = addButton;
+    if (textField == self.commentsTextField) {
+        [self scrollRectToVisible:CGRectMake(0, self.commentsTextField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
     }
 }
 
@@ -527,10 +493,35 @@
     return true;
 }
 
-- (void) lowerKeyboard
+#pragma mark - UIKeyboardWillHideNotification
+#pragma mark -
+
+- (void)keyboardWillHide:(NSNotification *)notifications
 {
-    [self.receiverNameField resignFirstResponder];
-    [self.receiverNumberField resignFirstResponder];
+    [UIView animateWithDuration:0.35f
+                     animations:^{
+                         self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
+                     }];
+}
+
+#pragma mark - POST methods
+
+- (AFHTTPRequestOperationManager *)manager
+{
+    if (!_manager)
+    {
+        _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[Constants baseURL]]];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
+        [jsonAcceptableContentTypes addObject:@"application/json"];
+        jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+        _manager.responseSerializer = jsonResponseSerializer;
+    }
+    
+    return _manager;
 }
 
 #pragma mark -

@@ -321,8 +321,8 @@
 		44101D721BBC06860044925E /* Phone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phone.m; sourceTree = "<group>"; };
 		444B57BC1BD624DD00A8C394 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		444B57BD1BD624DD00A8C394 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
-		444B57C01BD6250C00A8C394 /* ContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewCell.h; sourceTree = "<group>"; };
-		444B57C11BD6250C00A8C394 /* ContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewCell.m; sourceTree = "<group>"; };
+		444B57C01BD6250C00A8C394 /* ContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewCell.h; path = ../../Controllers/Contacts/ContactViewCell.h; sourceTree = "<group>"; };
+		444B57C11BD6250C00A8C394 /* ContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactViewCell.m; path = ../../Controllers/Contacts/ContactViewCell.m; sourceTree = "<group>"; };
 		444B57F91BD66B9700A8C394 /* UITextField+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Additions.h"; sourceTree = "<group>"; };
 		444B57FA1BD66B9700A8C394 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Additions.m"; sourceTree = "<group>"; };
 		446388FE1B958E04008B4B0B /* Zooltan Courier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zooltan Courier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -631,8 +631,6 @@
 		444B57BB1BD624BF00A8C394 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				444B57C01BD6250C00A8C394 /* ContactViewCell.h */,
-				444B57C11BD6250C00A8C394 /* ContactViewCell.m */,
 				444B57BC1BD624DD00A8C394 /* ContactsViewController.h */,
 				444B57BD1BD624DD00A8C394 /* ContactsViewController.m */,
 			);
@@ -685,6 +683,8 @@
 		67031B7B1B4AB69900186F73 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				444B57C01BD6250C00A8C394 /* ContactViewCell.h */,
+				444B57C11BD6250C00A8C394 /* ContactViewCell.m */,
 				67B7E5031B4EA80A0023D485 /* DeliveryCell.h */,
 				67B7E5041B4EA80A0023D485 /* DeliveryCell.m */,
 				67031B7F1B4AB7F300186F73 /* HistoryCell.h */,

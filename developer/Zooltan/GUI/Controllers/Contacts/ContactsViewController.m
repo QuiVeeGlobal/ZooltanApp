@@ -8,18 +8,20 @@
 
 #import "ContactsViewController.h"
 #import "ContactViewCell.h"
+#import "CreateViewController.h"
 #import <MoABContactsManager/MoABContactsManager.h>
 
 #define border_Width 1
 #define kIconSize 20
 #define layerCornerRadius 2.5;
 
-@interface ContactsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TextFieldButtonDelegate, MoABContactsManagerDelegate>
+@interface ContactsViewController () <UITableViewDataSource, ContactViewCellDelegate, UITableViewDelegate, UITextFieldDelegate, TextFieldButtonDelegate, MoABContactsManagerDelegate>
 {
     TextField *searchField;
 }
 
 @property (strong, nonatomic) NSArray *contacts;
+@property (strong, nonatomic) NSArray *filteredContacts;
 @property (strong, nonatomic) MoContact *selectedContact;
 
 @end
@@ -76,7 +78,7 @@
         searchField.inputAccessoryView = keyboardToolbar;
         
         [searchField addTarget:self action:@selector(searchFieldDidChangeValue)
-             forControlEvents:UIControlEventEditingChanged];
+              forControlEvents:UIControlEventEditingChanged];
     }
     
     return searchField;
@@ -125,6 +127,14 @@
 
 #pragma mark - UITableView Delegate
 
+- (NSArray *)tableSorce
+{
+    if (searchField.text.length) {
+        return self.filteredContacts;
+    }
+    return self.contacts;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 35;
@@ -137,20 +147,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return [ContactViewCell cellHeight];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _contacts.count;
+    return self.tableSorce.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ContactViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactViewCell.className
                                                             forIndexPath:indexPath];
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     
-    MoContact *contact = _contacts[indexPath.row];
+    MoContact *contact = self.tableSorce[indexPath.row];
     
     [cell.name setText:contact.fullName];
     
@@ -166,6 +178,36 @@
     
     return cell;
 }
+
+- (void)contactViewCellDelegateDidPressButton:(UIButton *)button
+                                  atIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedContact = self.contacts[indexPath.row];
+    
+    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+    ctr.contact = self.selectedContact;
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionPush;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    [self.navigationController pushViewController:ctr animated:NO];
+
+}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    self.selectedContact = self.contacts[indexPath.row];
+//    
+//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    ctr.contact = self.selectedContact;
+//    
+//    CATransition *animation = [CATransition animation];
+//    animation.type = kCATransitionPush;
+//    animation.subtype = kCATransitionFromLeft;
+//    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+//    [self.navigationController pushViewController:ctr animated:NO];
+//}
 
 #pragma mark - IBAction
 #pragma mark -
@@ -200,11 +242,14 @@
 
 - (void)searchFieldDidChangeValue
 {
-    NSLog(@"textFieldDidChangeValue: %@", searchField.text);
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.fullName contains[cd] %@ || self.phonesNumbers contains[cd] %@",
+                              searchField.text,
+                              searchField.text];
+    self.filteredContacts = [self.contacts filteredArrayUsingPredicate:predicate];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //[self loadContacts];
-    });
+    [self.tableView reloadData];
+    
+    [searchField becomeFirstResponder];
 }
 
 @end
