@@ -500,7 +500,7 @@
 {
     [UIView animateWithDuration:0.35f
                      animations:^{
-                         self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
+                         self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.mapView_.bottom);
                      }];
 }
 
