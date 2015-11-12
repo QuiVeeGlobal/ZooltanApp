@@ -120,10 +120,13 @@
     }
     
     if (self.contact) {
-        [self.receiverNameField becomeFirstResponder];
+        self.receiverNameField.placeholder = self.contact.fullName;
         self.receiverNameField.text = self.contact.fullName;
-        if ([self.contact.phonesValues count] > 0)
+        if ([self.contact.phonesValues count] > 0) {
             self.receiverNumberField.text = self.contact.phonesValues[0];
+        }
+        [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
+        [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
     }
 }
 
@@ -153,6 +156,10 @@
     self.receiverNameField.inputAccessoryView = keyboardToolbar;
     self.receiverNumberField.inputAccessoryView = keyboardToolbar;
     self.commentsTextField.inputAccessoryView = keyboardToolbar;
+    
+    self.receiverNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.receiverNumberField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.commentsTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     self.receiverNameField.tintColor = [Colors yellowColor];
     self.receiverNumberField.tintColor = [Colors yellowColor];
@@ -311,6 +318,7 @@
     FromViewController *fromViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FromViewController"];
     fromViewController.addressType = ToAddress;
     fromViewController.callController = Create;
+    fromViewController.contact = self.contact;
     pressedLastTo = YES;
     pressedLastFrom = NO;
     [self.mapView_ clear];
@@ -479,6 +487,11 @@
     if (textField == self.commentsTextField) {
         [self scrollRectToVisible:CGRectMake(0, self.commentsTextField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
     }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

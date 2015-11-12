@@ -60,7 +60,7 @@
     }
 }
 
-- (void) getPlaceByString
+- (void)getPlaceByString
 {
     [[Server instance] GMSSearchPlace:serchField.text success:^(NSArray *places_rray) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -148,15 +148,18 @@
         serchField.tintColor = [Colors yellowColor];
         serchField.layer.borderColor = [Colors lightGrayColor].CGColor;
         serchField.layer.borderWidth = border_Width;
-        serchField.edgeInsets = UIEdgeInsetsMake(0, kIconSize+15, 0, 0);
-        serchField.placeholder = NSLocalizedString(@"ctrl.from.placeholder.serach", nil);
-        //serchField.returnKeyType = UIReturnKeySearch;
+        serchField.clearButtonMode = UITextFieldViewModeWhileEditing;
         serchField.returnKeyType = UIReturnKeyDone;
+        serchField.placeholder = NSLocalizedString(@"ctrl.from.placeholder.serach", nil);
+        serchField.edgeInsets = UIEdgeInsetsMake(0, kIconSize+15, 0, 0);
         [serchField addSubview:[self setIconWithImage:[UIImage imageNamed:@"searchIcon"]frame:CGRectMake(10, serchField.height/2-kIconSize/2, kIconSize, kIconSize)]];
         
-        [self addCornerRadius:serchField];
+        if (self.contact) {
+            serchField.text = self.contact.addressInfo;
+            [self getPlaceByString];
+        }
         
-        serchField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        [self addCornerRadius:serchField];
         
         UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
         UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel

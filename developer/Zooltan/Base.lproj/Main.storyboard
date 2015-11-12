@@ -6,15 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OPENSANS-BOLD.TTF">
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-        </mutableArray>
         <mutableArray key="OPENSANS-LIGHT.TTF">
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
@@ -29,7 +20,16 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
         </mutableArray>
-        <mutableArray key="OPENSANS-REGULAR.TTF">
+        <mutableArray key="OpenSans-Bold_0.ttf">
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular_0.ttf">
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -1141,6 +1141,7 @@
                                                 <constraint firstItem="Hdj-Ee-LjC" firstAttribute="leading" secondItem="n2E-4s-wkC" secondAttribute="leading" id="M56-4T-aNE"/>
                                                 <constraint firstItem="pdf-w6-1YD" firstAttribute="top" secondItem="n2E-4s-wkC" secondAttribute="top" constant="26" id="PSo-r7-XFl"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jss-BC-4EH" secondAttribute="trailing" id="QKn-oM-4pc"/>
+                                                <constraint firstItem="Jss-BC-4EH" firstAttribute="top" secondItem="SVJ-ry-3U2" secondAttribute="bottom" constant="10" id="UNa-Ow-3hK"/>
                                                 <constraint firstItem="SVJ-ry-3U2" firstAttribute="leading" secondItem="pdf-w6-1YD" secondAttribute="trailing" constant="20" id="da5-fX-sLc"/>
                                                 <constraint firstItem="pdf-w6-1YD" firstAttribute="leading" secondItem="n2E-4s-wkC" secondAttribute="leading" id="f5u-ze-QdK"/>
                                                 <constraint firstItem="Jss-BC-4EH" firstAttribute="leading" secondItem="pdf-w6-1YD" secondAttribute="trailing" constant="20" id="oVX-cx-1sb"/>
@@ -1148,6 +1149,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="SVJ-ry-3U2" secondAttribute="trailing" id="ysO-fH-RNM"/>
                                                 <constraint firstItem="SVJ-ry-3U2" firstAttribute="top" secondItem="n2E-4s-wkC" secondAttribute="top" constant="26" id="zXz-cw-pAm"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="pVw-ED-tSS"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
@@ -3235,20 +3241,6 @@
                                                     <outlet property="delegate" destination="jAB-9T-geg" id="Ijk-XP-HXS"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBT-wc-6bc" customClass="TextField">
-                                                <rect key="frame" x="155" y="243" width="425" height="40"/>
-                                                <animations/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="5Rh-wd-GLL"/>
-                                                    <constraint firstAttribute="width" constant="425" id="iz0-e9-eau"/>
-                                                </constraints>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="jAB-9T-geg" id="IpH-0E-mCa"/>
-                                                </connections>
-                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXq-jr-KFx">
                                                 <rect key="frame" x="78" y="294" width="484" height="40"/>
                                                 <animations/>
@@ -3271,7 +3263,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="optonal" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HQP-zg-APd" userLabel="Comments Field" customClass="TextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HQP-zg-APd" userLabel="Comments Field" customClass="TextField">
                                                 <rect key="frame" x="113" y="394" width="467" height="40"/>
                                                 <animations/>
                                                 <constraints>
@@ -3409,6 +3401,20 @@
                                                     <action selector="photoViewAction:" destination="jAB-9T-geg" eventType="touchUpInside" id="2L8-3l-iyw"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBT-wc-6bc" customClass="TextField">
+                                                <rect key="frame" x="155" y="243" width="425" height="40"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="5Rh-wd-GLL"/>
+                                                    <constraint firstAttribute="width" constant="425" id="iz0-e9-eau"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="jAB-9T-geg" id="IpH-0E-mCa"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

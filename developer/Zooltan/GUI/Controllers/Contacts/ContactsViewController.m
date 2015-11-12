@@ -164,17 +164,17 @@
     
     MoContact *contact = self.tableSorce[indexPath.row];
     
-    [cell.name setText:contact.fullName];
+    cell.name.text = contact.fullName;
     
     if (contact.thumbnailProfilePicture)
-        [cell.photo setImage:contact.thumbnailProfilePicture];
+        cell.photo.image = contact.thumbnailProfilePicture;
     else
-        [cell.photo setImage:[UIImage imageNamed:@"no_image"]];
+        cell.photo.image = [UIImage imageNamed:@"no_image"];
     
     if ([contact.phonesValues count] > 0)
-        [cell.phone setText:[NSString stringWithFormat:@"%@", contact.phonesValues[0]]];
+        cell.phone.text = [NSString stringWithFormat:@"%@", contact.phonesValues[0]];
     else
-        [cell.phone setText:@""];
+        cell.phone.text = @"";
     
     return cell;
 }
@@ -182,7 +182,7 @@
 - (void)contactViewCellDelegateDidPressButton:(UIButton *)button
                                   atIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedContact = self.contacts[indexPath.row];
+    self.selectedContact = [self tableSorce][indexPath.row];
     
     CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
     ctr.contact = self.selectedContact;
@@ -194,20 +194,6 @@
     [self.navigationController pushViewController:ctr animated:NO];
 
 }
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    self.selectedContact = self.contacts[indexPath.row];
-//    
-//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-//    ctr.contact = self.selectedContact;
-//    
-//    CATransition *animation = [CATransition animation];
-//    animation.type = kCATransitionPush;
-//    animation.subtype = kCATransitionFromLeft;
-//    [self.navigationController.view.layer addAnimation:animation forKey:nil];
-//    [self.navigationController pushViewController:ctr animated:NO];
-//}
 
 #pragma mark - IBAction
 #pragma mark -

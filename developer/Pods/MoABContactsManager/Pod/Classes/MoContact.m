@@ -28,7 +28,7 @@
     return @[];
 }
 
-- (NSString*)phonesNumbers
+- (NSString *)phonesNumbers
 {
     NSMutableString *phonesNumbers = [NSMutableString string];
     
@@ -42,6 +42,39 @@
     phonesString = [phonesString stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     return phonesString;
+}
+
+- (NSArray *)addressValues
+{
+    if (_addresses && [_addresses count] > 0 ) {
+        return [_addresses valueForKeyPath:@"@unionOfArrays.@allValues"];
+    }
+    return @[];
+}
+
+- (NSString*)addressInfo
+{
+    NSMutableString *addressInfo = [NSMutableString string];
+    NSDictionary *address = self.addressValues.firstObject;
+    
+    if (address[@"Street"]) {
+        [addressInfo appendString:address[@"Street"]];
+    }
+    if (address[@"City"]) {
+        if (addressInfo.length) {
+            [addressInfo appendString:@", "];
+        }
+        [addressInfo appendString:address[@"City"]];
+    }
+    
+    if (address[@"Country"]) {
+        if (addressInfo.length) {
+            [addressInfo appendString:@", "];
+        }
+        [addressInfo appendString:address[@"Country"]];
+    }
+    
+    return addressInfo;
 }
 
 - (NSDictionary *)asDictionary

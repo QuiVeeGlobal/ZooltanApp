@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MoABContactsManager/MoABContactsManager.h>
 
 typedef enum AdressType : NSUInteger
 {
@@ -17,12 +18,6 @@ typedef enum AdressType : NSUInteger
     DestinationAddress = 4,
     
 } AddressType;
-
-//typedef enum DirectionType : NSUInteger
-//{
-//    From = 0,
-//    To = 1,
-//} DirectionType;
 
 typedef enum CallController : NSUInteger
 {
@@ -36,8 +31,8 @@ typedef enum CallController : NSUInteger
 
 @property (nonatomic, retain) NSString *nanTitle;
 @property (nonatomic, assign) AddressType addressType;
-//@property (nonatomic, assign) DirectionType directionType;
 @property (nonatomic, assign) CallController callController;
+@property (nonatomic, strong) MoContact *contact;
 
 @end
 
