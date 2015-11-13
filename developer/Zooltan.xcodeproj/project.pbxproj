@@ -284,6 +284,7 @@
 		FA5A095A1BBE802F005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA749F3B1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
 		FA749F3C1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
+		FA79268E1BF4A5B0004E6FC0 /* PackagePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */; };
 		FAA5A94A1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
 		FAA5A94B1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
 		FAA699E81BC555F300AE2A22 /* ValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA699E71BC555F300AE2A22 /* ValidationViewController.m */; };
@@ -550,6 +551,8 @@
 		FA5A09581BBE8026005FFEC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FA749F391BA1AE4700D3AEEE /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		FA79268C1BF4A5B0004E6FC0 /* PackagePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PackagePhotoViewController.h; path = PackagePhoto/PackagePhotoViewController.h; sourceTree = "<group>"; };
+		FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PackagePhotoViewController.m; path = PackagePhoto/PackagePhotoViewController.m; sourceTree = "<group>"; };
 		FAA5A9481BD4A28F00D09810 /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordViewController.h; sourceTree = "<group>"; };
 		FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordViewController.m; sourceTree = "<group>"; };
 		FAA699E61BC555F300AE2A22 /* ValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationViewController.h; sourceTree = "<group>"; };
@@ -1195,6 +1198,7 @@
 		67F1AC441B38448C00C76F75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA79268B1BF4A588004E6FC0 /* PaackagePhoto */,
 				444B57BB1BD624BF00A8C394 /* Contacts */,
 				446EDE811BB542CC00FA13CD /* Statistic */,
 				446389191B9EC7C7008B4B0B /* Package */,
@@ -1315,6 +1319,15 @@
 				9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA79268B1BF4A588004E6FC0 /* PaackagePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				FA79268C1BF4A5B0004E6FC0 /* PackagePhotoViewController.h */,
+				FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */,
+			);
+			name = PaackagePhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1684,6 +1697,7 @@
 				67DE481F1B42CCDA00C5286B /* MyApplication.m in Sources */,
 				67D679021B3823C3006F5578 /* NSArray+Additions.m in Sources */,
 				67F4CE541B6233EB003486C5 /* CompleteRegistrationViewController.m in Sources */,
+				FA79268E1BF4A5B0004E6FC0 /* PackagePhotoViewController.m in Sources */,
 				67D6790B1B3823C3006F5578 /* NSObject+Additions.m in Sources */,
 				67D679111B3823C3006F5578 /* UIImageView+Additions.m in Sources */,
 				67D6790A1B3823C3006F5578 /* NSMutableURLRequest+Additions.m in Sources */,
