@@ -356,7 +356,6 @@
     NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
     NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    
     STLogDebug(@"STEP 1");
     
     NSDictionary *param = @{@"size"         : NIL_TO_NULL(self.packageSize),
@@ -372,7 +371,6 @@
     
     
     STLogDebug(@"STEP 2");
-    
     
     STLogDebug(@"param___: %@",param);
     

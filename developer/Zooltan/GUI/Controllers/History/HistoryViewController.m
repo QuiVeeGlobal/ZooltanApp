@@ -177,42 +177,42 @@
                                                         forIndexPath:indexPath];
     cell.delegate = self;
     cell.indexPath = indexPath;
+    cell.backgroundColor = [UIColor clearColor];
     
     __block OrderModel *order = [[OrderModel alloc] initWithDictionary:self.ordersArray[indexPath.row]];
     
     cell.typeDeliveryLabel.text = [order.size stringByReplacingOccurrencesOfString:@"_" withString:@" "];
     cell.costLabel.text = [NSString stringWithFormat:@"AED %@", order.cost];
     cell.addressLabel.text = order.fromAddress;
-    
-    if (order.orderStatus == OrderStatusNew) {
-        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.new1", nil);
-        cell.deliveredLabel.text = @"";
-    } else if (order.orderStatus == OrderStatusAccept) {
-        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.accept", nil);
-        cell.deliveredLabel.text = @"";
-    }
-    else
-        cell.pickedUpLabel.text = order.pickedUpTime;
-
-    if (order.orderStatus == OrderStatusPickUp)
-        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.pickup", nil);
-    
-    if (order.orderStatus == OrderStatusProgress)
-        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.progress", nil);
-    
-    if (order.orderStatus == OrderStatusDelivery)
-        cell.deliveredLabel.text = order.deliveredTime;
+    cell.statusLabel.text = order.orderStatusTitle;
     
     if ([order.size isEqualToString:@"LETTER"])
         cell.packageImage.image = [UIImage imageNamed:@"LetterBoxIcon"];
-
+    
     if ([order.size isEqualToString:@"SMALL_BOX"])
         cell.packageImage.image = [UIImage imageNamed:@"SmallBoxIcon"];
-
+    
     if ([order.size isEqualToString:@"BIG_BOX"])
         cell.packageImage.image = [UIImage imageNamed:@"BigBoxIcon"];
     
-    cell.backgroundColor = [UIColor clearColor];
+//    if (order.orderStatus == OrderStatusNew) {
+//        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.new1", nil);
+//        cell.deliveredLabel.text = @"";
+//    } else if (order.orderStatus == OrderStatusAccept) {
+//        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.accept", nil);
+//        cell.deliveredLabel.text = @"";
+//    }
+//    else
+//        cell.pickedUpLabel.text = order.pickedUpTime;
+//
+//    if (order.orderStatus == OrderStatusPickUp)
+//        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.pickup", nil);
+//    
+//    if (order.orderStatus == OrderStatusProgress)
+//        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.progress", nil);
+//    
+//    if (order.orderStatus == OrderStatusDelivery)
+//        cell.deliveredLabel.text = order.deliveredTime;
     
     return cell;
 }

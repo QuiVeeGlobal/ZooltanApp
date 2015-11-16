@@ -108,6 +108,8 @@
 "ctrl.history.cell.address"                  = "Address:";
 "ctrl.history.cell.pickedUp"                 = "Picked Up:";
 "ctrl.history.cell.delivered"                = "Delivered:";
+"ctrl.history.cell.status.title"             = "Status:";
+"ctrl.history.cell.note.title"               = "Note:";
 
 "ctrl.courier.history.cell.pickupDistance"   = "Distance to the pickup location:";
 "ctrl.courier.history.cell.betweenDistance"  = "Distance between pickup and destination:";
@@ -242,11 +244,19 @@
 // Information
 "ctrl.information.navigation.title"          = "INFORMATION";
 
+
 // Legal information
 "ctrl.legalInformation.navigation.title"     = "LEGAL INFORMATION";
-"ctrl.legalInformation.cell.title_0"         = "User Agreement";
-"ctrl.legalInformation.cell.title_1"         = "Terms of Use";
-"ctrl.legalInformation.cell.title_2"         = "Dispute settlement procedure";
+"ctrl.legalInformation.cell.title_0"         = "PRIVACY POLICY";
+"ctrl.legalInformation.cell.title_1"         = "TERMS AND CONDITIONS";
+
+
+// Privacy Policy
+"ctrl.privacyPolicy.navigation.title"        = "Privacy Policy";
+
+
+// Terms and Conditions
+"ctrl.termsAndConditions.navigation.title"   = "Terms and Conditions";
 
 
 // User Agreement

@@ -81,7 +81,6 @@
 		446388AE1B958E04008B4B0B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67031B791B4AABA800186F73 /* HistoryViewController.m */; };
 		446388AF1B958E04008B4B0B /* NSOrderedSet+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678D31B3823C3006F5578 /* NSOrderedSet+Additions.m */; };
 		446388B01B958E04008B4B0B /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67276AA01B395C85008F77BF /* RegistrationViewController.m */; };
-		446388B11B958E04008B4B0B /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB04951B5549C7007D123A /* LegalInformationViewController.m */; };
 		446388B21B958E04008B4B0B /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678F51B3823C3006F5578 /* UITableView+Additions.m */; };
 		446388B31B958E04008B4B0B /* TrakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671E2ED71B6A8A6B00457DAA /* TrakingViewController.m */; };
 		446388B41B958E04008B4B0B /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 670D5F9B1B669BAF00216E6D /* InformationCell.m */; };
@@ -203,7 +202,6 @@
 		677C7E8B1B4BDAF700BA3950 /* ExpanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677C7E8A1B4BDAF700BA3950 /* ExpanceViewController.m */; };
 		678BAD251B5002BF008CA5A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678BAD241B5002BF008CA5A3 /* UIKit.framework */; };
 		67B7E5051B4EA80A0023D485 /* DeliveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B7E5041B4EA80A0023D485 /* DeliveryCell.m */; };
-		67BB04961B5549C7007D123A /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BB04951B5549C7007D123A /* LegalInformationViewController.m */; };
 		67CC54FD1B3A8A580002B829 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CC54FC1B3A8A580002B829 /* MenuViewController.m */; };
 		67D2E1491B3A7ECA001A22D0 /* RecoveryPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D2E1481B3A7ECA001A22D0 /* RecoveryPasswordViewController.m */; };
 		67D679021B3823C3006F5578 /* NSArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678CD1B3823C3006F5578 /* NSArray+Additions.m */; };
@@ -284,6 +282,11 @@
 		FA5A095A1BBE802F005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA749F3B1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
 		FA749F3C1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
+		FA74C6741BFA3F1400CA8E3C /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */; };
+		FA74C6811BFA420400CA8E3C /* PolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6801BFA420400CA8E3C /* PolicyViewController.m */; };
+		FA74C6821BFA420400CA8E3C /* PolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6801BFA420400CA8E3C /* PolicyViewController.m */; };
+		FA74C6851BFA421900CA8E3C /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6841BFA421900CA8E3C /* TermsViewController.m */; };
+		FA74C6861BFA421900CA8E3C /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6841BFA421900CA8E3C /* TermsViewController.m */; };
 		FA79268E1BF4A5B0004E6FC0 /* PackagePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */; };
 		FAA5A94A1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
 		FAA5A94B1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
@@ -415,8 +418,6 @@
 		678BAD2A1B5002F1008CA5A3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		67B7E5031B4EA80A0023D485 /* DeliveryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryCell.h; sourceTree = "<group>"; };
 		67B7E5041B4EA80A0023D485 /* DeliveryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryCell.m; sourceTree = "<group>"; };
-		67BB04941B5549C7007D123A /* LegalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalInformationViewController.h; sourceTree = "<group>"; };
-		67BB04951B5549C7007D123A /* LegalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalInformationViewController.m; sourceTree = "<group>"; };
 		67CC54FB1B3A8A580002B829 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		67CC54FC1B3A8A580002B829 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		67D2E1471B3A7ECA001A22D0 /* RecoveryPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryPasswordViewController.h; sourceTree = "<group>"; };
@@ -552,6 +553,12 @@
 		FA5A09581BBE8026005FFEC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FA749F391BA1AE4700D3AEEE /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		FA74C6721BFA3F1400CA8E3C /* LegalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalInformationViewController.h; path = LegalInformation/LegalInformationViewController.h; sourceTree = "<group>"; };
+		FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LegalInformationViewController.m; path = LegalInformation/LegalInformationViewController.m; sourceTree = "<group>"; };
+		FA74C67F1BFA420400CA8E3C /* PolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolicyViewController.h; path = "LegalInformation/Privacy Policy/PolicyViewController.h"; sourceTree = "<group>"; };
+		FA74C6801BFA420400CA8E3C /* PolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PolicyViewController.m; path = "LegalInformation/Privacy Policy/PolicyViewController.m"; sourceTree = "<group>"; };
+		FA74C6831BFA421900CA8E3C /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermsViewController.h; path = LegalInformation/TermsAndConditions/TermsViewController.h; sourceTree = "<group>"; };
+		FA74C6841BFA421900CA8E3C /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsViewController.m; path = LegalInformation/TermsAndConditions/TermsViewController.m; sourceTree = "<group>"; };
 		FA79268C1BF4A5B0004E6FC0 /* PackagePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PackagePhotoViewController.h; path = PackagePhoto/PackagePhotoViewController.h; sourceTree = "<group>"; };
 		FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PackagePhotoViewController.m; path = PackagePhoto/PackagePhotoViewController.m; sourceTree = "<group>"; };
 		FAA5A9481BD4A28F00D09810 /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordViewController.h; sourceTree = "<group>"; };
@@ -1088,11 +1095,10 @@
 		67EEF1BD1B4D1829008049A9 /* Information */ = {
 			isa = PBXGroup;
 			children = (
+				FA74C6711BFA3F0200CA8E3C /* LegalInformation */,
 				676860721B4D582E0035BE0D /* UserAgreement */,
 				67EEF1BE1B4D1829008049A9 /* InformationViewController.h */,
 				67EEF1BF1B4D1829008049A9 /* InformationViewController.m */,
-				67BB04941B5549C7007D123A /* LegalInformationViewController.h */,
-				67BB04951B5549C7007D123A /* LegalInformationViewController.m */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -1322,6 +1328,35 @@
 				9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA74C6711BFA3F0200CA8E3C /* LegalInformation */ = {
+			isa = PBXGroup;
+			children = (
+				FA74C6761BFA3F8900CA8E3C /* PrivacyPolicy */,
+				FA74C6751BFA3F7D00CA8E3C /* TermsAndConditions */,
+				FA74C6721BFA3F1400CA8E3C /* LegalInformationViewController.h */,
+				FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */,
+			);
+			name = LegalInformation;
+			sourceTree = "<group>";
+		};
+		FA74C6751BFA3F7D00CA8E3C /* TermsAndConditions */ = {
+			isa = PBXGroup;
+			children = (
+				FA74C6831BFA421900CA8E3C /* TermsViewController.h */,
+				FA74C6841BFA421900CA8E3C /* TermsViewController.m */,
+			);
+			name = TermsAndConditions;
+			sourceTree = "<group>";
+		};
+		FA74C6761BFA3F8900CA8E3C /* PrivacyPolicy */ = {
+			isa = PBXGroup;
+			children = (
+				FA74C67F1BFA420400CA8E3C /* PolicyViewController.h */,
+				FA74C6801BFA420400CA8E3C /* PolicyViewController.m */,
+			);
+			name = PrivacyPolicy;
 			sourceTree = "<group>";
 		};
 		FA79268B1BF4A588004E6FC0 /* PaackagePhoto */ = {
@@ -1586,7 +1621,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA74C6861BFA421900CA8E3C /* TermsViewController.m in Sources */,
 				446388811B958E04008B4B0B /* PlaceModel.m in Sources */,
+				FA74C6821BFA420400CA8E3C /* PolicyViewController.m in Sources */,
 				1E271CEE1BAFFC0D00914CDC /* RoutModel.m in Sources */,
 				1E271D101BB0DBEB00914CDC /* AsyncHTTPConnection.m in Sources */,
 				446388821B958E04008B4B0B /* UIView+Additions.m in Sources */,
@@ -1651,7 +1688,6 @@
 				446388AE1B958E04008B4B0B /* HistoryViewController.m in Sources */,
 				446388AF1B958E04008B4B0B /* NSOrderedSet+Additions.m in Sources */,
 				446388B01B958E04008B4B0B /* RegistrationViewController.m in Sources */,
-				446388B11B958E04008B4B0B /* LegalInformationViewController.m in Sources */,
 				446388B21B958E04008B4B0B /* UITableView+Additions.m in Sources */,
 				446388B31B958E04008B4B0B /* TrakingViewController.m in Sources */,
 				446388B41B958E04008B4B0B /* InformationCell.m in Sources */,
@@ -1712,12 +1748,14 @@
 				67F1AC191B3806D200C76F75 /* AppDelegate.m in Sources */,
 				675912571B5D381A007471E3 /* UserModel.m in Sources */,
 				444B57C21BD6250D00A8C394 /* ContactViewCell.m in Sources */,
+				FA74C6851BFA421900CA8E3C /* TermsViewController.m in Sources */,
 				67D679131B3823C3006F5578 /* UISearchBar+Additions.m in Sources */,
 				67D679341B38241C006F5578 /* UILabel+AtrributedText.m in Sources */,
 				67D679181B3823C3006F5578 /* UIViewController+Additions.m in Sources */,
 				674558BF1B592F42007D9AEF /* Server.m in Sources */,
 				67F81B591B43FD0900D0A2DF /* BaseViewController.m in Sources */,
 				674558C81B593490007D9AEF /* ResponseModel.m in Sources */,
+				FA74C6811BFA420400CA8E3C /* PolicyViewController.m in Sources */,
 				674558CF1B5936CE007D9AEF /* Settings.m in Sources */,
 				FAD778CE1BAD72E700612690 /* CourierHistoryCell.m in Sources */,
 				1E271D111BB0DBEB00914CDC /* CheckMobiService.m in Sources */,
@@ -1756,7 +1794,6 @@
 				67031B7A1B4AABA800186F73 /* HistoryViewController.m in Sources */,
 				67D679051B3823C3006F5578 /* NSOrderedSet+Additions.m in Sources */,
 				67276AA11B395C85008F77BF /* RegistrationViewController.m in Sources */,
-				67BB04961B5549C7007D123A /* LegalInformationViewController.m in Sources */,
 				67D679141B3823C3006F5578 /* UITableView+Additions.m in Sources */,
 				671E2ED81B6A8A6B00457DAA /* TrakingViewController.m in Sources */,
 				670D5F9C1B669BAF00216E6D /* InformationCell.m in Sources */,
@@ -1786,6 +1823,7 @@
 				673180611B5E77E3006E8E53 /* Utilities.m in Sources */,
 				675912521B5D3748007471E3 /* SocialManager.m in Sources */,
 				67050A7F1B611A5700D916EB /* MMDrawerController.m in Sources */,
+				FA74C6741BFA3F1400CA8E3C /* LegalInformationViewController.m in Sources */,
 				67D679041B3823C3006F5578 /* NSMutableArray+Additions.m in Sources */,
 				67050A861B611BB200D916EB /* LeftMenuViewController.m in Sources */,
 				FA749F3B1BA1AE4700D3AEEE /* OrderModel.m in Sources */,

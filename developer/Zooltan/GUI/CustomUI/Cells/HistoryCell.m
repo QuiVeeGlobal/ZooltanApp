@@ -20,12 +20,12 @@
     [super layoutSubviews];
     
     self.addressTitle.text = NSLocalizedString(@"ctrl.history.cell.address", nil);
-    self.pickedUpTitle.text = NSLocalizedString(@"ctrl.history.cell.pickedUp", nil);
-    self.deliveredTitle.text = NSLocalizedString(@"ctrl.history.cell.delivered", nil);
-    
+    self.statusTitle.text = NSLocalizedString(@"ctrl.history.cell.status.title", nil);
+    self.noteTitle.text = NSLocalizedString(@"ctrl.history.cell.note.title", nil);
+//    self.pickedUpTitle.text = NSLocalizedString(@"ctrl.history.cell.pickedUp", nil);
+//    self.deliveredTitle.text = NSLocalizedString(@"ctrl.history.cell.delivered", nil);
+
     self.bgView.backgroundColor = [Colors lightBlueColor];
-    //self.titleLabel.textColor = [Colors yellowColor];
-    //self.priceLabel.textColor = [Colors yellowColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

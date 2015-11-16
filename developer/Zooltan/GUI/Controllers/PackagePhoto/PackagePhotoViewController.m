@@ -117,8 +117,10 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"package.png"];
     UIImage *packageImage = [UIImage imageWithData:UIImagePNGRepresentation(meta[VLBCameraViewMetaOriginalImage])];
-    NSData *data = UIImagePNGRepresentation(packageImage);
+    NSData *data = UIImageJPEGRepresentation(packageImage, 0.8);
     [data writeToFile:path atomically:YES];
+    
+    NSLog(@"UIImagePNGRepresentation: image size is---->: %lu kb",[data length]/1024);
     
     self.skipButton.hidden = NO;
     [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];

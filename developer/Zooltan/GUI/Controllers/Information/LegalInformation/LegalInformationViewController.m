@@ -8,6 +8,8 @@
 
 #import "LegalInformationViewController.h"
 #import "UserAgreementViewController.h"
+#import "PolicyViewController.h"
+#import "TermsViewController.h"
 #import "InformationCell.h"
 
 @interface LegalInformationViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, InformationCellDelegate>
@@ -16,14 +18,9 @@
 
 @implementation LegalInformationViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureView
@@ -48,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -66,30 +63,28 @@
         cell.titleLabel.text = NSLocalizedString(@"ctrl.legalInformation.cell.title_0", nil);
     else if (indexPath.row == 1)
         cell.titleLabel.text = NSLocalizedString(@"ctrl.legalInformation.cell.title_1", nil);
-    else if (indexPath.row == 2)
-        cell.titleLabel.text = NSLocalizedString(@"ctrl.legalInformation.cell.title_2", nil);
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0)
-    {
-        UserAgreementViewController *userAgreementViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UserAgreementViewController"];
-        [self.navigationController pushViewController:userAgreementViewController animated:YES];
-    }
 }
 
 - (void)informationCellDidPressButton:(UIButton *)button
                           atIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.row == 0)
     {
-        UserAgreementViewController *userAgreementViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UserAgreementViewController"];
-        [self.navigationController pushViewController:userAgreementViewController animated:YES];
+        PolicyViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PolicyViewController"];
+        [self.navigationController pushViewController:ctr animated:YES];
     }
+    if (indexPath.row == 1)
+    {
+        TermsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsViewController"];
+        [self.navigationController pushViewController:ctr animated:YES];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 
