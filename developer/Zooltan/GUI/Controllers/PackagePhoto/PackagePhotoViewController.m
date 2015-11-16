@@ -8,23 +8,19 @@
 
 #import "PackagePhotoViewController.h"
 #import "CreateViewController.h"
-#import <AVFoundation/AVFoundation.h>
+#import "VLBCameraView.h"
 
-@interface PackagePhotoViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-{
-    AVCaptureVideoPreviewLayer *_previewLayer;
-    AVCaptureSession *_captureSession;
-}
+@interface PackagePhotoViewController () <VLBCameraViewDelegate>
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabelConstr;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomLabelConst;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnConst;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cameraPreviwHeigh;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *previwHeigh;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
-@property (weak, nonatomic) IBOutlet UIView *cameraPreview;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
-@property (weak, nonatomic) UIImagePickerController *picker;
+@property (strong, nonatomic) IBOutlet VLBCameraView *cameraView;
 
 @end
 
@@ -34,7 +30,13 @@
 {
     [super viewDidLoad];
     
-    [self initializeCamera];
+    self.cameraView.allowPictureRetake = YES;
+    self.cameraView.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeButtons)
+                                                 name:@"changeButtons"
+                                               object:nil];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
@@ -42,65 +44,37 @@
         if(result.height == 480)
         {
             // iPhone 4
-            self.cameraPreviwHeigh.constant = self.view.width-20;
-            self.topLabelConstr.constant = 5;
-            self.buttomLabelConst.constant = 5;
-            self.btnConst.constant = 5;
+            //self.previwHeigh.constant = self.view.width-20;
+            self.topLabel.constant = 5;
+            self.photoBtn.constant = 5;
+            self.buttomLabel.constant = 5;
         }
         else if(result.height == 568)
         {
             //iPhone 5
-            self.cameraPreviwHeigh.constant = self.view.width;
-            self.btnConst.constant = 20;
+            //self.previwHeigh.constant = self.view.width;
+            self.photoBtn.constant = 20;
         }
         else if(result.height == 667)
         {
             // iPhone 6
-            self.cameraPreviwHeigh.constant = self.view.width;
+            //self.previwHeigh.constant = self.view.width;
         }
         else if(result.height == 736)
         {
             // iPhone 6 Plus
-            self.cameraPreviwHeigh.constant = self.view.width;
-            self.topLabelConstr.constant = 50;
+            //self.previwHeigh.constant = self.view.width;
+            self.topLabel.constant = 50;
         }
     }
 }
 
-- (void)initializeCamera
+- (void)changeButtons
 {
-    //-- Setup Capture Session.
-    _captureSession = [[AVCaptureSession alloc] init];
+    self.takePhotoButton.hidden = NO;
     
-    //-- Creata a video device and input from that Device.  Add the input to the capture session.
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if(device == nil)
-        assert(0);
-    
-    //-- Add the device to the session.
-    NSError *error;
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device
-                                                                        error:&error];
-    if(error)
-        assert(0);
-    
-    [_captureSession addInput:input];
-    
-    //-- Configure the preview layer
-    _previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
-    _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-    self.cameraPreviwHeigh.constant = self.view.width;
-    
-    [_previewLayer setFrame:CGRectMake(0, 0,
-                                       self.cameraPreview.frame.size.width,
-                                       self.cameraPreviwHeigh.constant)];
-    
-    //-- Add the layer to the view that should display the camera input
-    [self.cameraPreview.layer addSublayer:_previewLayer];
-    
-    //-- Start the camera
-    [_captureSession startRunning];
+    [self.skipButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [self.skipButton setTitle:@"SKIP" forState:UIControlStateNormal];
 }
 
 - (IBAction)cameraFlashAction:(id)sender
@@ -127,21 +101,43 @@
 
 - (IBAction)takePhotoAction:(id)sender
 {
-    self.picker.delegate = self;
-    self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    self.picker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-    self.picker.showsCameraControls = NO;
+    [[AppDelegate instance] showLoadingView];
     
-    [self.picker takePicture];
+    self.takePhotoButton.hidden = YES;
+    self.skipButton.hidden = YES;
+    
+    [self.cameraView takePicture];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)cameraView:(VLBCameraView *)cameraView didFinishTakingPicture:(UIImage *)image withInfo:(NSDictionary *)info meta:(NSDictionary *)meta
 {
-    self.imagePreview.image = info[UIImagePickerControllerOriginalImage];
+    [[AppDelegate instance] hideLoadingView];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"package.png"];
+    UIImage *packageImage = [UIImage imageWithData:UIImagePNGRepresentation(meta[VLBCameraViewMetaOriginalImage])];
+    NSData *data = UIImagePNGRepresentation(packageImage);
+    [data writeToFile:path atomically:YES];
+    
+    self.skipButton.hidden = NO;
+    [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];
+    [self.skipButton setTitle:@"" forState:UIControlStateNormal];
+}
+
+- (void)cameraView:(VLBCameraView *)cameraView didErrorOnTakePicture:(NSError *)error
+{
+    
+}
+
+- (void)cameraView:(VLBCameraView *)cameraView willRekatePicture:(UIImage *)image
+{
+    
 }
 
 - (IBAction)skipAction:(id)sender
 {
+    self.skipButton.enabled = NO;
     CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
     [self.navigationController pushViewController:createViewController animated:YES];
 }

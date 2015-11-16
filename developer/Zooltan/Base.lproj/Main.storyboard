@@ -13,9 +13,8 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
         </mutableArray>
-        <mutableArray key="OpenSans-Light_0.ttf">
+        <mutableArray key="OPENSANS-LIGHT.TTF">
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
@@ -2842,10 +2841,10 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="SEND NEW PACKAGE" id="Nwi-Sb-RwO">
-                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="LB4-2I-hs5">
+                                        <barButtonItem key="leftBarButtonItem" image="MenuBtn_" id="LB4-2I-hs5">
                                             <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
-                                                <action selector="backAction:" destination="jAB-9T-geg" id="GCc-AN-HdT"/>
+                                                <action selector="actionLeftMenu:" destination="jAB-9T-geg" id="mlD-y8-htq"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -5097,160 +5096,201 @@
             <point key="canvasLocation" x="-2154" y="699"/>
         </scene>
         <!--Package Photo View Controller-->
-        <scene sceneID="vfD-0A-gjk">
+        <scene sceneID="IXs-Ni-ZRa">
             <objects>
-                <viewController storyboardIdentifier="PackagePhotoViewController" id="6cw-aC-rk1" customClass="PackagePhotoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PackagePhotoViewController" id="O5B-RD-pMR" customClass="PackagePhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hi1-Ur-EfM"/>
-                        <viewControllerLayoutGuide type="bottom" id="UsJ-DP-hPB"/>
+                        <viewControllerLayoutGuide type="top" id="svn-u2-72n"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yjr-vG-dPL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xTa-d9-DR7">
+                    <view key="view" contentMode="scaleToFill" id="1go-dg-B8O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUV-P4-vTD">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6k-hh-jnK">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="ISa-BQ-pih"/>
-                                    <constraint firstAttribute="height" constant="44" id="TiE-ZA-1bK"/>
+                                    <constraint firstAttribute="height" constant="44" id="iUG-v9-3wq"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="PHOTO OF SHIPMENT" id="D5W-iV-v44">
-                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="BOW-ZI-Jwy">
+                                    <navigationItem title="PHOTO OF SHIPMENT" id="Zoq-a6-oCs">
+                                        <barButtonItem key="leftBarButtonItem" image="MenuBtn_" id="WzT-9N-dxh">
                                             <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
-                                                <action selector="backAction:" destination="6cw-aC-rk1" id="FCJ-4D-iP6"/>
+                                                <action selector="actionLeftMenu:" destination="O5B-RD-pMR" id="DWa-1d-Mfi"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="cameraFlashBtn" id="V0O-Zl-JMC">
+                                        <barButtonItem key="rightBarButtonItem" image="cameraFlashBtn" id="tmb-rJ-LH4">
                                             <connections>
-                                                <action selector="cameraFlashAction:" destination="6cw-aC-rk1" id="LtM-Ht-XRh"/>
+                                                <action selector="cameraFlashAction:" destination="O5B-RD-pMR" id="liq-yD-CpN"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjR-JH-at6" userLabel="Preview View" customClass="UIImageView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipA-hR-p1B" userLabel="Preview View">
                                 <rect key="frame" x="0.0" y="44" width="600" height="320"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zd-xu-8oG">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmU-9i-0y7" customClass="VLBCameraView">
+                                        <rect key="frame" x="140" y="0.0" width="320" height="320"/>
                                         <animations/>
-                                    </imageView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="WmU-9i-0y7" secondAttribute="height" multiplier="1:1" id="j0X-GB-aeV"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="8Ui-C3-ajM"/>
-                                    <constraint firstAttribute="trailing" secondItem="9zd-xu-8oG" secondAttribute="trailing" id="Bfs-ip-lXK"/>
-                                    <constraint firstAttribute="width" secondItem="YjR-JH-at6" secondAttribute="height" multiplier="60:43" id="HdP-Iq-QlN"/>
-                                    <constraint firstItem="9zd-xu-8oG" firstAttribute="leading" secondItem="YjR-JH-at6" secondAttribute="leading" id="PFH-gB-F6n"/>
-                                    <constraint firstAttribute="bottom" secondItem="9zd-xu-8oG" secondAttribute="bottom" id="gJb-bB-Jre"/>
-                                    <constraint firstItem="9zd-xu-8oG" firstAttribute="top" secondItem="YjR-JH-at6" secondAttribute="top" id="v93-DT-c1Z"/>
+                                    <constraint firstItem="WmU-9i-0y7" firstAttribute="centerX" secondItem="ipA-hR-p1B" secondAttribute="centerX" id="OOl-O7-h5e"/>
+                                    <constraint firstItem="WmU-9i-0y7" firstAttribute="top" secondItem="ipA-hR-p1B" secondAttribute="top" id="ezZ-XX-phl"/>
+                                    <constraint firstAttribute="height" constant="320" id="ijZ-5t-gZA"/>
+                                    <constraint firstAttribute="bottom" secondItem="WmU-9i-0y7" secondAttribute="bottom" id="jgH-Nf-9nG"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="HdP-Iq-QlN"/>
-                                    </mask>
-                                </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oc1-YU-feg" userLabel="Control View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psK-2i-u0T" userLabel="Control View">
                                 <rect key="frame" x="0.0" y="364" width="600" height="306"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynC-Mo-axO">
-                                        <rect key="frame" x="264" y="184" width="72" height="72"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="5y4-g8-y8w"/>
-                                            <constraint firstAttribute="width" constant="72" id="w9c-Wq-2Mi"/>
-                                        </constraints>
-                                        <state key="normal" image="takePhotoBtn"/>
-                                        <connections>
-                                            <action selector="takePhotoAction:" destination="6cw-aC-rk1" eventType="touchUpInside" id="EkP-8B-Urg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taL-7I-gtb">
-                                        <rect key="frame" x="530" y="266" width="70" height="40"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="62m-Vh-WcD"/>
-                                            <constraint firstAttribute="height" constant="40" id="l5G-YP-USI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
-                                        <state key="normal" title="SKIP">
-                                            <color key="titleColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="skipAction:" destination="6cw-aC-rk1" eventType="touchUpInside" id="WZV-Na-WWb"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS HELPS US ROUTE THE RIGHT VECHILE TYPE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5v-jt-xea">
-                                        <rect key="frame" x="0.0" y="60" width="600" height="20"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="ldX-0a-1X1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
-                                        <color key="textColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKE A PHOTO OG YOUR SHIPMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcf-fI-d3Z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKE A PHOTO OF YOUR SHIPMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnv-7z-RWQ">
                                         <rect key="frame" x="0.0" y="30" width="600" height="20"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="BUq-0X-FRZ"/>
+                                            <constraint firstAttribute="height" constant="20" id="ziY-Xx-6M9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                         <color key="textColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS HELPS US ROUTE THE RIGHT VECHILE TYPE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qho-Ty-Bkn">
+                                        <rect key="frame" x="0.0" y="60" width="600" height="20"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="cFH-Dm-sN8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                                        <color key="textColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-ez-nE3" userLabel="TAKE PHOTO">
+                                        <rect key="frame" x="264" y="184" width="72" height="72"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="CRx-h0-Qi5"/>
+                                            <constraint firstAttribute="width" constant="72" id="VPF-fb-Cug"/>
+                                        </constraints>
+                                        <state key="normal" image="takePhotoBtn"/>
+                                        <connections>
+                                            <action selector="takePhotoAction:" destination="O5B-RD-pMR" eventType="touchUpInside" id="XYG-uJ-J8F"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5y-o5-xL0">
+                                        <rect key="frame" x="530" y="236" width="70" height="70"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="FMy-5l-Ygo"/>
+                                            <constraint firstAttribute="width" constant="70" id="lyw-rV-3aS"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="SKIP">
+                                            <color key="titleColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="skipAction:" destination="O5B-RD-pMR" eventType="touchUpInside" id="KN4-YF-7yO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstItem="Wcf-fI-d3Z" firstAttribute="leading" secondItem="oc1-YU-feg" secondAttribute="leading" id="3DX-YB-ul3"/>
-                                    <constraint firstItem="Q5v-jt-xea" firstAttribute="top" secondItem="Wcf-fI-d3Z" secondAttribute="bottom" constant="10" id="CFb-vo-glK"/>
-                                    <constraint firstItem="ynC-Mo-axO" firstAttribute="centerX" secondItem="oc1-YU-feg" secondAttribute="centerX" id="D5e-b6-k7D"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wcf-fI-d3Z" secondAttribute="trailing" id="O1T-ow-S0O"/>
-                                    <constraint firstAttribute="bottom" secondItem="taL-7I-gtb" secondAttribute="bottom" id="Oro-Yv-w7f"/>
-                                    <constraint firstAttribute="trailing" secondItem="taL-7I-gtb" secondAttribute="trailing" id="Rov-uU-7DS"/>
-                                    <constraint firstAttribute="bottom" secondItem="ynC-Mo-axO" secondAttribute="bottom" constant="50" id="hJ8-ig-rBf"/>
-                                    <constraint firstAttribute="trailing" secondItem="Q5v-jt-xea" secondAttribute="trailing" id="hNm-bB-G73"/>
-                                    <constraint firstItem="Q5v-jt-xea" firstAttribute="leading" secondItem="oc1-YU-feg" secondAttribute="leading" id="xZF-Qg-Qpi"/>
+                                    <constraint firstItem="qho-Ty-Bkn" firstAttribute="top" secondItem="xnv-7z-RWQ" secondAttribute="bottom" constant="10" id="35b-09-OX4"/>
+                                    <constraint firstItem="xnv-7z-RWQ" firstAttribute="leading" secondItem="psK-2i-u0T" secondAttribute="leading" id="Pxk-uh-vF2"/>
+                                    <constraint firstAttribute="trailing" secondItem="xnv-7z-RWQ" secondAttribute="trailing" id="SAo-t4-6y7"/>
+                                    <constraint firstItem="qwZ-ez-nE3" firstAttribute="centerX" secondItem="psK-2i-u0T" secondAttribute="centerX" id="VQs-nY-OeR"/>
+                                    <constraint firstAttribute="trailing" secondItem="a5y-o5-xL0" secondAttribute="trailing" id="a4C-ou-VRJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="a5y-o5-xL0" secondAttribute="bottom" id="agt-PX-rcW"/>
+                                    <constraint firstItem="xnv-7z-RWQ" firstAttribute="top" secondItem="psK-2i-u0T" secondAttribute="top" constant="30" id="km9-OF-6N7"/>
+                                    <constraint firstAttribute="trailing" secondItem="qho-Ty-Bkn" secondAttribute="trailing" id="mfX-Bp-ytK"/>
+                                    <constraint firstAttribute="bottom" secondItem="qwZ-ez-nE3" secondAttribute="bottom" constant="50" id="pjr-eU-e3e"/>
+                                    <constraint firstItem="qho-Ty-Bkn" firstAttribute="leading" secondItem="psK-2i-u0T" secondAttribute="leading" id="tpw-ls-pvh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oc1-YU-feg" firstAttribute="leading" secondItem="xTa-d9-DR7" secondAttribute="leading" id="3SV-Kc-5VA"/>
-                            <constraint firstItem="YjR-JH-at6" firstAttribute="top" secondItem="GUV-P4-vTD" secondAttribute="bottom" id="4T3-86-JOn"/>
-                            <constraint firstItem="Wcf-fI-d3Z" firstAttribute="top" secondItem="YjR-JH-at6" secondAttribute="bottom" constant="30" id="7d8-I0-OWl"/>
-                            <constraint firstAttribute="trailing" secondItem="GUV-P4-vTD" secondAttribute="trailing" id="E7e-r7-2NF"/>
-                            <constraint firstItem="GUV-P4-vTD" firstAttribute="leading" secondItem="xTa-d9-DR7" secondAttribute="leading" id="HBg-z8-jGo"/>
-                            <constraint firstItem="oc1-YU-feg" firstAttribute="top" secondItem="YjR-JH-at6" secondAttribute="bottom" id="OE8-hn-4eW"/>
-                            <constraint firstItem="UsJ-DP-hPB" firstAttribute="top" secondItem="oc1-YU-feg" secondAttribute="bottom" id="Wnz-WW-8wS"/>
-                            <constraint firstAttribute="trailing" secondItem="YjR-JH-at6" secondAttribute="trailing" id="cVD-rC-zpv"/>
-                            <constraint firstItem="YjR-JH-at6" firstAttribute="leading" secondItem="xTa-d9-DR7" secondAttribute="leading" id="dN8-UV-w1n"/>
-                            <constraint firstItem="GUV-P4-vTD" firstAttribute="top" secondItem="xTa-d9-DR7" secondAttribute="top" id="yXB-fJ-IJ1"/>
-                            <constraint firstAttribute="trailing" secondItem="oc1-YU-feg" secondAttribute="trailing" id="zCB-Sf-AIk"/>
+                            <constraint firstItem="psK-2i-u0T" firstAttribute="top" secondItem="ipA-hR-p1B" secondAttribute="bottom" id="BF9-GP-4Tg"/>
+                            <constraint firstItem="ipA-hR-p1B" firstAttribute="leading" secondItem="1go-dg-B8O" secondAttribute="leading" id="BNF-3I-0gd"/>
+                            <constraint firstItem="m6k-hh-jnK" firstAttribute="leading" secondItem="1go-dg-B8O" secondAttribute="leading" id="EFA-w0-Y3R"/>
+                            <constraint firstItem="ipA-hR-p1B" firstAttribute="top" secondItem="m6k-hh-jnK" secondAttribute="bottom" id="GQS-Ys-Crv"/>
+                            <constraint firstAttribute="trailing" secondItem="m6k-hh-jnK" secondAttribute="trailing" id="Gyk-8X-DdM"/>
+                            <constraint firstItem="m6k-hh-jnK" firstAttribute="top" secondItem="1go-dg-B8O" secondAttribute="top" id="Sed-fu-wni"/>
+                            <constraint firstItem="Yjr-vG-dPL" firstAttribute="top" secondItem="psK-2i-u0T" secondAttribute="bottom" id="ZkJ-Ci-uM3"/>
+                            <constraint firstAttribute="trailing" secondItem="ipA-hR-p1B" secondAttribute="trailing" id="d2f-DJ-ZRo"/>
+                            <constraint firstItem="psK-2i-u0T" firstAttribute="leading" secondItem="1go-dg-B8O" secondAttribute="leading" id="eBW-Ms-Ivt"/>
+                            <constraint firstAttribute="trailing" secondItem="psK-2i-u0T" secondAttribute="trailing" id="oca-4m-Up9"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="670"/>
                     <connections>
-                        <outlet property="btnConst" destination="hJ8-ig-rBf" id="iCk-BS-mQp"/>
-                        <outlet property="buttomLabelConst" destination="CFb-vo-glK" id="E4o-QN-9EI"/>
-                        <outlet property="cameraPreview" destination="YjR-JH-at6" id="Wqq-4k-jCo"/>
-                        <outlet property="cameraPreviwHeigh" destination="8Ui-C3-ajM" id="5OD-UE-aux"/>
-                        <outlet property="imagePreview" destination="9zd-xu-8oG" id="ie5-Ws-4bV"/>
-                        <outlet property="topLabelConstr" destination="7d8-I0-OWl" id="z43-CJ-uV6"/>
+                        <outlet property="buttomLabel" destination="35b-09-OX4" id="PVG-qP-nHV"/>
+                        <outlet property="cameraView" destination="WmU-9i-0y7" id="GxD-4X-9rf"/>
+                        <outlet property="photoBtn" destination="pjr-eU-e3e" id="KBt-sR-yxo"/>
+                        <outlet property="previwHeigh" destination="ijZ-5t-gZA" id="OHl-hg-JYM"/>
+                        <outlet property="skipButton" destination="a5y-o5-xL0" id="UPY-bx-vA8"/>
+                        <outlet property="takePhotoButton" destination="qwZ-ez-nE3" id="L11-6m-oYl"/>
+                        <outlet property="topLabel" destination="km9-OF-6N7" id="Btx-hB-X8G"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eGK-cX-WCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dYm-kx-1zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="669" y="-991"/>
+        </scene>
+        <!--Photo Viewer View Controller-->
+        <scene sceneID="sLI-K9-hbM">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewerViewController" id="Km9-28-mw4" customClass="PhotoViewerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tdI-Oh-ZJT"/>
+                        <viewControllerLayoutGuide type="bottom" id="E3f-9L-6dc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="riu-cz-V1b">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzM-g3-GQQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Esm-vc-z7E"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="PACKAGE PHOTO" id="vg7-3Q-On4">
+                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="8ER-pD-76C">
+                                            <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="backAction:" destination="Km9-28-mw4" id="KBK-Qz-IzC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tzM-g3-GQQ" secondAttribute="trailing" id="21D-Kx-5gb"/>
+                            <constraint firstItem="tzM-g3-GQQ" firstAttribute="top" secondItem="tdI-Oh-ZJT" secondAttribute="bottom" id="C0o-mY-eUs"/>
+                            <constraint firstItem="tzM-g3-GQQ" firstAttribute="leading" secondItem="riu-cz-V1b" secondAttribute="leading" id="gjQ-sv-KWh"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iiY-4y-Lih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="-1026"/>
         </scene>
     </scenes>
     <resources>

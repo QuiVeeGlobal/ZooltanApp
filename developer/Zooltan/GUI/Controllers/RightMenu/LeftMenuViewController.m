@@ -11,6 +11,7 @@
 #import "CourierHistoryViewController.h"
 #import "PackageViewController.h"
 #import "CourierHistoryViewController.h"
+#import "PackagePhotoViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -263,7 +264,9 @@ typedef enum : NSUInteger {
 
 - (void) showCreateDeliveries
 {
-    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    [self openController:ctr];
+    PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self openController:ctr];
 }
 

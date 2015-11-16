@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6F0A67BF57FA2BDDAA439814"
+               BlueprintIdentifier = "A5F54CB4D0505DEEC27188B9"
                BuildableName = "libMoABContactsManager.a"
                BlueprintName = "MoABContactsManager"
                ReferencedContainer = "container:Pods.xcodeproj">

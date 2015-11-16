@@ -14,6 +14,7 @@
 #import "AFNetworking.h"
 #import "TrackingSearchViewController.h"
 #import "ContactsViewController.h"
+#import "PhotoViewerViewController.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 #define METERS_PER_MILE 1609.344
@@ -293,8 +294,8 @@
 - (IBAction)addContactAction:(id)sender
 {
     ContactsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactsViewController"];
-    [self lowerKeyboard];
     [self.navigationController pushViewController:ctr animated:YES];
+    [self lowerKeyboard];
 }
 
 - (IBAction)fromAdressAction:(id)sender
@@ -328,7 +329,9 @@
 
 - (IBAction)photoViewAction:(id)sender
 {
-    
+    PhotoViewerViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewerViewController"];
+    [self.navigationController pushViewController:ctr animated:YES];
+    [self lowerKeyboard];
 }
 
 - (IBAction)sendOrderAction:(id)sender

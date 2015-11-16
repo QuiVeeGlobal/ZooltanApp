@@ -1,44 +1,49 @@
 PODS:
-  - AFNetworking (2.6.1):
-    - AFNetworking/NSURLConnection (= 2.6.1)
-    - AFNetworking/NSURLSession (= 2.6.1)
-    - AFNetworking/Reachability (= 2.6.1)
-    - AFNetworking/Security (= 2.6.1)
-    - AFNetworking/Serialization (= 2.6.1)
-    - AFNetworking/UIKit (= 2.6.1)
-  - AFNetworking/NSURLConnection (2.6.1):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.1):
+  - AFNetworking/NSURLSession (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.1)
-  - AFNetworking/Security (2.6.1)
-  - AFNetworking/Serialization (2.6.1)
-  - AFNetworking/UIKit (2.6.1):
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Google/Analytics (1.1.1):
+  - CocoaLumberjack (1.6.2)
+  - Google/Analytics (1.2.1):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
-  - Google/Core (1.1.1):
+  - Google/Core (1.2.1):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.1)
-  - GoogleAnalytics (3.13.0)
-  - GoogleInterchangeUtilities (1.0.0):
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0)
-  - GoogleMaps (1.10.4)
+  - GoogleMaps (1.10.5)
   - GoogleNetworkingUtilities (1.0.0):
     - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.0.0)
+  - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
   - MoABContactsManager (1.0.5)
   - OCGoogleDirectionsAPI (0.1.4)
+  - VLBCameraView (2.0):
+    - CocoaLumberjack (= 1.6.2)
+    - VLBFoundation
+  - VLBFoundation (1.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -46,17 +51,21 @@ DEPENDENCIES:
   - GoogleMaps
   - MoABContactsManager
   - OCGoogleDirectionsAPI
+  - VLBCameraView
 
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
-  Google: 529a5d8719dff90ea2e7cba5f45302cd359b5456
-  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
-  GoogleInterchangeUtilities: fe088bea8c936218e52324a004d279c4491b9d65
-  GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  CocoaLumberjack: 38fa640b1467deaf665b3f7b3b08f837b55c9660
+  Google: fd33b5fa40fa3aaee5176de49c873a74e3d11dce
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
-  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
+  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   MoABContactsManager: e3e208d64c41db8ff542d48264ee531140dad821
   OCGoogleDirectionsAPI: b4374609670455170893cbb88aaf46389f4dbc71
+  VLBCameraView: 9088730001ec362e03b6622cf2be7370414d5233
+  VLBFoundation: af522a9bc9fc7d873a404e146de351178446ca13
 
 COCOAPODS: 0.38.2

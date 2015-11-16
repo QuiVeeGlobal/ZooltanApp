@@ -6,4 +6,5 @@ target "Zooltan" do
     pod 'Google/Analytics'
     pod "MoABContactsManager"
     pod "OCGoogleDirectionsAPI"
+    pod "VLBCameraView"
 end

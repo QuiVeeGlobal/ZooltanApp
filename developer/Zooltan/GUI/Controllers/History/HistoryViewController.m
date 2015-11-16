@@ -12,6 +12,7 @@
 #import "CreateViewController.h"
 #import "HistoryCell.h"
 #import "AFNetworking.h"
+#import "PackagePhotoViewController.h"
 
 #define layerCornerRadius 2.5
 #define REQUEST self.manager
@@ -144,7 +145,9 @@
 
 - (IBAction) showCreateDeliveries
 {
-    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    [self.navigationController pushViewController:ctr animated:YES];
+    PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self.navigationController pushViewController:ctr animated:YES];
 }
 

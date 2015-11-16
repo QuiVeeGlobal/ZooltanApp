@@ -291,6 +291,7 @@
 		FAA699E91BC555F300AE2A22 /* ValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA699E71BC555F300AE2A22 /* ValidationViewController.m */; };
 		FAAA23331BAB71880049C811 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F1AC201B3806D200C76F75 /* Images.xcassets */; };
 		FAAA23341BAB71960049C811 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67F1AC201B3806D200C76F75 /* Images.xcassets */; };
+		FAC127831BF66BF600128F6F /* PhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC127821BF66BF600128F6F /* PhotoViewerViewController.m */; };
 		FAC9CE531BAAC13F00CE0602 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9CE521BAAC13F00CE0602 /* Analytics.m */; };
 		FAC9CE541BAAC13F00CE0602 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC9CE521BAAC13F00CE0602 /* Analytics.m */; };
 		FAD778CD1BAD72DA00612690 /* CourierHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */; };
@@ -557,6 +558,8 @@
 		FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordViewController.m; sourceTree = "<group>"; };
 		FAA699E61BC555F300AE2A22 /* ValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationViewController.h; sourceTree = "<group>"; };
 		FAA699E71BC555F300AE2A22 /* ValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationViewController.m; sourceTree = "<group>"; };
+		FAC127811BF66BF600128F6F /* PhotoViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoViewerViewController.h; path = PackagePhoto/PhotoViewerViewController.h; sourceTree = "<group>"; };
+		FAC127821BF66BF600128F6F /* PhotoViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoViewerViewController.m; path = PackagePhoto/PhotoViewerViewController.m; sourceTree = "<group>"; };
 		FAC9CE511BAAC13F00CE0602 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		FAC9CE521BAAC13F00CE0602 /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		FAE9692B1B9D807A004BE948 /* Courier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Courier-Info.plist"; sourceTree = "<group>"; };
@@ -1326,6 +1329,8 @@
 			children = (
 				FA79268C1BF4A5B0004E6FC0 /* PackagePhotoViewController.h */,
 				FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */,
+				FAC127811BF66BF600128F6F /* PhotoViewerViewController.h */,
+				FAC127821BF66BF600128F6F /* PhotoViewerViewController.m */,
 			);
 			name = PaackagePhoto;
 			sourceTree = "<group>";
@@ -1688,6 +1693,7 @@
 				674558C51B5933EF007D9AEF /* PlaceModel.m in Sources */,
 				1E271CED1BAFFC0D00914CDC /* RoutModel.m in Sources */,
 				1E271D0F1BB0DBEB00914CDC /* AsyncHTTPConnection.m in Sources */,
+				FAC127831BF66BF600128F6F /* PhotoViewerViewController.m in Sources */,
 				67D679161B3823C3006F5578 /* UIView+Additions.m in Sources */,
 				FAA5A94A1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */,
 				67D6790D1B3823C3006F5578 /* UIAlertView+Additions.m in Sources */,
