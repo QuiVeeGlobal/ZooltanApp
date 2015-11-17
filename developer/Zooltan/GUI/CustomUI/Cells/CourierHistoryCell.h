@@ -15,16 +15,20 @@
 @property (nonatomic, weak) IBOutlet UIView *bgView;
 
 @property (nonatomic, weak) IBOutlet UIImageView *orderTypeImage;
+
 @property (nonatomic, weak) IBOutlet UILabel *orderTypeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *costLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel *pickupTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *pickupTitle;
 @property (nonatomic, weak) IBOutlet UILabel *distanceToPickupLabel;
 @property (nonatomic, weak) IBOutlet UILabel *pickupAddressLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel *destinationTitleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *destinationTitle;
 @property (nonatomic, weak) IBOutlet UILabel *distanceBetweenLabel;
 @property (nonatomic, weak) IBOutlet UILabel *destinationAddressLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *noteTitle;
+@property (nonatomic, weak) IBOutlet UILabel *noteLabel;
 
 //@property (nonatomic, weak) IBOutlet UILabel *destinationAreaTitleLabel;
 //@property (nonatomic, weak) IBOutlet UILabel *destinationAreaLabel;

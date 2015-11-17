@@ -163,6 +163,7 @@
 "ctrl.package.title.cost"                    = "Cost:";
 "ctrl.package.title.pickupDistance"          = "Distance to the pickup location:";
 "ctrl.package.title.betweenDistance"         = "From pickup to destination:";
+"ctrl.package.title.note"                    = "Note:";
 "ctrl.package.title.destinationArea"         = "Area of destination:";
 "ctrl.package.title.receiverName"            = "Receiver name:";
 "ctrl.package.title.receiverPhone"           = "Receiver phone:";

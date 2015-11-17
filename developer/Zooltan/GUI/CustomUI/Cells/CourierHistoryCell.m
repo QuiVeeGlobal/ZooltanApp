@@ -12,7 +12,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 206;
+    return 233;
 }
 
 - (void)awakeFromNib
@@ -23,10 +23,10 @@
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    
-    self.pickupTitleLabel.text = NSLocalizedString(@"ctrl.package.title.pickupDistance", nil);
-    //self.destinationTitleLabel.text = NSLocalizedString(@"ctrl.package.title.betweenDistance", nil);
-    //self.destinationAreaTitleLabel.text = NSLocalizedString(@"ctrl.package.title.destinationArea", nil);
+
+    self.pickupTitle.text = NSLocalizedString(@"ctrl.package.title.pickupDistance", nil);
+    self.destinationTitle.text = NSLocalizedString(@"ctrl.package.title.betweenDistance", nil);
+    self.noteTitle.text = NSLocalizedString(@"ctrl.package.title.note", nil);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
