@@ -287,6 +287,7 @@
 		FA74C6821BFA420400CA8E3C /* PolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6801BFA420400CA8E3C /* PolicyViewController.m */; };
 		FA74C6851BFA421900CA8E3C /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6841BFA421900CA8E3C /* TermsViewController.m */; };
 		FA74C6861BFA421900CA8E3C /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6841BFA421900CA8E3C /* TermsViewController.m */; };
+		FA74C6871BFB41AD00CA8E3C /* PhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC127821BF66BF600128F6F /* PhotoViewerViewController.m */; };
 		FA79268E1BF4A5B0004E6FC0 /* PackagePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA79268D1BF4A5B0004E6FC0 /* PackagePhotoViewController.m */; };
 		FAA5A94A1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
 		FAA5A94B1BD4A28F00D09810 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5A9491BD4A28F00D09810 /* NewPasswordViewController.m */; };
@@ -1665,6 +1666,7 @@
 				4463889F1B958E04008B4B0B /* CHCircleGaugeView.m in Sources */,
 				446EDE851BB542E500FA13CD /* StatisticViewController.m in Sources */,
 				FA749F3C1BA1AE4700D3AEEE /* OrderModel.m in Sources */,
+				FA74C6871BFB41AD00CA8E3C /* PhotoViewerViewController.m in Sources */,
 				FAC9CE541BAAC13F00CE0602 /* Analytics.m in Sources */,
 				444B57BF1BD624DD00A8C394 /* ContactsViewController.m in Sources */,
 				1E271D1F1BB0E38700914CDC /* Errors.m in Sources */,

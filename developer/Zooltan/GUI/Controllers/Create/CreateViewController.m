@@ -15,6 +15,7 @@
 #import "TrackingSearchViewController.h"
 #import "ContactsViewController.h"
 #import "PhotoViewerViewController.h"
+#import "PackagePhotoViewController.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 #define METERS_PER_MILE 1609.344
@@ -45,12 +46,15 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (weak, nonatomic) IBOutlet UIButton *photoViewBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addPhotoBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *mapBGView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *packageIcon;
 @property (strong, nonatomic) IBOutlet UILabel *packageWeightLabel;
+
+@property (strong, nonatomic) UIImage *packageImage;
 
 @property (strong, nonatomic) NSString *packageSize;
 
@@ -72,6 +76,8 @@
     
     self.navigationController.navigationBar.hidden = YES;
     
+    self.packageImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
+    
     self.packageSize = @"LETTER";
 }
 
@@ -88,6 +94,18 @@
                                              selector:@selector(lowerKeyboard)
                                                  name:closeKeyboard
                                                object:nil];
+    
+    if (!self.packageImage) {
+        self.photoAttachedLabel.text = NSLocalizedString(@"ctrl.create.noPhotoAttached.title", nil);
+        self.photoViewBtn.titleLabel.text = NSLocalizedString(@"ctrl.create.button.addPhoto", nil);
+        self.photoViewBtn.hidden = YES;
+        self.photoViewBtn.enabled = NO;
+        self.addPhotoBtn.hidden = NO;
+        self.addPhotoBtn.enabled = YES;
+    } else {
+        self.addPhotoBtn.hidden = YES;
+        self.addPhotoBtn.enabled = NO;
+    }
     
     [self setOrderData];
 }
@@ -183,9 +201,9 @@
     self.toAddressLabel.text           = NSLocalizedString(@"ctrl.create.to.title", nil);
     self.commentsLabel.text            = NSLocalizedString(@"ctrl.create.comments.title", nil);
     self.commentsTextField.placeholder = NSLocalizedString(@"ctrl.create.placeholder.comments", nil);
+    self.sendBtn.titleLabel.text       = NSLocalizedString(@"ctrl.create.button.request", nil);
     self.photoAttachedLabel.text       = NSLocalizedString(@"ctrl.create.photoAttached.title", nil);
     self.photoViewBtn.titleLabel.text  = NSLocalizedString(@"ctrl.create.button.photoView", nil);
-    self.sendBtn.titleLabel.text       = NSLocalizedString(@"ctrl.create.button.request", nil);
     
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
@@ -330,7 +348,18 @@
 - (IBAction)photoViewAction:(id)sender
 {
     PhotoViewerViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewerViewController"];
-    [self.navigationController pushViewController:ctr animated:YES];
+    [self.navigationController presentViewController:ctr animated:YES completion:nil];
+    [self lowerKeyboard];
+}
+
+- (IBAction)addPhotoAction:(id)sender
+{
+    PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionPush;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    [self.navigationController pushViewController:ctr animated:NO];
     [self lowerKeyboard];
 }
 

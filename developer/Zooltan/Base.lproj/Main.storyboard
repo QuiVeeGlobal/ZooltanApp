@@ -13,6 +13,7 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
         </mutableArray>
         <mutableArray key="OPENSANS-LIGHT.TTF">
             <string>OpenSans-Light</string>
@@ -3017,6 +3018,20 @@
                                                     <outlet property="delegate" destination="jAB-9T-geg" id="Ijk-XP-HXS"/>
                                                 </connections>
                                             </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBT-wc-6bc" customClass="TextField">
+                                                <rect key="frame" x="155" y="243" width="425" height="40"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="5Rh-wd-GLL"/>
+                                                    <constraint firstAttribute="width" constant="425" id="iz0-e9-eau"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="jAB-9T-geg" id="IpH-0E-mCa"/>
+                                                </connections>
+                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXq-jr-KFx">
                                                 <rect key="frame" x="78" y="294" width="484" height="40"/>
                                                 <animations/>
@@ -3174,23 +3189,24 @@
                                                     <color key="titleColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="photoViewAction:" destination="jAB-9T-geg" eventType="touchUpInside" id="2L8-3l-iyw"/>
+                                                    <action selector="photoViewAction:" destination="jAB-9T-geg" eventType="touchUpInside" id="SFb-to-d7S"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBT-wc-6bc" customClass="TextField">
-                                                <rect key="frame" x="155" y="243" width="425" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buS-In-SZ3">
+                                                <rect key="frame" x="113" y="444" width="40" height="40"/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="5Rh-wd-GLL"/>
-                                                    <constraint firstAttribute="width" constant="425" id="iz0-e9-eau"/>
+                                                    <constraint firstAttribute="height" constant="40" id="G5a-n6-mwQ"/>
+                                                    <constraint firstAttribute="width" constant="40" id="Z1d-tO-tRe"/>
                                                 </constraints>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                                                <state key="normal" title="add">
+                                                    <color key="titleColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
-                                                    <outlet property="delegate" destination="jAB-9T-geg" id="IpH-0E-mCa"/>
+                                                    <action selector="addPhotoAction:" destination="jAB-9T-geg" eventType="touchUpInside" id="qYe-o9-xXY"/>
                                                 </connections>
-                                            </textField>
+                                            </button>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3229,6 +3245,7 @@
                                             <constraint firstItem="DHG-7H-G5n" firstAttribute="top" secondItem="yBT-wc-6bc" secondAttribute="bottom" id="MEz-l5-Z4n"/>
                                             <constraint firstAttribute="trailing" secondItem="bqq-Hq-cJt" secondAttribute="trailing" constant="20" id="Ojs-re-sc4"/>
                                             <constraint firstItem="FTT-6D-1Df" firstAttribute="leading" secondItem="iqt-dG-yx7" secondAttribute="leading" constant="20" id="OoV-q4-udG"/>
+                                            <constraint firstItem="buS-In-SZ3" firstAttribute="top" secondItem="H2e-BV-CEF" secondAttribute="bottom" constant="10" id="RDU-cE-z2Y"/>
                                             <constraint firstAttribute="trailing" secondItem="OyP-vT-lfm" secondAttribute="trailing" constant="20" id="Re9-WK-YwK"/>
                                             <constraint firstAttribute="trailing" secondItem="k5M-E7-gd8" secondAttribute="trailing" constant="20" id="RuG-si-xgJ"/>
                                             <constraint firstAttribute="trailing" secondItem="BTn-96-hGK" secondAttribute="trailing" constant="10" id="SO8-4u-etO"/>
@@ -3251,6 +3268,7 @@
                                             <constraint firstItem="yBT-wc-6bc" firstAttribute="leading" secondItem="c9W-1p-bfi" secondAttribute="trailing" constant="15" id="fW7-C0-Ufg"/>
                                             <constraint firstAttribute="trailing" secondItem="9qQ-N8-jL9" secondAttribute="trailing" constant="10" id="g1G-RL-dcY"/>
                                             <constraint firstItem="bqq-Hq-cJt" firstAttribute="bottom" secondItem="NXq-jr-KFx" secondAttribute="bottom" id="gK5-iJ-gkC"/>
+                                            <constraint firstItem="buS-In-SZ3" firstAttribute="leading" secondItem="FTT-6D-1Df" secondAttribute="trailing" constant="21.5" id="gUH-H6-ax8"/>
                                             <constraint firstAttribute="trailing" secondItem="HQP-zg-APd" secondAttribute="trailing" constant="20" id="iEl-Am-buf"/>
                                             <constraint firstItem="H2e-BV-CEF" firstAttribute="top" secondItem="HQP-zg-APd" secondAttribute="bottom" id="iSD-fd-qwg"/>
                                             <constraint firstItem="gbP-WU-1eu" firstAttribute="top" secondItem="k5M-E7-gd8" secondAttribute="bottom" constant="10" id="ir1-dF-wIW"/>
@@ -3325,6 +3343,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="812"/>
                     <connections>
+                        <outlet property="addPhotoBtn" destination="buS-In-SZ3" id="kr2-SJ-7g2"/>
                         <outlet property="commentsLabel" destination="2ih-Tk-BlS" id="ZAk-Qh-5N3"/>
                         <outlet property="commentsTextField" destination="HQP-zg-APd" id="GRB-af-tbz"/>
                         <outlet property="contentView" destination="iqt-dG-yx7" id="noz-t6-jrY"/>
@@ -3335,7 +3354,7 @@
                         <outlet property="packageIcon" destination="1n2-HB-2nW" id="eR2-Ol-jWP"/>
                         <outlet property="packageWeightLabel" destination="otb-42-XBJ" id="FIh-tq-Boz"/>
                         <outlet property="photoAttachedLabel" destination="FTT-6D-1Df" id="vwt-WW-pGd"/>
-                        <outlet property="photoViewBtn" destination="Zq7-3J-fV4" id="pbK-36-ufj"/>
+                        <outlet property="photoViewBtn" destination="Zq7-3J-fV4" id="Mbg-Q9-OZB"/>
                         <outlet property="receiverNameField" destination="OyP-vT-lfm" id="ank-2h-ZRU"/>
                         <outlet property="receiverNameLabel" destination="H5e-K2-LZo" id="Yiy-kn-Bv3"/>
                         <outlet property="receiverNumberField" destination="yBT-wc-6bc" id="tG4-sb-v1n"/>
@@ -5268,10 +5287,10 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="PACKAGE PHOTO" id="vg7-3Q-On4">
-                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="8ER-pD-76C">
+                                        <barButtonItem key="leftBarButtonItem" image="closeBtn" id="8ER-pD-76C">
                                             <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
-                                                <action selector="backAction:" destination="Km9-28-mw4" id="KBK-Qz-IzC"/>
+                                                <action selector="closeAction:" destination="Km9-28-mw4" id="gB1-35-Rg8"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

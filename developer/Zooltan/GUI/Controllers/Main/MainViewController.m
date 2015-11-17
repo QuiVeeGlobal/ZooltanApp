@@ -67,11 +67,11 @@
 
 - (IBAction)create:(id)sender
 {
-    CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-    [self.navigationController pushViewController:createViewController animated:YES];
+//    CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+//    [self.navigationController pushViewController:createViewController animated:YES];
     
-//    PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
-//    [self.navigationController pushViewController:ctr animated:YES];
+    PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
+    [self.navigationController pushViewController:ctr animated:YES];
 }
 
 - (void)removeNotifications

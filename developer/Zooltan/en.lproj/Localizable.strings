@@ -135,7 +135,9 @@
 "ctrl.create.placeholder.comments"           = "optional";
 "ctrl.create.comments.title"                 = "Comments:";
 "ctrl.create.photoAttached.title"            = "Photo attached";
+"ctrl.create.noPhotoAttached.title"          = "No photo";
 "ctrl.create.button.photoView"               = "view";
+"ctrl.create.button.addPhoto"                = "add";
 "ctrl.create.button.request"                 = "REQUEST";
 "ctrl.create.package.weight.letter"          = "< 1kg";
 "ctrl.create.package.weight.small"           = "1 - 5kg";
@@ -159,6 +161,8 @@
 "ctrl.package.title.status"                  = "status";
 "ctrl.package.title.trackId"                 = "tack ID";
 "ctrl.package.title.cost"                    = "Cost:";
+"ctrl.package.title.note"                    = "Note:";
+"ctrl.package.title.photoAttached"           = "Photo attached";
 "ctrl.package.title.pickupDistance"          = "Distance to the pickup location:";
 "ctrl.package.title.betweenDistance"         = "From pickup to destination:";
 "ctrl.package.title.note"                    = "Note:";

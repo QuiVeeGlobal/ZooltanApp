@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
+@property (strong, nonatomic) UIImage *packageImage;
+
 @property (strong, nonatomic) IBOutlet VLBCameraView *cameraView;
 
 @end
@@ -32,6 +34,8 @@
     
     self.cameraView.allowPictureRetake = YES;
     self.cameraView.delegate = self;
+    
+    [self removePackageImage:@"package.jpg"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeButtons)
@@ -113,18 +117,32 @@
 {
     [[AppDelegate instance] hideLoadingView];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"package.png"];
-    UIImage *packageImage = [UIImage imageWithData:UIImagePNGRepresentation(meta[VLBCameraViewMetaOriginalImage])];
-    NSData *data = UIImageJPEGRepresentation(packageImage, 0.8);
-    [data writeToFile:path atomically:YES];
+    self.packageImage = [UIImage imageWithData:UIImagePNGRepresentation(meta[VLBCameraViewMetaOriginalImage])];
     
-    NSLog(@"UIImagePNGRepresentation: image size is---->: %lu kb",[data length]/1024);
+    [self savePackageImage];
     
     self.skipButton.hidden = NO;
     [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];
     [self.skipButton setTitle:@"" forState:UIControlStateNormal];
+}
+
+- (void)savePackageImage
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"package.jpg"];
+    NSData *imageData = UIImageJPEGRepresentation(self.packageImage, 0.8);
+    [imageData writeToFile:filePath atomically:YES];
+    
+    NSLog(@"UIImagePNGRepresentation: image size is---->: %lu kb",[imageData length]/1024);
+}
+
+- (void)removePackageImage:(NSString *)fileName
+{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:fileName];
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 }
 
 - (void)cameraView:(VLBCameraView *)cameraView didErrorOnTakePicture:(NSError *)error

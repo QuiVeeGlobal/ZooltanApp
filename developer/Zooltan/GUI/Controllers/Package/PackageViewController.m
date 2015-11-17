@@ -9,6 +9,7 @@
 #import "PackageViewController.h"
 #import "QRScannerViewController.h"
 #import "TrackingViewController.h"
+#import "PhotoViewerViewController.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 @interface PackageViewController () <GMSMapViewDelegate, CLLocationManagerDelegate, QRScannerDelegate>
@@ -17,15 +18,15 @@
     TrackingViewController *_trackingViewController;
 }
 
-@property (nonatomic, weak) IBOutlet UIView *greenCallView;
-@property (nonatomic, weak) IBOutlet UIView *topOrangeView;
-@property (nonatomic, weak) IBOutlet UIView *statusView;
-@property (nonatomic, weak) IBOutlet UIView *trackingView;
-@property (nonatomic, weak) IBOutlet UIButton *callButton;
-@property (nonatomic, weak) IBOutlet UIButton *callSenderButton;
-@property (nonatomic, weak) IBOutlet UIButton *takeButton;
+@property (weak, nonatomic) IBOutlet UIView *greenCallView;
+@property (weak, nonatomic) IBOutlet UIView *topOrangeView;
+@property (weak, nonatomic) IBOutlet UIView *statusView;
+@property (weak, nonatomic) IBOutlet UIView *trackingView;
 
-@property (weak, nonatomic) IBOutlet UILabel *navTitle;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *callSenderButton;
+@property (weak, nonatomic) IBOutlet UIButton *takeButton;
+@property (weak, nonatomic) IBOutlet UIButton *viewPhotoButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *packageTitle;
 @property (weak, nonatomic) IBOutlet UILabel *statusTitle;
@@ -36,22 +37,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *packageTrackIdLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *costTitle;
+@property (weak, nonatomic) IBOutlet UILabel *noteTitle;
+@property (weak, nonatomic) IBOutlet UILabel *photoAttachedTitle;
 @property (weak, nonatomic) IBOutlet UILabel *pickUpDistanceTitle;
 @property (weak, nonatomic) IBOutlet UILabel *betweenDistanceTitle;
-@property (weak, nonatomic) IBOutlet UILabel *destinationAreaTitle;
 @property (weak, nonatomic) IBOutlet UILabel *receiverNameTitle;
 @property (weak, nonatomic) IBOutlet UILabel *receiverPhoneTitle;
 
 @property (weak, nonatomic) IBOutlet UILabel *costLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pickUpDistanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pickUpAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *betweenDistanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationAddressLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *destinationAreaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *receiverNameLabel;
 
-@property (nonatomic, weak) IBOutlet GMSMapView *mapView;
-@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -80,14 +83,15 @@
     self.callButton.imageView.width = 10;
     self.callButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    self.navTitle.text = NSLocalizedString(@"ctrl.package.navigation.title", nil);
+    self.navItem.title = NSLocalizedString(@"ctrl.package.navigation.title", nil);
     self.packageTitle.text = NSLocalizedString(@"ctrl.package.title.package", nil);
     self.statusTitle.text = NSLocalizedString(@"ctrl.package.title.status", nil);
     self.trackIdTitle.text = NSLocalizedString(@"ctrl.package.title.trackId", nil);
     self.costTitle.text = NSLocalizedString(@"ctrl.package.title.cost", nil);
+    self.noteTitle.text = NSLocalizedString(@"ctrl.package.title.note", nil);
+    self.photoAttachedTitle.text = NSLocalizedString(@"ctrl.package.title.photoAttached", nil);
     self.pickUpDistanceTitle.text = NSLocalizedString(@"ctrl.package.title.pickupDistance", nil);
     self.betweenDistanceTitle.text = NSLocalizedString(@"ctrl.package.title.betweenDistance", nil);
-    //self.destinationAreaTitle.text = NSLocalizedString(@"ctrl.package.title.destinationArea", nil);
     self.receiverNameTitle.text = NSLocalizedString(@"ctrl.package.title.receiverName", nil);
     self.receiverPhoneTitle.text = NSLocalizedString(@"ctrl.package.title.receiverPhone", nil);
     [self.callSenderButton setTitle:NSLocalizedString(@"ctrl.package.title.callSender", nil) forState:UIControlStateNormal];
@@ -212,6 +216,12 @@
 }
 
 #pragma mark - Actions
+
+- (IBAction)viewPhotoAction:(id)sender
+{
+    PhotoViewerViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewerViewController"];
+    [self.navigationController presentViewController:ctr animated:YES completion:nil];
+}
 
 - (IBAction)callAction:(id)sender
 {

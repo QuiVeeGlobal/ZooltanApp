@@ -10,7 +10,7 @@
 
 @interface PhotoViewerViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *packegeImage;
+@property (strong, nonatomic) UIImage *packageImage;
 
 @end
 
@@ -19,14 +19,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.packageImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.png"]];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:self.packageImage];
     imgView.clipsToBounds = YES;
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
