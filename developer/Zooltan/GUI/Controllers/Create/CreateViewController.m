@@ -144,6 +144,7 @@
         if ([self.contact.phonesValues count] > 0) {
             self.receiverNumberField.text = self.contact.phonesValues[0];
         }
+        
         [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
         [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
     }
@@ -384,6 +385,9 @@
     NSString *toLatitude    = [NSString stringWithFormat:@"%f", self.toAddress.location.latitude];
     NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
     NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *comment       = self.commentsTextField.text;
+    UIImage  *packageImage  = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
+    NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.8);
     
     STLogDebug(@"STEP 1");
     
@@ -396,8 +400,8 @@
                             @"to_address"   : NIL_TO_NULL(self.toAddressLabel.text),
                             @"to_lon"       : NIL_TO_NULL(toLongitude),
                             @"to_lat"       : NIL_TO_NULL(toLatitude),
-                            @"distance"     : NIL_TO_NULL(distance)};
-    
+                            @"distance"     : NIL_TO_NULL(distance),
+                            @"comment"      : NIL_TO_NULL(comment)};
     
     STLogDebug(@"STEP 2");
     
@@ -407,6 +411,11 @@
     
     [REQUEST POST:@"/client/order/create" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSLog(@"formData %@", formData);
+        
+        [formData appendPartWithFileData:imadeData
+                                    name:@"image"
+                                fileName:@"package.jpg"
+                                mimeType:@"image/jpg"];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[AppDelegate instance] hideLoadingView];

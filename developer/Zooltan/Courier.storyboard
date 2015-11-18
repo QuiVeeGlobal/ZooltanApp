@@ -189,7 +189,7 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
         </mutableArray>
-        <mutableArray key="OPENSANS-SEMIBOLD.TTF">
+        <mutableArray key="OpenSans-Semibold_0.ttf">
             <string>OpenSans-Semibold</string>
             <string>OpenSans-Semibold</string>
         </mutableArray>
@@ -6081,16 +6081,27 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JSr-F9-qb3">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <animations/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="JSr-F9-qb3" firstAttribute="top" secondItem="OEM-Jb-6fJ" secondAttribute="bottom" id="8n5-Lc-FZa"/>
+                            <constraint firstItem="JSr-F9-qb3" firstAttribute="leading" secondItem="E6A-EV-Meh" secondAttribute="leading" id="9jG-ea-pYq"/>
+                            <constraint firstItem="g15-AT-ggH" firstAttribute="top" secondItem="JSr-F9-qb3" secondAttribute="bottom" id="Mx0-8f-apL"/>
                             <constraint firstItem="OEM-Jb-6fJ" firstAttribute="top" secondItem="PeV-7h-CB4" secondAttribute="bottom" id="U2X-xM-ZX0"/>
                             <constraint firstItem="OEM-Jb-6fJ" firstAttribute="leading" secondItem="E6A-EV-Meh" secondAttribute="leading" id="beP-Ha-izv"/>
+                            <constraint firstAttribute="trailing" secondItem="JSr-F9-qb3" secondAttribute="trailing" id="dye-ED-KQJ"/>
                             <constraint firstAttribute="trailing" secondItem="OEM-Jb-6fJ" secondAttribute="trailing" id="pX6-zY-SQC"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="packageImage" destination="JSr-F9-qb3" id="sZz-1N-c2w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDy-yB-5ZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

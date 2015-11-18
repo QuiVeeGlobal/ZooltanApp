@@ -12,7 +12,7 @@
 
 + (NSString *)baseURL {
     //return @"http://private-c58bd-zoltan1.apiary-mock.com";
-    return @"http://zooltan.stairwaysoft.net";
+    return @"http://zooltan.rexit.info";
 }
 
 + (NSString *)currentStoryboardName {

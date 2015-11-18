@@ -131,7 +131,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"package.jpg"];
-    NSData *imageData = UIImageJPEGRepresentation(self.packageImage, 0.8);
+    NSData *imageData = UIImagePNGRepresentation(self.packageImage);
     [imageData writeToFile:filePath atomically:YES];
     
     NSLog(@"UIImagePNGRepresentation: image size is---->: %lu kb",[imageData length]/1024);

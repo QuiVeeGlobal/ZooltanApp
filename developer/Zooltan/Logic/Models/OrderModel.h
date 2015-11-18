@@ -38,6 +38,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSString *size;
 @property (nonatomic, retain) NSString *trackId;
 @property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSString *comment;
+@property (nonatomic, retain) NSString *packageImageUrl;
 @property (nonatomic, strong) NSArray<RoutModel*> *routes;
 
 // Client

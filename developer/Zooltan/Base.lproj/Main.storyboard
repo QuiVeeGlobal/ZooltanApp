@@ -1746,23 +1746,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-EN-hyg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="hPN-Qf-TZS"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="LEGAL INFORMATION" id="LFv-yH-Sad">
-                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="7OC-xm-2mL">
-                                            <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <connections>
-                                                <action selector="backAction:" destination="IW1-kM-dT4" id="4qA-em-Ows"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ya6-zJ-3AI">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <subviews>
@@ -2016,6 +1999,23 @@
                                     <outlet property="delegate" destination="IW1-kM-dT4" id="lF6-tP-eKK"/>
                                 </connections>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-EN-hyg">
+                                <rect key="frame" x="13" y="-1" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hPN-Qf-TZS"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="LEGAL INFORMATION" id="LFv-yH-Sad">
+                                        <barButtonItem key="leftBarButtonItem" image="backBtn" id="7OC-xm-2mL">
+                                            <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="backAction:" destination="IW1-kM-dT4" id="4qA-em-Ows"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2995,7 +2995,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo attached:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTT-6D-1Df">
-                                                <rect key="frame" x="20" y="444" width="71.5" height="40"/>
+                                                <rect key="frame" x="20" y="444" width="72" height="40"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="uAX-iH-6Jd"/>
@@ -3178,7 +3178,7 @@
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-3J-fV4">
-                                                <rect key="frame" x="112.5" y="444" width="40" height="40"/>
+                                                <rect key="frame" x="113" y="444" width="40" height="40"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="ebe-5A-4HM"/>

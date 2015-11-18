@@ -10,4 +10,6 @@
 
 @interface PhotoViewerViewController : BaseViewController
 
+@property (strong, nonatomic) OrderModel *order;
+
 @end

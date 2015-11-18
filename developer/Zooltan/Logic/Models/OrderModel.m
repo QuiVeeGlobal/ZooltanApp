@@ -35,17 +35,19 @@
         return;
     }
     
-    self._id            = STRING(NULL_TO_NIL(dictionary[@"id"]));
-    self.trackId        = STRING(NULL_TO_NIL(dictionary[@"track_id"]));
-    self.status         = STRING(NULL_TO_NIL(dictionary[@"status"]));
-    self.receiverName   = STRING(NULL_TO_NIL(dictionary[@"receiver"]));
-    self.distance       = STRING(NULL_TO_NIL(dictionary[@"distance"]));
-    self.distanceBetween= STRING(NULL_TO_NIL(dictionary[@"distance_between"]));
-    self.distanceTo     = STRING(NULL_TO_NIL(dictionary[@"distance_to"]));
-    self.cost           = STRING(NULL_TO_NIL(dictionary[@"cost"]));
-    self.phone          = STRING(NULL_TO_NIL(dictionary[@"phone"]));
-    self.size           = STRING(NULL_TO_NIL(dictionary[@"size"]));
-    self.pickedUpDate   = STRING(NULL_TO_NIL(dictionary[@"date_picked_up"]));
+    self._id             = STRING(NULL_TO_NIL(dictionary[@"id"]));
+    self.trackId         = STRING(NULL_TO_NIL(dictionary[@"track_id"]));
+    self.status          = STRING(NULL_TO_NIL(dictionary[@"status"]));
+    self.receiverName    = STRING(NULL_TO_NIL(dictionary[@"receiver"]));
+    self.distance        = STRING(NULL_TO_NIL(dictionary[@"distance"]));
+    self.distanceBetween = STRING(NULL_TO_NIL(dictionary[@"distance_between"]));
+    self.distanceTo      = STRING(NULL_TO_NIL(dictionary[@"distance_to"]));
+    self.cost            = STRING(NULL_TO_NIL(dictionary[@"cost"]));
+    self.phone           = STRING(NULL_TO_NIL(dictionary[@"phone"]));
+    self.size            = STRING(NULL_TO_NIL(dictionary[@"size"]));
+    self.pickedUpDate    = STRING(NULL_TO_NIL(dictionary[@"date_picked_up"]));
+    self.comment         = STRING(NULL_TO_NIL(dictionary[@"comment"]));
+    self.packageImageUrl = STRING(NULL_TO_NIL(dictionary[@"images"]));
     
     // From location
     CLLocationCoordinate2D fromLoc;
@@ -114,6 +116,8 @@
     self.deliveredTime       = STRING(NULL_TO_NIL(dictionary[@"delivered"]));
     self.fromAddress         = STRING(NULL_TO_NIL(dictionary[@"from_address"]));
     self.toAddress           = STRING(NULL_TO_NIL(dictionary[@"to_address"]));
+    
+    // Routes
     
     id routes                = NULL_TO_NIL(dictionary[@"routes"]);
     NSMutableArray *newRoutes= [NSMutableArray array];

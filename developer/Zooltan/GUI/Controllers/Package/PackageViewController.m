@@ -133,6 +133,7 @@
     self.receiverNameLabel.text       = self.order.receiverName;
     self.pickUpAddressLabel.text      = self.order.packageAddress;
     self.destinationAddressLabel.text = self.order.destinationAddress;
+    self.noteLabel.text               = self.order.comment;
     
     if (self.order.orderStatus == OrderStatusDelivery)
         self.pickUpDistanceLabel.text = @"";
@@ -220,6 +221,7 @@
 - (IBAction)viewPhotoAction:(id)sender
 {
     PhotoViewerViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoViewerViewController"];
+    ctr.order = self.order;
     [self.navigationController presentViewController:ctr animated:YES completion:nil];
 }
 

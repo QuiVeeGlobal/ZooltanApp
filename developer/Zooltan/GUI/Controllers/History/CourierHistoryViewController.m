@@ -244,6 +244,7 @@ typedef enum : NSUInteger {
     cell.pickupAddressLabel.text = order.fromAddress;
     cell.destinationAddressLabel.text = order.toAddress;
     cell.distanceBetweenLabel.text = [NSString stringWithFormat:@"%@ km", order.distance];
+    cell.noteLabel.text = order.comment;
     
     if (order.orderStatus == OrderStatusDelivery)
         cell.distanceToPickupLabel.text = @"";
