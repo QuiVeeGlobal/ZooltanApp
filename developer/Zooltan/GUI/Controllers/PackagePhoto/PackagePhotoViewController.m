@@ -32,8 +32,8 @@
 {
     [super viewDidLoad];
     
-    self.cameraView.allowPictureRetake = YES;
     self.cameraView.delegate = self;
+    self.cameraView.allowPictureRetake = YES;
     
     [self removePackageImage:@"package.jpg"];
     

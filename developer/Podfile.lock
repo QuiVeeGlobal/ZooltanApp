@@ -38,6 +38,7 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
+  - LLARingSpinnerView (0.1.3)
   - MoABContactsManager (1.0.5)
   - OCGoogleDirectionsAPI (0.1.4)
   - VLBCameraView (2.0):
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - AFNetworking
   - Google/Analytics
   - GoogleMaps
+  - LLARingSpinnerView
   - MoABContactsManager
   - OCGoogleDirectionsAPI
   - VLBCameraView
@@ -63,6 +65,7 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  LLARingSpinnerView: d5f9057460e97989aff1c52a247c6acb62b8d883
   MoABContactsManager: e3e208d64c41db8ff542d48264ee531140dad821
   OCGoogleDirectionsAPI: b4374609670455170893cbb88aaf46389f4dbc71
   VLBCameraView: 9088730001ec362e03b6622cf2be7370414d5233

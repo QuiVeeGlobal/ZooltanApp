@@ -14,7 +14,6 @@
 "generic.week"                               = "Week";
 "generic.month"                              = "Month";
 
-
 // type of delivery
 "type.delivery.letter"                       = "LETTER";
 "type.delivery.smallBox"                     = "SMALL BOX";
@@ -35,7 +34,6 @@
 "ctrl.authorization.button.login"            = "LOG IN";
 "ctrl.authorization.button.regestration"     = "REGISTRATION";
 "ctrl.authorization.button.fb"               = "ENTER WITH FACEBOOK";
-
 
 // Regestration
 "ctrl.regestration.main.title"               = "REGISTRATION";
@@ -148,12 +146,14 @@
 
 // Traking
 "ctrl.traking.navigation.title"              = "TRACKING";
+"ctrl.traking.title.main"                    = "ORDER HAS BEEN CREATED. WE’RE LOOKING FOR COURIER NOW.";
+"ctrl.traking.title.status"                  = "STATUS:";
 "ctrl.traking.title.package"                 = "package";
-"ctrl.traking.title.trackId"                 = "track ID";
-"ctrl.traking.title.pickedUp"                = "PICKED UP";
-"ctrl.traking.title.enRoute"                 = "EN ROUTE";
-"ctrl.traking.title.currently"               = "CURRENTLY";
-"ctrl.traking.btn.call"                      = "CALL THE COURIER";
+"ctrl.traking.title.trackId"                 = "trackID";
+"ctrl.traking.title.price"                   = "PRICE:";
+"ctrl.traking.title.comments"                = "Comments:";
+"ctrl.traking.title.call.button"             = "CALL SUPPORT";
+"ctrl.traking.title.cancel.button"           = "CANCEL ORDER";
 
 
 // Package
@@ -230,6 +230,7 @@
 "ctrl.profile.invalidNewPassword"            = "Please enter New password";
 "ctrl.profile.invalidRepeatPassword"         = "Please repeat password";
 
+
 // Statistic
 "ctrl.statistic.navigation.title"            = "STATISTICS";
 "ctrl.statistic.title.profit"                = "Profit";
@@ -237,7 +238,6 @@
 "ctrl.statistic.title.deliveries"            = "Deliveries";
 "ctrl.statistic.title.allDeliveries"         = "All deliveries";
 "ctrl.statistic.title.allMoneyRecived"       = "All money received";
-
 
 
 // About Us
@@ -252,16 +252,16 @@
 
 // Legal information
 "ctrl.legalInformation.navigation.title"     = "LEGAL INFORMATION";
-"ctrl.legalInformation.cell.title_0"         = "PRIVACY POLICY";
-"ctrl.legalInformation.cell.title_1"         = "TERMS AND CONDITIONS";
+"ctrl.legalInformation.cell.title_0"         = "Privacy Policy";
+"ctrl.legalInformation.cell.title_1"         = "Terms and Conditions";
 
 
 // Privacy Policy
-"ctrl.privacyPolicy.navigation.title"        = "Privacy Policy";
+"ctrl.privacyPolicy.navigation.title"        = "PRIVACY POLICY";
 
 
 // Terms and Conditions
-"ctrl.termsAndConditions.navigation.title"   = "Terms and Conditions";
+"ctrl.termsAndConditions.navigation.title"   = "TERMS AND CONDITIONS";
 
 
 // User Agreement
@@ -270,7 +270,6 @@
 "ctrl.useragreement.title.description"    = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 "ctrl.useragreement.title.treveltime"     = "TREVEL TIME";
 "ctrl.useragreement.title.additional"     = "ADDITIONAL EXPENSES";
-
 
 // Errors Messages
 "msg.error.general"                         = "Something has gone!";

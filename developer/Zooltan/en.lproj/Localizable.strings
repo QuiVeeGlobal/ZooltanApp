@@ -146,12 +146,14 @@
 
 // Traking
 "ctrl.traking.navigation.title"              = "TRACKING";
+"ctrl.traking.title.main"                    = "ORDER HAS BEEN CREATED. WE’RE LOOKING FOR COURIER NOW.";
+"ctrl.traking.title.status"                  = "STATUS:";
 "ctrl.traking.title.package"                 = "package";
-"ctrl.traking.title.trackId"                 = "track ID";
-"ctrl.traking.title.pickedUp"                = "PICKED UP";
-"ctrl.traking.title.enRoute"                 = "EN ROUTE";
-"ctrl.traking.title.currently"               = "CURRENTLY";
-"ctrl.traking.btn.call"                      = "CALL THE COURIER";
+"ctrl.traking.title.trackId"                 = "trackID";
+"ctrl.traking.title.price"                   = "PRICE:";
+"ctrl.traking.title.comments"                = "Comments:";
+"ctrl.traking.title.call.button"             = "CALL SUPPORT";
+"ctrl.traking.title.cancel.button"           = "CANCEL ORDER";
 
 
 // Package

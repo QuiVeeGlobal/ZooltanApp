@@ -17,3 +17,4 @@
 #import "UIAlertView+Additions.h"
 #import "UIBarButtonItem+Additions.h"
 #import "UISearchBar+Additions.h"
+#import "UIImage+fixOrientation.h"

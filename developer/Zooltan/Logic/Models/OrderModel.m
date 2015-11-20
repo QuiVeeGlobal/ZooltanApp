@@ -47,7 +47,7 @@
     self.size            = STRING(NULL_TO_NIL(dictionary[@"size"]));
     self.pickedUpDate    = STRING(NULL_TO_NIL(dictionary[@"date_picked_up"]));
     self.comment         = STRING(NULL_TO_NIL(dictionary[@"comment"]));
-    self.packageImageUrl = STRING(NULL_TO_NIL(dictionary[@"images"]));
+    self.packageImageUrl = STRING(NULL_TO_NIL(dictionary[@"image"]));
     
     // From location
     CLLocationCoordinate2D fromLoc;
@@ -61,6 +61,19 @@
         fromLoc.longitude   = [from_lon floatValue];
     }
     self.fromLocation    = fromLoc;
+    
+    // To location
+    CLLocationCoordinate2D toLoc;
+    
+    NSString *to_lat   = NULL_TO_NIL(dictionary[@"to_lat"]);
+    NSString *to_lon   = NULL_TO_NIL(dictionary[@"to_lon"]);
+    
+    if (to_lat && to_lon)
+    {
+        toLoc.latitude    = [to_lat floatValue];
+        toLoc.longitude   = [to_lon floatValue];
+    }
+    self.fromLocation    = toLoc;
     
     // Destination location
     CLLocationCoordinate2D destLoc;

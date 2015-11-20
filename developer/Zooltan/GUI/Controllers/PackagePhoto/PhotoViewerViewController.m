@@ -11,7 +11,7 @@
 
 @interface PhotoViewerViewController ()
 
-@property (nonatomic, weak) IBOutlet UIImageView *packageImage;
+@property (weak, nonatomic) IBOutlet UIImageView *packageImageView;
 
 @end
 
@@ -26,42 +26,34 @@
 {
     [super viewWillAppear:animated];
     
-    if (IS_COURIER_APP) {
-        [self setPackageImageFromUrl:self.order.packageImageUrl];
-    }
-    
-    if (IS_CUSTOMER_APP) {
-        UIImageView *packageImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]]];
-        packageImageView.clipsToBounds = YES;
-        packageImageView.contentMode = UIViewContentModeScaleAspectFill;
-        packageImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width);
-        packageImageView.center = self.view.center;
-        packageImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+    if (!self.packageImageView.image) {
+        if (IS_COURIER_APP) {
+            [[AppDelegate instance] showLoadingView];
+            [self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
+        }
         
-        [self.view addSubview:packageImageView];
+        UIImage *savedImage = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
+        self.packageImageView.image = savedImage;
+        self.packageImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
 }
 
-#pragma mark - UserAvatar
+#pragma mark - PackageImage
 #pragma mark -
 
 - (void)setPackageImageFromUrl:(NSString *)url
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
-    [self.packageImage setImageWithURLRequest:request
-                             placeholderImage:nil
-                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        self.packageImage.image = image;
-        [self setPackageImageFromImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"Failed to load image:\nrequest=%@\nresponse=%@\nerror=%@",request,response,[error description]);
-    }];
-}
-
-- (void)setPackageImageFromImage:(UIImage *)image
-{
-    self.packageImage.image = image;
-    self.packageImage.clipsToBounds = YES;
+    [self.packageImageView setImageWithURLRequest:request
+                                 placeholderImage:nil
+                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                              [[AppDelegate instance] hideLoadingView];
+                                              self.packageImageView.image = image;
+                                              self.packageImageView.contentMode = UIViewContentModeScaleAspectFit;
+                                              
+                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                              NSLog(@"Failed to load image:\nrequest=%@\nresponse=%@\nerror=%@",request,response,[error description]);
+                                          }];
 }
 
 - (void)didReceiveMemoryWarning {

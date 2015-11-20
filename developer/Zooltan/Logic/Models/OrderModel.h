@@ -58,6 +58,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CLLocationCoordinate2D destinationLocation;
 @property (nonatomic, assign) CLLocationCoordinate2D packageLocation;
 @property (nonatomic, assign) CLLocationCoordinate2D fromLocation;
+@property (nonatomic, assign) CLLocationCoordinate2D toLocation;
 
 //- (id)initWithDictionary:(NSDictionary *)dictionary;
 

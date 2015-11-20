@@ -93,7 +93,6 @@
 		446388BB1B958E04008B4B0B /* UIView+CoreAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678FB1B3823C3006F5578 /* UIView+CoreAnimationAdditions.m */; };
 		446388BC1B958E04008B4B0B /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678ED1B3823C3006F5578 /* UIImage+Additions.m */; };
 		446388BD1B958E04008B4B0B /* RecoveryPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D2E1481B3A7ECA001A22D0 /* RecoveryPasswordViewController.m */; };
-		446388BE1B958E04008B4B0B /* TrackingSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF172C41B866C5B003D8065 /* TrackingSearchViewController.m */; };
 		446388BF1B958E04008B4B0B /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 674558CB1B593522007D9AEF /* BaseModel.m */; };
 		446388C01B958E04008B4B0B /* BaseNavigationCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F1AC4C1B3846A300C76F75 /* BaseNavigationCtrl.m */; };
 		446388C11B958E04008B4B0B /* Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D679231B38241C006F5578 /* Colors.m */; };
@@ -302,7 +301,8 @@
 		FAD778CE1BAD72E700612690 /* CourierHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2E21B970341005B7229 /* CourierHistoryCell.m */; };
 		FAE9692C1B9D807A004BE948 /* Courier-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE9692B1B9D807A004BE948 /* Courier-Info.plist */; };
 		FAE9692D1B9D807A004BE948 /* Courier-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE9692B1B9D807A004BE948 /* Courier-Info.plist */; };
-		FAF172C51B866C5B003D8065 /* TrackingSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF172C41B866C5B003D8065 /* TrackingSearchViewController.m */; };
+		FAEC980B1BFF543200973970 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEC980A1BFF543200973970 /* UIImage+fixOrientation.m */; };
+		FAEC980C1BFF543200973970 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEC980A1BFF543200973970 /* UIImage+fixOrientation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -571,8 +571,8 @@
 		FAC9CE511BAAC13F00CE0602 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		FAC9CE521BAAC13F00CE0602 /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		FAE9692B1B9D807A004BE948 /* Courier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Courier-Info.plist"; sourceTree = "<group>"; };
-		FAF172C31B866C5B003D8065 /* TrackingSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingSearchViewController.h; sourceTree = "<group>"; };
-		FAF172C41B866C5B003D8065 /* TrackingSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingSearchViewController.m; sourceTree = "<group>"; };
+		FAEC98091BFF543200973970 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		FAEC980A1BFF543200973970 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -753,8 +753,6 @@
 			children = (
 				671E2ED61B6A8A6B00457DAA /* TrakingViewController.h */,
 				671E2ED71B6A8A6B00457DAA /* TrakingViewController.m */,
-				FAF172C31B866C5B003D8065 /* TrackingSearchViewController.h */,
-				FAF172C41B866C5B003D8065 /* TrackingSearchViewController.m */,
 			);
 			name = "Client Traking";
 			path = Traking;
@@ -973,6 +971,8 @@
 			isa = PBXGroup;
 			children = (
 				67D678E51B3823C3006F5578 /* Interface.h */,
+				FAEC98091BFF543200973970 /* UIImage+fixOrientation.h */,
+				FAEC980A1BFF543200973970 /* UIImage+fixOrientation.m */,
 				67D678E61B3823C3006F5578 /* UIAlertView+Additions.h */,
 				67D678E71B3823C3006F5578 /* UIAlertView+Additions.m */,
 				67D678E81B3823C3006F5578 /* UIBarButtonItem+Additions.h */,
@@ -1655,6 +1655,7 @@
 				1E271D121BB0DBEB00914CDC /* CheckMobiService.m in Sources */,
 				446388981B958E04008B4B0B /* UIViewController+MMDrawerController.m in Sources */,
 				1E271CFE1BB0B8EF00914CDC /* TrackingViewCell.m in Sources */,
+				FAEC980C1BFF543200973970 /* UIImage+fixOrientation.m in Sources */,
 				446388991B958E04008B4B0B /* InformationViewController.m in Sources */,
 				4463889A1B958E04008B4B0B /* FromViewController.m in Sources */,
 				44101D481BB937260044925E /* StatisticModel.m in Sources */,
@@ -1703,7 +1704,6 @@
 				446388BC1B958E04008B4B0B /* UIImage+Additions.m in Sources */,
 				446388BD1B958E04008B4B0B /* RecoveryPasswordViewController.m in Sources */,
 				44101D741BBC06860044925E /* Phone.m in Sources */,
-				446388BE1B958E04008B4B0B /* TrackingSearchViewController.m in Sources */,
 				446388BF1B958E04008B4B0B /* BaseModel.m in Sources */,
 				446388C01B958E04008B4B0B /* BaseNavigationCtrl.m in Sources */,
 				FA4FA2E31B970341005B7229 /* CourierHistoryCell.m in Sources */,
@@ -1811,11 +1811,11 @@
 				67D679101B3823C3006F5578 /* UIImage+Additions.m in Sources */,
 				44101D731BBC06860044925E /* Phone.m in Sources */,
 				67D2E1491B3A7ECA001A22D0 /* RecoveryPasswordViewController.m in Sources */,
-				FAF172C51B866C5B003D8065 /* TrackingSearchViewController.m in Sources */,
 				674558CC1B593522007D9AEF /* BaseModel.m in Sources */,
 				67F1AC521B3846A300C76F75 /* BaseNavigationCtrl.m in Sources */,
 				67D679301B38241C006F5578 /* Colors.m in Sources */,
 				67F1AC161B3806D200C76F75 /* main.m in Sources */,
+				FAEC980B1BFF543200973970 /* UIImage+fixOrientation.m in Sources */,
 				67D6792E1B38241C006F5578 /* PopAnimation.m in Sources */,
 				444B57FB1BD66B9700A8C394 /* UITextField+Additions.m in Sources */,
 				67D679151B3823C3006F5578 /* UITableViewCell+Additions.m in Sources */,

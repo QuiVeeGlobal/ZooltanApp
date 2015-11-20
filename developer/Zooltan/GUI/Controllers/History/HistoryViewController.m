@@ -8,7 +8,6 @@
 
 #import "HistoryViewController.h"
 #import "TrakingViewController.h"
-#import "TrackingSearchViewController.h"
 #import "CreateViewController.h"
 #import "HistoryCell.h"
 #import "AFNetworking.h"
@@ -29,7 +28,6 @@
 @property (strong, nonatomic) NSString *requerstUrl;
 
 @end
-
 
 @implementation HistoryViewController
 
@@ -89,7 +87,7 @@
     
     self.segmentedControl.backgroundColor = [Colors clearColor];
     self.segmentedControl.tintColor = [Colors yellowColor];
-
+    
     self.navItem.title = NSLocalizedString(@"ctrl.history.navigation.title", nil);
     [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.history.segmented.title1", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"ctrl.history.segmented.title2", nil) forSegmentAtIndex:1];
@@ -130,7 +128,7 @@
         case 1:
             
             self.requerstUrl = [NSString stringWithFormat:@"/client/orders/history/1/100"];
-
+            
             break;
             
         default:
@@ -145,8 +143,8 @@
 
 - (IBAction) showCreateDeliveries
 {
-//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-//    [self.navigationController pushViewController:ctr animated:YES];
+    //    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+    //    [self.navigationController pushViewController:ctr animated:YES];
     PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self.navigationController pushViewController:ctr animated:YES];
 }
@@ -195,25 +193,6 @@
     if ([order.size isEqualToString:@"BIG_BOX"])
         cell.packageImage.image = [UIImage imageNamed:@"BigBoxIcon"];
     
-//    if (order.orderStatus == OrderStatusNew) {
-//        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.new1", nil);
-//        cell.deliveredLabel.text = @"";
-//    } else if (order.orderStatus == OrderStatusAccept) {
-//        cell.pickedUpLabel.text = NSLocalizedString(@"ctrl.package.order.status.accept", nil);
-//        cell.deliveredLabel.text = @"";
-//    }
-//    else
-//        cell.pickedUpLabel.text = order.pickedUpTime;
-//
-//    if (order.orderStatus == OrderStatusPickUp)
-//        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.pickup", nil);
-//    
-//    if (order.orderStatus == OrderStatusProgress)
-//        cell.deliveredLabel.text = NSLocalizedString(@"ctrl.package.order.status.progress", nil);
-//    
-//    if (order.orderStatus == OrderStatusDelivery)
-//        cell.deliveredLabel.text = order.deliveredTime;
-    
     return cell;
 }
 
@@ -224,25 +203,15 @@
     
     __block OrderModel *order = [[OrderModel alloc] initWithDictionary:self.ordersArray[indexPath.row]];
     
-    if (order.orderStatus == OrderStatusNew) {
+    [[Server instance] viewOrder:order success:^{
         [[AppDelegate instance] hideLoadingView];
-        TrackingSearchViewController *ctr =
-        [self.storyboard instantiateViewControllerWithIdentifier:@"TrackingSearchViewController"];
+        TrakingViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
         ctr.order = order;
         [self.navigationController pushViewController:ctr animated:YES];
-    }
-    else {
-        [[Server instance] viewOrder:order success:^{
-            [[AppDelegate instance] hideLoadingView];
-            TrakingViewController *ctr =
-            [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
-            ctr.order = order;
-            [self.navigationController pushViewController:ctr animated:YES];
-            
-        } failure:^(NSError *error, NSInteger code) {
-            [[AppDelegate instance] hideLoadingView];
-        }];
-    }
+        
+    } failure:^(NSError *error, NSInteger code) {
+        [[AppDelegate instance] hideLoadingView];
+    }];
 }
 
 - (AFHTTPRequestOperationManager *)manager

@@ -7,9 +7,11 @@
 
 
 #import "TrakingViewController.h"
-#import "CHCircleGaugeView.h"
+#import <LLARingSpinnerView/LLARingSpinnerView.h>
+#import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 #import "HistoryCell.h"
 #import "CreateViewController.h"
+#import "HistoryViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 #define layerCornerRadius 2.5
@@ -18,39 +20,41 @@
 #define delay 3.0f
 #define avatarCornerRadius 30
 
-@interface TrakingViewController () <UIScrollViewDelegate>
-{
-}
+@interface TrakingViewController () <UIScrollViewDelegate, CLLocationManagerDelegate, GMSMapViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *navTitle;
-
+@property (weak, nonatomic) IBOutlet UIView *courierView;
+@property (weak, nonatomic) IBOutlet UIImageView *courierAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *courierNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *courierImage;
-@property (weak, nonatomic) IBOutlet UIImageView *typeDeliveryImage;
+@property (weak, nonatomic) IBOutlet UIButton *callCourierButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *typeDeliveryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *deliveryIdLabel;
+@property (weak, nonatomic) IBOutlet UIView *packageView;
+@property (weak, nonatomic) IBOutlet UIImageView *packageImageView;
+@property (weak, nonatomic) IBOutlet UILabel *packageTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *activityView;
+@property (weak, nonatomic) IBOutlet LLARingSpinnerView *spinnerView;
 
-@property (weak, nonatomic) IBOutlet UILabel *trackIdTitle;
-@property (weak, nonatomic) IBOutlet UILabel *packageTitle;
-
+@property (weak, nonatomic) IBOutlet UIView *statusView;
+@property (weak, nonatomic) IBOutlet UILabel *statusTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *pickedUpTitle;
-@property (weak, nonatomic) IBOutlet UILabel *enRouteTitle;
-@property (weak, nonatomic) IBOutlet UILabel *currentlyTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *orderTypeImage;
+@property (weak, nonatomic) IBOutlet UILabel *orderSizeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *packageTitle;
+@property (weak, nonatomic) IBOutlet UILabel *orderIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderIdTtile;
 
-@property (weak, nonatomic) IBOutlet UIButton *cellBtn;
-@property (weak, nonatomic) IBOutlet UIView *yellowBgView;
-@property (weak, nonatomic) IBOutlet CHCircleGaugeView *gaugeView;
+@property (weak, nonatomic) IBOutlet UILabel *priceTitle;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *pickedUpPlaceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *pickedUpTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *enRoutePlace_1_Label;
-@property (weak, nonatomic) IBOutlet UILabel *enRouteTime_1_Label;
-@property (weak, nonatomic) IBOutlet UILabel *enRoutePlace_2_Label;
-@property (weak, nonatomic) IBOutlet UILabel *enRouteTime_2_Label;
-@property (weak, nonatomic) IBOutlet UILabel *currentlyPlaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentTitle;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *callSupportButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelOrderButton;
+
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -61,9 +65,14 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLayoutSubviews
 {
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.cellBtn.bottom+10);
+    self.scrollView.contentSize = CGSizeMake(self.view.width, self.cancelOrderButton.bottom+10);
 }
 
 - (void)configureView
@@ -71,114 +80,210 @@
     [super configureView];
     
     [self getOrderData];
+    [self setMapView];
     
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
     [[UINavigationBar appearance] setTitleTextAttributes:titleParam];
     
-    self.yellowBgView.backgroundColor = [Colors yellowColor];
-    
-    [self addCornerRadius:self.cellBtn radius:layerCornerRadius];
-    
-    self.cellBtn.layer.borderColor = [Colors yellowColor].CGColor;
-    self.cellBtn.layer.borderWidth = layerBorderWidth;
-    
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.cellBtn.bottom+10);
-    
-    self.navTitle.text = NSLocalizedString(@"ctrl.traking.navigation.title", nil);
+    self.navItem.title = NSLocalizedString(@"ctrl.traking.navigation.title", nil);
+    self.packageTitleLabel.text = NSLocalizedString(@"ctrl.traking.title.main", nil);
+    self.statusTitleLabel.text = NSLocalizedString(@"ctrl.traking.title.status", nil);
     self.packageTitle.text = NSLocalizedString(@"ctrl.traking.title.package", nil);
-    self.trackIdTitle.text = NSLocalizedString(@"ctrl.traking.title.trackId", nil);
-    self.pickedUpTitle.text = NSLocalizedString(@"ctrl.traking.title.pickedUp", nil);
-    self.enRouteTitle.text = NSLocalizedString(@"ctrl.traking.title.enRoute", nil);
-    self.currentlyTitle.text = NSLocalizedString(@"ctrl.traking.title.currently", nil);
-    self.cellBtn.titleLabel.text = NSLocalizedString(@"ctrl.traking.btn.call", nil);
+    self.orderIdTtile.text = NSLocalizedString(@"ctrl.traking.title.trackId", nil);
+    self.priceTitle.text = NSLocalizedString(@"ctrl.traking.title.price", nil);
+    self.commentTitle.text = NSLocalizedString(@"ctrl.traking.title.comments", nil);
     
-    //CHCircleGaugeView
-    [self.gaugeView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    self.gaugeView.trackTintColor = [Colors blackColor];
-    self.gaugeView.textColor = [UIColor clearColor];
-    self.gaugeView.gaugeTintColor = [Colors yellowColor];
-    self.gaugeView.gaugeWidth = circleWidth;
-    self.gaugeView.trackWidth = circleWidth;
+    [self.callCourierButton setTitle:NSLocalizedString(@"CALL COURIER", nil) forState:UIControlStateNormal];
+    [self addCornerRadius:self.callCourierButton radius:layerCornerRadius];
+    self.callCourierButton.layer.borderColor = [Colors whiteColor].CGColor;
+    self.callCourierButton.layer.borderWidth = layerBorderWidth;
     
-    [self performBlock:^{
-        if (self.order.orderStatus == OrderStatusAccept)
-            [self.gaugeView setValue:0.25 animated:YES];
-        if (self.order.orderStatus == OrderStatusPickUp)
-            [self.gaugeView setValue:0.50 animated:YES];
-        if (self.order.orderStatus == OrderStatusProgress)
-            [self.gaugeView setValue:0.75 animated:YES];
-        if (self.order.orderStatus == OrderStatusDelivery)
-            [self.gaugeView setValue:1.0 animated:YES];
-    } afterDelay:0.3];
+    [self.callSupportButton setTitle:NSLocalizedString(@"ctrl.traking.title.call.button", nil) forState:UIControlStateNormal];
+    [self addCornerRadius:self.callSupportButton radius:layerCornerRadius];
+    self.callSupportButton.layer.borderColor = [Colors yellowColor].CGColor;
+    self.callSupportButton.layer.borderWidth = layerBorderWidth;
+    
+    [self.cancelOrderButton setTitle:NSLocalizedString(@"ctrl.traking.title.cancel.button", nil) forState:UIControlStateNormal];
+    [self addCornerRadius:self.cancelOrderButton radius:layerCornerRadius];
+    self.cancelOrderButton.layer.borderColor = [Colors yellowColor].CGColor;
+    self.cancelOrderButton.layer.borderWidth = layerBorderWidth;
+    
+    if (self.order.orderStatus == OrderStatusNew) {
+        self.courierView.hidden = YES;
+        self.packageView.hidden = NO;
+        self.activityView.hidden = YES;
+        self.statusView.backgroundColor = [Colors yellowColor];
+    }
+    else {
+        self.courierView.hidden = NO;
+        self.packageView.hidden = YES;
+        self.statusView.backgroundColor = [Colors whiteColor];
+    }
+    
+    if (!self.packageImageView.image) {
+        [[AppDelegate instance] showLoadingView];
+        self.packageTitleLabel.hidden = YES;
+        [self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
+    }
 }
 
-- (void) getOrderData
-{
-    [self setUserAvatarFromUrl:self.order.courierLogoUrl];
-    self.courierNameLabel.text = self.order.courierName;
-    
-    if ([self.order.size isEqualToString:@"LETTER"])
-        self.typeDeliveryImage.image = [UIImage imageNamed:@"letter"];
-    if ([self.order.size isEqualToString:@"SMALL_BOX"])
-        self.typeDeliveryImage.image = [UIImage imageNamed:@"milkBox"];
-    if ([self.order.size isEqualToString:@"BIG_BOX"])
-        self.typeDeliveryImage.image = [UIImage imageNamed:@"big_box"];
-    
-    self.statusLabel.text = self.order.orderStatusTitle;
-    self.deliveryIdLabel.text = self.order._id;
-    self.pickedUpPlaceLabel.text = self.order.fromAddress;
-    self.pickedUpTimeLabel.text = self.order.pickedUpDate;
-}
-
-#pragma mark - Courier Avatar
-#pragma mark -
-
-- (void) setUserAvatarFromUrl:(NSString *) url
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
-    [self.courierImage setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"emptyAvatar"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        self.courierImage.image = image;
-        [self setUserAvatarFromImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {}];
-}
-
-- (void) setUserAvatarFromImage:(UIImage *) image
-{
-    self.courierImage.image = image;
-    self.courierImage.layer.cornerRadius = avatarCornerRadius;
-    self.courierImage.clipsToBounds = YES;
-}
-
-- (void) addCornerRadius:(UIButton *) btn radius:(float) radius
+- (void)addCornerRadius:(UIButton *)btn radius:(float)radius
 {
     btn.layer.cornerRadius = radius;
     btn.clipsToBounds = YES;
 }
 
-- (void) addBottomLineInLabel:(UILabel *) label
+- (void) getOrderData
 {
-    CALayer *border = [CALayer layer];
-    CGFloat borderWidth = 1;
-    border.borderColor = [UIColor lightGrayColor].CGColor;
-    border.frame = CGRectMake(0, label.height-1, label.width, label.height);//textFild.height - borderWidth
-    border.borderWidth = borderWidth;
-    [label.layer addSublayer:border];
-    label.clipsToBounds = YES;
-    label.layer.masksToBounds = YES;
+    //[self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
+    [self setCourierAvatarFromUrl:self.order.courierLogoUrl];
+    
+    self.courierNameLabel.text = self.order.courierName;
+    self.statusLabel.text = self.order.orderStatusTitle;
+    
+    if ([self.order.size isEqualToString:@"LETTER"])
+        self.orderTypeImage.image = [UIImage imageNamed:@"letterPackage"];
+    if ([self.order.size isEqualToString:@"SMALL_BOX"])
+        self.orderTypeImage.image = [UIImage imageNamed:@"milkPackage"];
+    if ([self.order.size isEqualToString:@"BIG_BOX"])
+        self.orderTypeImage.image = [UIImage imageNamed:@"boxPackage"];
+    
+    self.orderSizeLabel.text = [self.order.size stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    self.orderIdLabel.text = self.order._id;
+    self.priceLabel.text = self.order.cost;
+    
+    self.commentLabel.text = self.order.comment;
+}
+
+#pragma mark - set Google map
+#pragma mark -
+
+- (void)setMapView
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude zoom:15];
+    self.mapView.camera = camera;
+    self.mapView.userInteractionEnabled = NO;
+    
+    CLLocationCoordinate2D userLocation = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    
+    GMSMarker *userMarker       = [GMSMarker markerWithPosition:userLocation];
+    GMSMarker *pickupMarker     = [GMSMarker markerWithPosition:self.order.fromLocation];
+    GMSMarker *reciverMarker    = [GMSMarker markerWithPosition:self.order.toLocation];
+    
+    userMarker.icon             = [UIImage imageNamed:@"user_dot"];
+    pickupMarker.icon           = [UIImage imageNamed:@"pickup_dot"];
+    reciverMarker.icon          = [UIImage imageNamed:@"reciver_dot"];
+    
+    userMarker.map              = self.mapView;
+    pickupMarker.map            = self.mapView;
+    reciverMarker.map           = self.mapView;
+    
+    CLLocation *packageLoc = [[CLLocation alloc] initWithLatitude:self.order.packageLocation.latitude longitude:self.order.packageLocation.longitude];
+    CLLocation *destinationLoc = [[CLLocation alloc] initWithLatitude:self.order.destinationLocation.latitude longitude:self.order.destinationLocation.longitude];
+    
+    OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginLocation:packageLoc andDestinationLocation:destinationLoc];
+    OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
+    [request setTravelMode:OCDirectionsRequestTravelModeDriving];
+    
+    [client directions:request response:^(OCDirectionsResponse *response,  NSError *error) {
+        
+        if (error)
+            return;
+        
+        if (response.status != OCDirectionsResponseStatusOK)
+            return;
+        
+        NSString *points = response.dictionary[@"routes"][0][@"overview_polyline"][@"points"];
+        
+        //        GMSPolyline *polyPath       = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:points]];
+        //        polyPath.strokeColor        = [UIColor blueColor];
+        //        polyPath.strokeWidth        = 3.0f;
+        //        polyPath.map                = self.mapView;
+        
+        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[GMSPath pathFromEncodedPath:points]];
+        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withEdgeInsets:UIEdgeInsetsMake(70, 70, 70, 70)];
+        [self.mapView moveCamera:update];
+        
+        //NSLog(@"RESPONSE %@", response.dictionary);
+        
+    }];
+}
+
+#pragma mark - Courier Avatar
+#pragma mark -
+
+- (void)setCourierAvatarFromUrl:(NSString *)url
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
+    [self.courierAvatar setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"emptyAvatar"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [self setCourierAvatarFromImage:image];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {}];
+}
+
+- (void)setCourierAvatarFromImage:(UIImage *) image
+{
+    self.courierAvatar.image = image;
+    self.courierAvatar.layer.cornerRadius = avatarCornerRadius;
+    self.courierAvatar.clipsToBounds = YES;
+}
+
+#pragma mark - Package Image
+#pragma mark -
+
+- (void)setPackageImageFromUrl:(NSString *)url
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
+    [self.packageImageView setImageWithURLRequest:request
+                                 placeholderImage:nil
+                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                              self.packageImageView.image = image;
+                                              self.packageImageView.contentMode = UIViewContentModeScaleAspectFill;
+                                              [[AppDelegate instance] hideLoadingView];
+                                              [self startSpinner];
+                                              
+                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                              NSLog(@"Failed to load image:\nrequest=%@\nresponse=%@\nerror=%@",request,response,[error description]);
+                                          }];
+}
+
+- (void)startSpinner
+{
+    //LLARingSpinnerView
+    self.activityView.hidden = NO;
+    self.packageTitleLabel.hidden = NO;
+    self.spinnerView.lineWidth = 2.6f;
+    self.spinnerView.tintColor = [Colors yellowColor];
+    [self.spinnerView startAnimating];
 }
 
 #pragma mark - IBAction
 #pragma mark -
 
-- (IBAction)callAction:(id)sender
+- (IBAction)back:(id)sender
+{
+    HistoryViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionPush;
+    animation.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:animation forKey:nil];
+    [self.navigationController pushViewController:ctr animated:NO];
+}
+
+
+- (IBAction)callCourierAction:(id)sender
 {
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@", self.order.phone]];
     
-    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl])
         [[UIApplication sharedApplication] openURL:phoneUrl];
-        
-    } else {
+    else {
         [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
                                 message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
                                delegate:nil
@@ -187,24 +292,45 @@
     }
 }
 
-
-#pragma mark - CHCircleGaugeView
-#pragma mark -
-
-- (CHCircleGaugeView *) setGauge
+- (IBAction)callSupportAction:(id)sender
 {
-    CHCircleGaugeView *gauge = [[CHCircleGaugeView alloc] init];
-    //gauge.frame = CGRectMake(self.circleView.x, self.circleView.y, self.circleView.width, self.circleView.height);
-    [gauge setTranslatesAutoresizingMaskIntoConstraints:NO];
-    gauge.trackTintColor = [Colors redColor];
-    gauge.trackWidth = 10;
-    //gauge.gaugeWidth = 90;
-    gauge.gaugeTintColor = [UIColor blackColor];
-    gauge.textColor = [UIColor clearColor];
-    //gauge.value = 0.42;
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@", [Constants officeCallNumber]]];
     
-    return gauge;
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl])
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    else {
+        [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
+                                message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
+                      otherButtonTitles:nil, nil];
+    }
 }
+
+- (IBAction)cancelAction:(id)sender
+{
+    //[self.order setOrderStatus:OrderStatusClose];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+//#pragma mark - CHCircleGaugeView
+//#pragma mark -
+//
+//- (CHCircleGaugeView *) setGauge
+//{
+//    CHCircleGaugeView *gauge = [[CHCircleGaugeView alloc] init];
+//    //gauge.frame = CGRectMake(self.circleView.x, self.circleView.y, self.circleView.width, self.circleView.height);
+//    [gauge setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    gauge.trackTintColor = [Colors redColor];
+//    gauge.trackWidth = 10;
+//    //gauge.gaugeWidth = 90;
+//    gauge.gaugeTintColor = [UIColor blackColor];
+//    gauge.textColor = [UIColor clearColor];
+//    //gauge.value = 0.42;
+//
+//    return gauge;
+//}
 
 #pragma mark -
 

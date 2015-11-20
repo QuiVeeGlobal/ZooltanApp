@@ -12,10 +12,11 @@
 #import "DLRadioButton.h"
 #import "FromViewController.h"
 #import "AFNetworking.h"
-#import "TrackingSearchViewController.h"
 #import "ContactsViewController.h"
 #import "PhotoViewerViewController.h"
 #import "PackagePhotoViewController.h"
+#import "HistoryViewController.h"
+#import "TrakingViewController.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 #define METERS_PER_MILE 1609.344
@@ -263,10 +264,10 @@
         
         NSString *points = response.dictionary[@"routes"][0][@"overview_polyline"][@"points"];
         
-//        GMSPolyline *polyPath       = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:points]];
-//        polyPath.strokeColor        = [UIColor blueColor];
-//        polyPath.strokeWidth        = 3.0f;
-//        polyPath.map                = self.mapView_;
+        //        GMSPolyline *polyPath       = [GMSPolyline polylineWithPath:[GMSPath pathFromEncodedPath:points]];
+        //        polyPath.strokeColor        = [UIColor blueColor];
+        //        polyPath.strokeWidth        = 3.0f;
+        //        polyPath.map                = self.mapView_;
         
         GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithPath:[GMSPath pathFromEncodedPath:points]];
         GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withEdgeInsets:UIEdgeInsetsMake(70, 70, 70, 70)];
@@ -327,7 +328,7 @@
     pressedLastFrom = YES;
     pressedLastTo = NO;
     [self.mapView_ clear];
-
+    
     [self.navigationController pushViewController:fromViewController animated:YES];
 }
 
@@ -387,7 +388,7 @@
     NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *comment       = self.commentsTextField.text;
     UIImage  *packageImage  = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
-    NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.8);
+    NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.5);
     
     STLogDebug(@"STEP 1");
     
@@ -412,10 +413,12 @@
     [REQUEST POST:@"/client/order/create" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSLog(@"formData %@", formData);
         
-        [formData appendPartWithFileData:imadeData
-                                    name:@"image"
-                                fileName:@"package.jpg"
-                                mimeType:@"image/jpg"];
+        if (imadeData) {
+            [formData appendPartWithFileData:imadeData
+                                        name:@"image"
+                                    fileName:@"package.jpg"
+                                    mimeType:@"image/jpg"];
+        }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[AppDelegate instance] hideLoadingView];
@@ -425,10 +428,15 @@
         __block OrderModel *order = [[OrderModel alloc] initWithDictionary:responseObject];
         
         if (operation.response.statusCode == 200 || operation.response.statusCode == 201) {
-            
-            TrackingSearchViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrackingSearchViewController"];
-            ctr.order = order;
-            [self.navigationController pushViewController:ctr animated:YES];
+            [[Server instance] viewOrder:order success:^{
+                [[AppDelegate instance] hideLoadingView];
+                TrakingViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
+                ctr.order = order;
+                [self.navigationController pushViewController:ctr animated:YES];
+                
+            } failure:^(NSError *error, NSInteger code) {
+                [[AppDelegate instance] hideLoadingView];
+            }];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
