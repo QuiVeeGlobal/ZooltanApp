@@ -183,6 +183,7 @@
     cell.costLabel.text = [NSString stringWithFormat:@"AED %@", order.cost];
     cell.addressLabel.text = order.fromAddress;
     cell.statusLabel.text = order.orderStatusTitle;
+    cell.noteLabel.text = order.comment;
     
     if ([order.size isEqualToString:@"LETTER"])
         cell.packageImage.image = [UIImage imageNamed:@"LetterBoxIcon"];

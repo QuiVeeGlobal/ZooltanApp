@@ -77,8 +77,8 @@
 {
     self.takePhotoButton.hidden = NO;
     
-    [self.skipButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    [self.skipButton setTitle:@"SKIP" forState:UIControlStateNormal];
+//    [self.skipButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//    [self.skipButton setTitle:@"SKIP" forState:UIControlStateNormal];
 }
 
 - (IBAction)cameraFlashAction:(id)sender
@@ -121,9 +121,11 @@
     
     [self savePackageImage];
     
-    self.skipButton.hidden = NO;
-    [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];
-    [self.skipButton setTitle:@"" forState:UIControlStateNormal];
+//    self.skipButton.hidden = NO;
+//    [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];
+//    [self.skipButton setTitle:@"" forState:UIControlStateNormal];
+    CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
+    [self.navigationController pushViewController:createViewController animated:YES];
 }
 
 - (void)savePackageImage
