@@ -279,6 +279,7 @@
 		FA5A09571BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */; };
 		FA5A09591BBE8026005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA5A095A1BBE802F005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
+		FA7378501C0114CE00F80F9A /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */; };
 		FA749F3B1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
 		FA749F3C1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
 		FA74C6741BFA3F1400CA8E3C /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */; };
@@ -1660,6 +1661,7 @@
 				4463889A1B958E04008B4B0B /* FromViewController.m in Sources */,
 				44101D481BB937260044925E /* StatisticModel.m in Sources */,
 				4463889B1B958E04008B4B0B /* CreateViewController.m in Sources */,
+				FA7378501C0114CE00F80F9A /* LegalInformationViewController.m in Sources */,
 				4463889C1B958E04008B4B0B /* DeliveryCell.m in Sources */,
 				4463891D1B9EC7D4008B4B0B /* PackageViewController.m in Sources */,
 				4463889D1B958E04008B4B0B /* Fonts.m in Sources */,

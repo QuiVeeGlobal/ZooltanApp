@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OPENSANS-BOLD.TTF">
+        <mutableArray key="OpenSans-Bold_0.ttf">
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
@@ -15,7 +15,7 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
         </mutableArray>
-        <mutableArray key="OPENSANS-LIGHT.TTF">
+        <mutableArray key="OpenSans-Light_0.ttf">
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
@@ -29,7 +29,7 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
         </mutableArray>
-        <mutableArray key="OPENSANS-REGULAR.TTF">
+        <mutableArray key="OpenSans-Regular_0.ttf">
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>

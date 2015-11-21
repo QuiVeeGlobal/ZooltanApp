@@ -9,6 +9,7 @@
 "generic.FAQ"                                = "FAQ";
 "generic.tariffs"                            = "Tariffs";
 "generic.privacyPolicy"                      = "Privacy Policy";
+"generic.termsAndConditions"                 = "Terms and Conditions";
 "generic.cancel"                             = "Cancel";
 "generic.day"                                = "Day";
 "generic.week"                               = "Week";

@@ -9,6 +9,8 @@
 #import "InformationViewController.h"
 #import "LegalInformationViewController.h"
 #import "UserAgreementViewController.h"
+#import "TermsViewController.h"
+#import "PolicyViewController.h"
 #import "InformationCell.h"
 
 typedef enum : NSUInteger {
@@ -16,7 +18,8 @@ typedef enum : NSUInteger {
     InfoCellTypeLegalInf,
     InfoCellTypeLegalDoc,
     InfoCellTypeTariffs,
-    InfoCellTypePrivacyPolicy
+    InfoCellTypePrivacyPolicy,
+    InfoCellTypeTermsAndCondotions
 } InfoCellType;
 
 @interface Info : NSObject
@@ -30,11 +33,12 @@ typedef enum : NSUInteger {
 
 + (NSString *)titleByType:(InfoCellType)type {
     switch (type) {
-        case InfoCellTypeFAQ:           return NSLocalizedString(@"generic.FAQ", nil);
-        case InfoCellTypeLegalInf:      return NSLocalizedString(@"generic.legalInf", nil);
-        case InfoCellTypeLegalDoc:      return NSLocalizedString(@"generic.legalDoc", nil);
-        case InfoCellTypeTariffs:       return NSLocalizedString(@"generic.tariffs", nil);
-        case InfoCellTypePrivacyPolicy: return NSLocalizedString(@"generic.privacyPolicy", nil);
+        case InfoCellTypeFAQ:               return NSLocalizedString(@"generic.FAQ", nil);
+        case InfoCellTypeLegalInf:          return NSLocalizedString(@"generic.legalInf", nil);
+        case InfoCellTypeLegalDoc:          return NSLocalizedString(@"generic.legalDoc", nil);
+        case InfoCellTypeTariffs:           return NSLocalizedString(@"generic.tariffs", nil);
+        case InfoCellTypePrivacyPolicy:     return NSLocalizedString(@"generic.privacyPolicy", nil);
+        case InfoCellTypeTermsAndCondotions:return NSLocalizedString(@"generic.termsAndConditions", nil);
         default: return @"";
     }
 }
@@ -44,6 +48,7 @@ typedef enum : NSUInteger {
     if (IS_COURIER_APP) {
         
         return @[@(InfoCellTypePrivacyPolicy),
+                 @(InfoCellTypeTermsAndCondotions),
                  @(InfoCellTypeFAQ),
                  @(InfoCellTypeLegalDoc)];
         
@@ -108,23 +113,6 @@ typedef enum : NSUInteger {
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    STLogMethod;
-    InfoCellType type = (InfoCellType)[self.source[indexPath.row] integerValue];
-
-    switch (type) {
-        case InfoCellTypeLegalInf: {
-            LegalInformationViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"LegalInformationViewController"];
-            [self.navigationController pushViewController:ctr animated:YES];
-        } break;
-            
-        default:
-            break;
-    }
-    
-}
-
 - (void)informationCellDidPressButton:(UIButton *)button
                           atIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,10 +124,19 @@ typedef enum : NSUInteger {
             [self.navigationController pushViewController:ctr animated:YES];
         } break;
             
+        case InfoCellTypePrivacyPolicy: {
+            PolicyViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PolicyViewController"];
+            [self.navigationController pushViewController:ctr animated:YES];
+        } break;
+        
+        case InfoCellTypeTermsAndCondotions: {
+            TermsViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsViewController"];
+            [self.navigationController pushViewController:ctr animated:YES];
+        } break;
+            
         default:
             break;
     }
-    
 }
 
 @end
