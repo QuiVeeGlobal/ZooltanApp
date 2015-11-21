@@ -181,7 +181,7 @@
     
     cell.typeDeliveryLabel.text = [order.size stringByReplacingOccurrencesOfString:@"_" withString:@" "];
     cell.costLabel.text = [NSString stringWithFormat:@"AED %@", order.cost];
-    cell.addressLabel.text = order.fromAddress;
+    cell.addressLabel.text = order.toAddress;
     cell.statusLabel.text = order.orderStatusTitle;
     cell.noteLabel.text = order.comment;
     

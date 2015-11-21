@@ -6,6 +6,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="OPENSANS-LIGHT.TTF">
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+        </mutableArray>
         <mutableArray key="OPENSANS-REGULAR.TTF">
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -144,10 +155,6 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
         </mutableArray>
-        <mutableArray key="OPENSANS-SEMIBOLD.TTF">
-            <string>OpenSans-Semibold</string>
-            <string>OpenSans-Semibold</string>
-        </mutableArray>
         <mutableArray key="OpenSans-Bold_0.ttf">
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
@@ -156,16 +163,9 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
         </mutableArray>
-        <mutableArray key="OpenSans-Light_0.ttf">
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
+        <mutableArray key="OpenSans-Semibold_0.ttf">
+            <string>OpenSans-Semibold</string>
+            <string>OpenSans-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1469,19 +1469,11 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytx-4U-56N" userLabel="Map View" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="428" width="600" height="300"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="xNh-t2-a1b"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8V-56-zLE" userLabel="Take Packege View">
-                                        <rect key="frame" x="0.0" y="728" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="428" width="600" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vW-mY-a8c">
-                                                <rect key="frame" x="150" y="12" width="300" height="35"/>
+                                                <rect key="frame" x="150" y="0.0" width="300" height="35"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.97254901959999995" green="0.52549019610000003" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -1501,12 +1493,28 @@
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="1vW-mY-a8c" firstAttribute="centerX" secondItem="W8V-56-zLE" secondAttribute="centerX" id="6p6-mf-SGn"/>
                                             <constraint firstAttribute="centerY" secondItem="1vW-mY-a8c" secondAttribute="centerY" constant="0.5" id="He5-hE-X7T"/>
+                                            <constraint firstItem="1vW-mY-a8c" firstAttribute="top" secondItem="W8V-56-zLE" secondAttribute="top" id="oZ0-jd-Pz4"/>
                                             <constraint firstAttribute="centerX" secondItem="1vW-mY-a8c" secondAttribute="centerX" id="oir-bl-wgz"/>
                                             <constraint firstAttribute="height" constant="60" id="ore-jk-edT"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="He5-hE-X7T"/>
+                                                <exclude reference="oir-bl-wgz"/>
+                                            </mask>
+                                        </variation>
                                     </view>
-                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3h-B1-hnh">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ytx-4U-56N" userLabel="Map View" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="488" width="600" height="300"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="xNh-t2-a1b"/>
+                                        </constraints>
+                                    </view>
+                                    <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3h-B1-hnh">
                                         <rect key="frame" x="0.0" y="788" width="600" height="400"/>
                                         <animations/>
                                         <constraints>
@@ -1522,10 +1530,13 @@
                                     <constraint firstItem="K3h-B1-hnh" firstAttribute="leading" secondItem="xeB-ZD-koZ" secondAttribute="leading" id="2qb-VH-lI4"/>
                                     <constraint firstItem="K3h-B1-hnh" firstAttribute="top" secondItem="W8V-56-zLE" secondAttribute="bottom" id="2xG-cg-pok"/>
                                     <constraint firstItem="W8V-56-zLE" firstAttribute="top" secondItem="Ytx-4U-56N" secondAttribute="bottom" id="70y-UL-MYI"/>
+                                    <constraint firstItem="K3h-B1-hnh" firstAttribute="top" secondItem="Ytx-4U-56N" secondAttribute="bottom" id="7Tt-9K-gpE"/>
                                     <constraint firstItem="Ytx-4U-56N" firstAttribute="top" secondItem="tei-Ee-EUo" secondAttribute="bottom" id="8GG-8u-viy"/>
+                                    <constraint firstItem="W8V-56-zLE" firstAttribute="top" secondItem="tei-Ee-EUo" secondAttribute="bottom" id="If1-bz-J1y"/>
                                     <constraint firstItem="QPV-se-NVk" firstAttribute="leading" secondItem="xeB-ZD-koZ" secondAttribute="leading" id="Mmv-VQ-HLE"/>
                                     <constraint firstAttribute="trailing" secondItem="Ytx-4U-56N" secondAttribute="trailing" id="Nyt-pq-WZf"/>
                                     <constraint firstItem="W8V-56-zLE" firstAttribute="top" secondItem="Ytx-4U-56N" secondAttribute="bottom" id="P5l-hh-HPi"/>
+                                    <constraint firstItem="Ytx-4U-56N" firstAttribute="top" secondItem="W8V-56-zLE" secondAttribute="bottom" id="Qax-77-f20"/>
                                     <constraint firstItem="Ytx-4U-56N" firstAttribute="top" secondItem="tei-Ee-EUo" secondAttribute="bottom" id="Sej-3P-rpR"/>
                                     <constraint firstAttribute="centerX" secondItem="QPV-se-NVk" secondAttribute="centerX" id="Z7y-02-Vwy"/>
                                     <constraint firstItem="tei-Ee-EUo" firstAttribute="leading" secondItem="xeB-ZD-koZ" secondAttribute="leading" id="dT1-Pp-41g"/>
@@ -1541,8 +1552,11 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Sej-3P-rpR"/>
                                         <exclude reference="70y-UL-MYI"/>
+                                        <exclude reference="P5l-hh-HPi"/>
+                                        <exclude reference="8GG-8u-viy"/>
+                                        <exclude reference="Sej-3P-rpR"/>
+                                        <exclude reference="2xG-cg-pok"/>
                                     </mask>
                                 </variation>
                             </scrollView>
