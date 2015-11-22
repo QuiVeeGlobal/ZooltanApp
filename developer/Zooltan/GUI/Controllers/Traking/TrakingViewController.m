@@ -184,8 +184,8 @@
     pickupMarker.map            = self.mapView;
     reciverMarker.map           = self.mapView;
     
-    CLLocation *packageLoc = [[CLLocation alloc] initWithLatitude:self.order.packageLocation.latitude longitude:self.order.packageLocation.longitude];
-    CLLocation *destinationLoc = [[CLLocation alloc] initWithLatitude:self.order.destinationLocation.latitude longitude:self.order.destinationLocation.longitude];
+    CLLocation *packageLoc = [[CLLocation alloc] initWithLatitude:self.order.fromLocation.latitude longitude:self.order.fromLocation.longitude];
+    CLLocation *destinationLoc = [[CLLocation alloc] initWithLatitude:self.order.toLocation.latitude longitude:self.order.toLocation.longitude];
     
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginLocation:packageLoc andDestinationLocation:destinationLoc];
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];

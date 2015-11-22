@@ -243,16 +243,15 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     STLogMethod;
-    
 }
 
 - (void)adressCellDidPressButton:(UIButton *)button
                      atIndexPath:(NSIndexPath *)indexPath
 {
     [[AppDelegate instance] showLoadingView];
-    [serchField resignFirstResponder];
     
     STLogMethod;
     STLogDebug(@"indexPath: %@",indexPath);
@@ -295,8 +294,6 @@
             serchField.text = place.formatted_address;
             
             STLogDebug(@"|Place: %@",place);
-            
-            [serchField resignFirstResponder];
             
             placesArray = places;
             [self.tableView reloadData];
@@ -409,23 +406,17 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
-//    if (textField.text.length == 0)
-//    {
-//        placesArray = nil;
-//        [self.tableView reloadData];
-//    }
-//    else
-//        [self getPlaceByString];
     
     return YES;
 }

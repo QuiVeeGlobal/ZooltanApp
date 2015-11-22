@@ -73,7 +73,7 @@
         toLoc.latitude    = [to_lat floatValue];
         toLoc.longitude   = [to_lon floatValue];
     }
-    self.fromLocation    = toLoc;
+    self.toLocation    = toLoc;
     
     // Destination location
     CLLocationCoordinate2D destLoc;
@@ -173,7 +173,6 @@
         case OrderStatusClose:      self.status = kOrderStatusKeyClosed; break;
         default: self.status = kOrderStatusKeyNew;
     }
-
 }
 
 - (OrderStatus)statusByKey:(NSString *)key {

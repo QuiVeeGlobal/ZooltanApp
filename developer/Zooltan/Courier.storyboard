@@ -6,6 +6,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="OPENSANS-LIGHT.TTF">
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+        </mutableArray>
         <mutableArray key="OPENSANS-SEMIBOLD.TTF">
             <string>OpenSans-Semibold</string>
             <string>OpenSans-Semibold</string>
@@ -17,17 +28,6 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
-        </mutableArray>
-        <mutableArray key="OpenSans-Light_0.ttf">
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular_0.ttf">
             <string>OpenSans</string>
@@ -796,7 +796,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diW-qs-MOk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diW-qs-MOk">
                                 <rect key="frame" x="16" y="553" width="568" height="40"/>
                                 <animations/>
                                 <constraints>
@@ -847,7 +847,7 @@
                                     <constraint firstAttribute="height" constant="55" id="wQm-jZ-PrL"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="following us" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOg-UM-mRm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="follow us:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOg-UM-mRm">
                                 <rect key="frame" x="16" y="448" width="568" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -865,12 +865,12 @@
                                     <constraint firstAttribute="width" constant="72" id="lY2-HL-AFd"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4x-fs-9dJ">
-                                <rect key="frame" x="5" y="176" width="590" height="160"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4x-fs-9dJ">
+                                <rect key="frame" x="0.0" y="176" width="600" height="264"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="ywe-gz-Bui"/>
+                                    <constraint firstAttribute="height" constant="264" id="ywe-gz-Bui"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -889,13 +889,13 @@
                             <constraint firstAttribute="trailing" secondItem="lPM-iX-B0V" secondAttribute="trailing" id="9o5-2L-zLw"/>
                             <constraint firstItem="lPM-iX-B0V" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leading" id="Ad5-ON-FBk"/>
                             <constraint firstItem="bcp-Aj-8Ad" firstAttribute="top" secondItem="diW-qs-MOk" secondAttribute="bottom" constant="7" id="E7m-1E-AvF"/>
-                            <constraint firstItem="diW-qs-MOk" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leadingMargin" id="KAj-Rg-bvb"/>
+                            <constraint firstItem="diW-qs-MOk" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leadingMargin" constant="-4" id="KAj-Rg-bvb"/>
                             <constraint firstItem="tOg-UM-mRm" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leading" constant="16" id="LNS-Oc-XrC"/>
                             <constraint firstAttribute="centerX" secondItem="0s8-0T-sGw" secondAttribute="centerX" id="WLD-nU-5DI"/>
                             <constraint firstItem="bcp-Aj-8Ad" firstAttribute="top" secondItem="zNq-eN-khr" secondAttribute="bottom" constant="58" id="ZZ0-1M-zx5"/>
-                            <constraint firstItem="diW-qs-MOk" firstAttribute="trailing" secondItem="KuZ-Mh-l4M" secondAttribute="trailingMargin" id="akM-2M-GCb"/>
-                            <constraint firstItem="a4x-fs-9dJ" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leadingMargin" constant="-11" id="ccE-A0-exa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="a4x-fs-9dJ" secondAttribute="trailing" constant="-11" id="hqr-Cc-db4"/>
+                            <constraint firstItem="diW-qs-MOk" firstAttribute="trailing" secondItem="KuZ-Mh-l4M" secondAttribute="trailingMargin" constant="4" id="akM-2M-GCb"/>
+                            <constraint firstItem="a4x-fs-9dJ" firstAttribute="leading" secondItem="KuZ-Mh-l4M" secondAttribute="leadingMargin" constant="-20" id="ccE-A0-exa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a4x-fs-9dJ" secondAttribute="trailing" constant="-20" id="hqr-Cc-db4"/>
                             <constraint firstItem="0s8-0T-sGw" firstAttribute="top" secondItem="lPM-iX-B0V" secondAttribute="bottom" constant="17" id="nK9-Zx-a4U"/>
                             <constraint firstAttribute="trailing" secondItem="tOg-UM-mRm" secondAttribute="trailing" constant="16" id="qB7-uF-sRy"/>
                             <constraint firstAttribute="centerX" secondItem="zNq-eN-khr" secondAttribute="centerX" id="vx2-LI-Ngz"/>
