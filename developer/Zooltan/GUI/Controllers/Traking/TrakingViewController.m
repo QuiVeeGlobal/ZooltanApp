@@ -94,17 +94,17 @@
     self.priceTitle.text = NSLocalizedString(@"ctrl.traking.title.price", nil);
     self.commentTitle.text = NSLocalizedString(@"ctrl.traking.title.comments", nil);
     
-    [self.callCourierButton setTitle:NSLocalizedString(@"CALL COURIER", nil) forState:UIControlStateNormal];
+    [self.callCourierButton setTitle:NSLocalizedString(@"ctrl.traking.title.callCourier.button", nil) forState:UIControlStateNormal];
     [self addCornerRadius:self.callCourierButton radius:layerCornerRadius];
     self.callCourierButton.layer.borderColor = [Colors whiteColor].CGColor;
     self.callCourierButton.layer.borderWidth = layerBorderWidth;
     
-    [self.callSupportButton setTitle:NSLocalizedString(@"ctrl.traking.title.call.button", nil) forState:UIControlStateNormal];
+    [self.callSupportButton setTitle:NSLocalizedString(@"ctrl.traking.title.callSupport.button", nil) forState:UIControlStateNormal];
     [self addCornerRadius:self.callSupportButton radius:layerCornerRadius];
     self.callSupportButton.layer.borderColor = [Colors yellowColor].CGColor;
     self.callSupportButton.layer.borderWidth = layerBorderWidth;
     
-    [self.cancelOrderButton setTitle:NSLocalizedString(@"ctrl.traking.title.cancel.button", nil) forState:UIControlStateNormal];
+    [self.cancelOrderButton setTitle:NSLocalizedString(@"ctrl.traking.title.cancelOrder.button", nil) forState:UIControlStateNormal];
     [self addCornerRadius:self.cancelOrderButton radius:layerCornerRadius];
     self.cancelOrderButton.layer.borderColor = [Colors yellowColor].CGColor;
     self.cancelOrderButton.layer.borderWidth = layerBorderWidth;
@@ -119,6 +119,11 @@
         self.courierView.hidden = NO;
         self.packageView.hidden = YES;
         self.statusView.backgroundColor = [Colors whiteColor];
+    }
+    
+    if (self.order.orderStatus != OrderStatusNew && self.order.orderStatus != OrderStatusAccept) {
+        self.cancelOrderButton.hidden = YES;
+        self.cancelOrderButton.enabled = NO;
     }
     
     if (!self.packageImageView.image) {

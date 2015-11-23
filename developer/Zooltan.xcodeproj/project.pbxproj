@@ -546,6 +546,7 @@
 		686D207296239E7371A3B610 /* libPods-Zooltan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Zooltan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zooltan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zooltan/Pods-Zooltan.release.xcconfig"; sourceTree = "<group>"; };
 		DC4634756D25B5995CC877FA /* Pods-Zooltan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zooltan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zooltan/Pods-Zooltan.debug.xcconfig"; sourceTree = "<group>"; };
+		FA3EEE5B1C03B3C700ED1E48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA4FA2DE1B970299005B7229 /* CourierHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryViewController.h; sourceTree = "<group>"; };
 		FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierHistoryViewController.m; sourceTree = "<group>"; };
 		FA4FA2E11B970341005B7229 /* CourierHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryCell.h; sourceTree = "<group>"; };
@@ -835,6 +836,7 @@
 		6774F7561B39A119005B5043 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA3EEE5B1C03B3C700ED1E48 /* Foundation.framework */,
 				FA5A09581BBE8026005FFEC2 /* CoreData.framework */,
 				FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */,
 				FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */,

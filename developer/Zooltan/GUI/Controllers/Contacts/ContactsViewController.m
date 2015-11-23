@@ -122,7 +122,7 @@
 
 - (BOOL)moABContatsManager:(MoABContactsManager *)contactsManager shouldIncludeContact:(MoContact *)contact
 {
-    return YES;
+    return [contact.phones count] > 0;
 }
 
 #pragma mark - UITableView Delegate

@@ -155,10 +155,11 @@
 "ctrl.traking.title.status"                  = "STATUS:";
 "ctrl.traking.title.package"                 = "package type";
 "ctrl.traking.title.trackId"                 = "tracking ID";
-"ctrl.traking.title.price"                   = "Price:";
+"ctrl.traking.title.price"                   = "PRICE:";
 "ctrl.traking.title.comments"                = "Note:";
-"ctrl.traking.title.call.button"             = "CALL SUPPORT";
-"ctrl.traking.title.cancel.button"           = "CANCEL ORDER";
+"ctrl.traking.title.callSupport.button"      = "CALL SUPPORT";
+"ctrl.traking.title.callCourier.button"      = "CALL COURIER";
+"ctrl.traking.title.cancelOrder.button"      = "CANCEL ORDER";
 
 
 // Package
