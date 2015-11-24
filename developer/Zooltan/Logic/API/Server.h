@@ -67,18 +67,20 @@ typedef enum : NSUInteger {
                   success:(void (^)(StatisticModel *statistic))success
                   failure:(void (^)(NSError *error, NSInteger code))failure;
 
+- (void)trackingOrder:(OrderModel *)order
+              success:(void (^)(void))success
+              failure:(void (^)(NSError *error, NSInteger code))failure;
+
 - (void)updateOrder:(OrderModel *)order
          withStatus:(OrderStatus)status
             success:(void (^)(void))success
             failure:(void (^)(NSError *error, NSInteger code))failure;
 
-- (void)trackingOrder:(OrderModel *)order
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error, NSInteger code))failure;
-
 - (void)viewOrder:(OrderModel *)order
           success:(void (^)(void))success
           failure:(void (^)(NSError *error, NSInteger code))failure;
+
+//////// Password ///////
 
 - (void)updatePassword:(NSString *)psw
         forPhoneNumber:(NSString *)phoneNumber

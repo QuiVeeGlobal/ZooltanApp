@@ -37,11 +37,6 @@
     
     [self removePackageImage:@"package.jpg"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeButtons)
-                                                 name:@"changeButtons"
-                                               object:nil];
-    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -71,14 +66,6 @@
             self.topLabel.constant = 50;
         }
     }
-}
-
-- (void)changeButtons
-{
-    self.takePhotoButton.hidden = NO;
-    
-//    [self.skipButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-//    [self.skipButton setTitle:@"SKIP" forState:UIControlStateNormal];
 }
 
 - (IBAction)cameraFlashAction:(id)sender
@@ -118,12 +105,8 @@
     [[AppDelegate instance] hideLoadingView];
     
     self.packageImage = [UIImage imageWithData:UIImagePNGRepresentation(meta[VLBCameraViewMetaOriginalImage])];
-    
     [self savePackageImage];
     
-//    self.skipButton.hidden = NO;
-//    [self.skipButton setImage:[UIImage imageNamed:@"nextBtn"] forState:UIControlStateNormal];
-//    [self.skipButton setTitle:@"" forState:UIControlStateNormal];
     CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
     [self.navigationController pushViewController:createViewController animated:YES];
 }

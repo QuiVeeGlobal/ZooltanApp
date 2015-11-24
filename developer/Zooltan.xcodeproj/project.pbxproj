@@ -279,6 +279,8 @@
 		FA5A09571BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */; };
 		FA5A09591BBE8026005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA5A095A1BBE802F005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
+		FA6F0A471C03D87200FD1D31 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */; };
+		FA6F0A481C03D87200FD1D31 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */; };
 		FA7378501C0114CE00F80F9A /* LegalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA74C6731BFA3F1400CA8E3C /* LegalInformationViewController.m */; };
 		FA749F3B1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
 		FA749F3C1BA1AE4700D3AEEE /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */; };
@@ -554,6 +556,8 @@
 		FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LeanTesting.bundle; sourceTree = "<group>"; };
 		FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LeanTesting.framework; sourceTree = "<group>"; };
 		FA5A09581BBE8026005FFEC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FA6F0A451C03D87200FD1D31 /* BLMultiColorLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLMultiColorLoader.h; path = BLMultiColorLoader/BLMultiColorLoader.h; sourceTree = "<group>"; };
+		FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLMultiColorLoader.m; path = BLMultiColorLoader/BLMultiColorLoader.m; sourceTree = "<group>"; };
 		FA749F391BA1AE4700D3AEEE /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		FA749F3A1BA1AE4700D3AEEE /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		FA74C6721BFA3F1400CA8E3C /* LegalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LegalInformationViewController.h; path = LegalInformation/LegalInformationViewController.h; sourceTree = "<group>"; };
@@ -1199,6 +1203,7 @@
 		67F1AC431B38448C00C76F75 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				FA6F0A441C03D81100FD1D31 /* BLMultiColorLoader */,
 				675CC6FF1B6BD5A4009DE725 /* CHCircleGaugeView */,
 				675912431B5D2243007471E3 /* ActivityIndicator */,
 				67031B7B1B4AB69900186F73 /* Cells */,
@@ -1332,6 +1337,15 @@
 				9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA6F0A441C03D81100FD1D31 /* BLMultiColorLoader */ = {
+			isa = PBXGroup;
+			children = (
+				FA6F0A451C03D87200FD1D31 /* BLMultiColorLoader.h */,
+				FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */,
+			);
+			name = BLMultiColorLoader;
 			sourceTree = "<group>";
 		};
 		FA74C6711BFA3F0200CA8E3C /* LegalInformation */ = {
@@ -1657,6 +1671,7 @@
 				446388971B958E04008B4B0B /* ExpanceViewController.m in Sources */,
 				1E271D121BB0DBEB00914CDC /* CheckMobiService.m in Sources */,
 				446388981B958E04008B4B0B /* UIViewController+MMDrawerController.m in Sources */,
+				FA6F0A481C03D87200FD1D31 /* BLMultiColorLoader.m in Sources */,
 				1E271CFE1BB0B8EF00914CDC /* TrackingViewCell.m in Sources */,
 				FAEC980C1BFF543200973970 /* UIImage+fixOrientation.m in Sources */,
 				446388991B958E04008B4B0B /* InformationViewController.m in Sources */,
@@ -1762,6 +1777,7 @@
 				67F81B591B43FD0900D0A2DF /* BaseViewController.m in Sources */,
 				674558C81B593490007D9AEF /* ResponseModel.m in Sources */,
 				FA74C6811BFA420400CA8E3C /* PolicyViewController.m in Sources */,
+				FA6F0A471C03D87200FD1D31 /* BLMultiColorLoader.m in Sources */,
 				674558CF1B5936CE007D9AEF /* Settings.m in Sources */,
 				FAD778CE1BAD72E700612690 /* CourierHistoryCell.m in Sources */,
 				1E271D111BB0DBEB00914CDC /* CheckMobiService.m in Sources */,

@@ -7,12 +7,12 @@
 
 
 #import "TrakingViewController.h"
-#import <LLARingSpinnerView/LLARingSpinnerView.h>
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 #import "HistoryCell.h"
 #import "CreateViewController.h"
 #import "HistoryViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "BLMultiColorLoader.h"
 
 #define layerCornerRadius 2.5
 #define layerBorderWidth 1.5
@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *packageImageView;
 @property (weak, nonatomic) IBOutlet UILabel *packageTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *activityView;
-@property (weak, nonatomic) IBOutlet LLARingSpinnerView *spinnerView;
+@property (weak, nonatomic) IBOutlet BLMultiColorLoader *loaderView;
 
 @property (weak, nonatomic) IBOutlet UIView *statusView;
 @property (weak, nonatomic) IBOutlet UILabel *statusTitleLabel;
@@ -68,6 +68,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self stopLoader];
 }
 
 - (void)viewDidLayoutSubviews
@@ -112,7 +118,6 @@
     if (self.order.orderStatus == OrderStatusNew) {
         self.courierView.hidden = YES;
         self.packageView.hidden = NO;
-        self.activityView.hidden = YES;
         self.statusView.backgroundColor = [Colors yellowColor];
     }
     else {
@@ -127,9 +132,8 @@
     }
     
     if (!self.packageImageView.image) {
-        [[AppDelegate instance] showLoadingView];
+        self.activityView.hidden = YES;
         self.packageTitleLabel.hidden = YES;
-        [self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
     }
 }
 
@@ -139,9 +143,9 @@
     btn.clipsToBounds = YES;
 }
 
-- (void) getOrderData
+- (void)getOrderData
 {
-    //[self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
+    [self setPackageImageFromUrl:[NSString stringWithFormat:@"http://%@", self.order.packageImageUrl]];
     [self setCourierAvatarFromUrl:self.order.courierLogoUrl];
     
     self.courierNameLabel.text = self.order.courierName;
@@ -226,8 +230,12 @@
 - (void)setCourierAvatarFromUrl:(NSString *)url
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
-    [self.courierAvatar setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"emptyAvatar"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    [self.courierAvatar setImageWithURLRequest:request
+                              placeholderImage:[UIImage imageNamed:@"emptyAvatar"]
+                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+    {
         [self setCourierAvatarFromImage:image];
+        
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {}];
 }
 
@@ -246,25 +254,30 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5];
     [self.packageImageView setImageWithURLRequest:request
                                  placeholderImage:nil
-                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                              self.packageImageView.image = image;
-                                              self.packageImageView.contentMode = UIViewContentModeScaleAspectFill;
-                                              [[AppDelegate instance] hideLoadingView];
-                                              [self startSpinner];
-                                              
-                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                              NSLog(@"Failed to load image:\nrequest=%@\nresponse=%@\nerror=%@",request,response,[error description]);
-                                          }];
+                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+    {
+        self.packageImageView.image = image;
+        self.packageImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.activityView.hidden = NO;
+        self.packageTitleLabel.hidden = NO;
+        [self startLoader];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {}];
 }
 
-- (void)startSpinner
+#pragma mark - BLMultiColorLoader
+#pragma mark -
+
+- (void)startLoader
 {
-    //LLARingSpinnerView
-    self.activityView.hidden = NO;
-    self.packageTitleLabel.hidden = NO;
-    self.spinnerView.lineWidth = 2.6f;
-    self.spinnerView.tintColor = [Colors yellowColor];
-    [self.spinnerView startAnimating];
+    self.loaderView.lineWidth = 2.5;
+    self.loaderView.colorArray = @[[Colors yellowColor]];
+    [self.loaderView startAnimation];
+}
+
+- (void)stopLoader
+{
+    [self.loaderView stopAnimation];
 }
 
 #pragma mark - IBAction
@@ -280,7 +293,6 @@
     [self.navigationController.view.layer addAnimation:animation forKey:nil];
     [self.navigationController pushViewController:ctr animated:NO];
 }
-
 
 - (IBAction)callCourierAction:(id)sender
 {
@@ -314,10 +326,8 @@
 
 - (IBAction)cancelAction:(id)sender
 {
-    //[self.order setOrderStatus:OrderStatusClose];
-    [self.navigationController popViewControllerAnimated:YES];
+    
 }
-
 
 //#pragma mark - CHCircleGaugeView
 //#pragma mark -

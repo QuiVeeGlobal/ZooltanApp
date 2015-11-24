@@ -521,11 +521,13 @@ NSString *URLMethod(NSString *rout) {
           failure:(void (^)(NSError *error, NSInteger code))failure {
     
     NSString *method = [NSString stringWithFormat:@"order/view/%@",STRING(order._id)];
-    
-    CLLocation *currentLocation = [[AppDelegate instance] currentLocation];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"longitude"] = [NSString stringWithFormat:@"%.5f",currentLocation.coordinate.longitude];
-    param[@"latitude"] = [NSString stringWithFormat:@"%.5f",currentLocation.coordinate.latitude];
+    
+    if (IS_COURIER_APP) {
+        CLLocation *currentLocation = [[AppDelegate instance] currentLocation];
+        param[@"longitude"] = [NSString stringWithFormat:@"%.5f",currentLocation.coordinate.longitude];
+        param[@"latitude"] = [NSString stringWithFormat:@"%.5f",currentLocation.coordinate.latitude];
+    }
     
     PRTParameters(param, URLMethod(method));
     

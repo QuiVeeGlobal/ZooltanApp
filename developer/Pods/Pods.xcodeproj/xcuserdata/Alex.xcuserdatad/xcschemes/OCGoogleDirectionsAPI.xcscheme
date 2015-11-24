@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6DD2BEEE335337D5334FE3BD"
+               BlueprintIdentifier = "42AAE6583B3A1FCBB9A3640D"
                BuildableName = "libOCGoogleDirectionsAPI.a"
                BlueprintName = "OCGoogleDirectionsAPI"
                ReferencedContainer = "container:Pods.xcodeproj">

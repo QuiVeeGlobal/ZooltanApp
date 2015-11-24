@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>LLARingSpinnerView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MoABContactsManager-MoABContactsManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>002E9BAA1D2AA02228A57EDECEA6506F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F17B0696B72D3F440BE3892B3B78565</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4500E756BCE0E7373DC064162BEA4F90</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>778EE1F89E7AB591E12FAC7EA6820333</key>
+		<key>490849C4A941DD5C281B64B5099871FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C22A4E10358E34CB8C76F5EDFFF1C03</key>
+		<key>60C8D161C545097CA3C73B5A2DB181F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C83682406491C8DF95A56FF32A76F0A</key>
+		<key>851D216FF51CCC703092FE0E0E86A15B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7D2E8D1ADE39479283F18D97AA593AB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C8928C63E06DB8B8229429253140DD1B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFC3BE230F249385F5B98D09BAF8BBE0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F6177AC183F935F6AD28CE9BCC4D2D72</key>
+		<key>9E0C025C23DC59D30BE1C81F02C073AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
