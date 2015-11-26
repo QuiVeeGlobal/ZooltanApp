@@ -7,14 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OPENSANS-BOLD.TTF">
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-            <string>OpenSans-Bold</string>
-        </mutableArray>
         <mutableArray key="OPENSANS-REGULAR.TTF">
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -131,6 +123,14 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Bold_0.ttf">
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
         </mutableArray>
         <mutableArray key="OpenSans-Light_0.ttf">
             <string>OpenSans-Light</string>
@@ -4341,13 +4341,53 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDetail" translatesAutoresizingMaskIntoConstraints="NO" id="dcb-HQ-7HZ" userLabel="Top Left">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="0sE-vd-f59"/>
+                                            <constraint firstAttribute="width" constant="58" id="RLS-CR-FgN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDetail" translatesAutoresizingMaskIntoConstraints="NO" id="u9T-i4-63k" userLabel="Buttom Left">
+                                        <rect key="frame" x="0.0" y="262" width="58" height="58"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="58" id="c6L-v7-xG3"/>
+                                            <constraint firstAttribute="height" constant="58" id="kCt-3N-sVD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDetail" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-dP-iqT" userLabel="Top Right">
+                                        <rect key="frame" x="542" y="0.0" width="58" height="58"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="58" id="1bB-1y-AVC"/>
+                                            <constraint firstAttribute="height" constant="58" id="c00-aY-yl8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDetail" translatesAutoresizingMaskIntoConstraints="NO" id="783-Sc-CiD" userLabel="Buttom Right">
+                                        <rect key="frame" x="542" y="262" width="58" height="58"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="58" id="Qg1-Jj-4hl"/>
+                                            <constraint firstAttribute="height" constant="58" id="eO7-Yy-WAZ"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="783-Sc-CiD" secondAttribute="trailing" id="2iR-A9-zhj"/>
+                                    <constraint firstItem="dcb-HQ-7HZ" firstAttribute="leading" secondItem="ipA-hR-p1B" secondAttribute="leading" id="4o0-qG-8Nr"/>
+                                    <constraint firstItem="u9T-i4-63k" firstAttribute="leading" secondItem="ipA-hR-p1B" secondAttribute="leading" id="Hyu-og-5vL"/>
+                                    <constraint firstAttribute="bottom" secondItem="u9T-i4-63k" secondAttribute="bottom" id="Jhi-Zg-R71"/>
+                                    <constraint firstItem="hRj-dP-iqT" firstAttribute="top" secondItem="ipA-hR-p1B" secondAttribute="top" id="NMf-Fu-FKh"/>
                                     <constraint firstItem="WmU-9i-0y7" firstAttribute="centerX" secondItem="ipA-hR-p1B" secondAttribute="centerX" id="OOl-O7-h5e"/>
                                     <constraint firstItem="WmU-9i-0y7" firstAttribute="top" secondItem="ipA-hR-p1B" secondAttribute="top" id="ezZ-XX-phl"/>
                                     <constraint firstAttribute="height" constant="320" id="ijZ-5t-gZA"/>
                                     <constraint firstAttribute="bottom" secondItem="WmU-9i-0y7" secondAttribute="bottom" id="jgH-Nf-9nG"/>
+                                    <constraint firstAttribute="bottom" secondItem="783-Sc-CiD" secondAttribute="bottom" id="kTL-u8-kap"/>
+                                    <constraint firstItem="dcb-HQ-7HZ" firstAttribute="top" secondItem="ipA-hR-p1B" secondAttribute="top" id="n47-nR-WZY"/>
+                                    <constraint firstAttribute="trailing" secondItem="hRj-dP-iqT" secondAttribute="trailing" id="u75-os-Vbt"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psK-2i-u0T" userLabel="Control View">
@@ -4435,6 +4475,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="670"/>
                     <connections>
+                        <outlet property="bottomLeftView" destination="u9T-i4-63k" id="svE-hK-jj7"/>
+                        <outlet property="bottomRightView" destination="783-Sc-CiD" id="QbR-rY-25q"/>
                         <outlet property="buttomLabel" destination="35b-09-OX4" id="PVG-qP-nHV"/>
                         <outlet property="cameraView" destination="WmU-9i-0y7" id="GxD-4X-9rf"/>
                         <outlet property="photoBtn" destination="pjr-eU-e3e" id="KBt-sR-yxo"/>
@@ -4442,6 +4484,8 @@
                         <outlet property="skipButton" destination="a5y-o5-xL0" id="UPY-bx-vA8"/>
                         <outlet property="takePhotoButton" destination="qwZ-ez-nE3" id="L11-6m-oYl"/>
                         <outlet property="topLabel" destination="km9-OF-6N7" id="Btx-hB-X8G"/>
+                        <outlet property="topLeftView" destination="dcb-HQ-7HZ" id="qNi-Hl-Uwv"/>
+                        <outlet property="topRightView" destination="hRj-dP-iqT" id="Y7D-wa-gQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYm-kx-1zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5251,6 +5295,7 @@
     </scenes>
     <resources>
         <image name="2" width="13" height="17"/>
+        <image name="CameraDetail" width="117" height="117"/>
         <image name="EditTool" width="26" height="26"/>
         <image name="Facebook" width="64" height="64"/>
         <image name="InfoIcon" width="10" height="13"/>

@@ -17,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *previwHeigh;
 
+@property (strong, nonatomic) IBOutlet UIImageView *topLeftView;
+@property (strong, nonatomic) IBOutlet UIImageView *topRightView;
+@property (strong, nonatomic) IBOutlet UIImageView *bottomLeftView;
+@property (strong, nonatomic) IBOutlet UIImageView *bottomRightView;
+
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
@@ -36,6 +41,11 @@
     self.cameraView.allowPictureRetake = YES;
     
     [self removePackageImage:@"package.jpg"];
+    
+    self.topLeftView.transform = CGAffineTransformMakeRotation(0);
+    self.topRightView.transform = CGAffineTransformMakeRotation(M_PI_2);
+    self.bottomLeftView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+    self.bottomRightView.transform = CGAffineTransformMakeRotation(M_PI_2*2);
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
