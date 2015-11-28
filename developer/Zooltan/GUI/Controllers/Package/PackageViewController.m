@@ -331,7 +331,6 @@
                  [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
                  break;
          }
-
      }];
 }
 

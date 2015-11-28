@@ -65,6 +65,7 @@ typedef enum : NSUInteger {
 - (NSString *)orderStatusTitle;
 - (NSString *)hashCurrentLocationAddress;
 - (OrderStatus)nextStatus;
+- (OrderStatus)statusClose;
 
 // Routes
 - (NSArray<RoutModel *>*)sortedRoutesById;

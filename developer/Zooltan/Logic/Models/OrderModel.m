@@ -217,6 +217,12 @@
     }
 }
 
+- (OrderStatus)statusClose {
+    switch (self.orderStatus) {
+        default: return OrderStatusClose;
+    }
+}
+
 #pragma mark - Sorted Routes
 
 - (NSArray<RoutModel *>*)sortedRoutesById {

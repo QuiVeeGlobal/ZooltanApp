@@ -326,7 +326,38 @@
 
 - (IBAction)cancelAction:(id)sender
 {
-    
+    switch (self.order.orderStatus)
+    {
+        case OrderStatusNew:        [self closeOrder]; break;
+        case OrderStatusAccept:     [self closeOrder]; break;
+        default: break;
+    }
+}
+
+- (void)closeOrder
+{
+    STLogMethod;
+    [[AppDelegate instance] showLoadingView];
+    [[Server instance] updateOrder:self.order
+                        withStatus:self.order.statusClose
+                           success:^
+     {
+         [[AppDelegate instance] hideLoadingView];
+         
+         [self back:nil];
+         
+     } failure:^(NSError *error, NSInteger code) {
+         
+         [[AppDelegate instance] hideLoadingView];
+         switch (code) {
+             case 403: [Utilities showErrorMessage:NSLocalizedString(@"msg.error.403", nil) target:self]; break;
+             case 404: [Utilities showErrorMessage:NSLocalizedString(@"msg.error.updateOrder.404", nil) target:self]; break;
+             case 409: [Utilities showErrorMessage:NSLocalizedString(@"msg.error.updateOrder.409", nil) target:self]; break;
+             default:
+                 [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
+                 break;
+         }
+     }];
 }
 
 //#pragma mark - CHCircleGaugeView
