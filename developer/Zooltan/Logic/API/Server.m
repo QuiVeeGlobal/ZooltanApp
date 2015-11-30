@@ -895,7 +895,7 @@ NSString *URLMethod(NSString *rout) {
     //adress = [NSString stringWithFormat:@"street=Govorova"];
 
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-    filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    filter.type = kGMSPlacesAutocompleteTypeFilterNoFilter;
     
 //    //25.388982, 55.510278
 //    //24.995920, 55.057638
