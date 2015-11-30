@@ -49,11 +49,12 @@
 @property (nonatomic, weak) IBOutlet UILabel *passwordTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *nPasswordTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *repeatPasswordTitleLabel;
+
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordLabelHeigh;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordTextFieldHeigh;
-@property (strong, nonatomic) IBOutlet UIView *passwordButtomLineView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordLabelTop;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *passwordTextFieldTop;
+@property (strong, nonatomic) IBOutlet UIView *passwordButtomLineView;
 
 @end
 
@@ -309,13 +310,9 @@
                                              [self updateImageProfileFromFb:userModel.avatarURL];
                                          }];
                                          
-                                 } failure:^(NSError *error, NSInteger code) {
-                                    
-                                 }];
+                                 } failure:^(NSError *error, NSInteger code) {}];
         
-    } failure:^(NSError *error, NSString *status) {
-        
-    }];
+    } failure:^(NSError *error, NSString *status) {}];
 }
 
 - (IBAction)statisticAction:(UIButton *)sender

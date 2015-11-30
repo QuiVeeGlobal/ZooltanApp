@@ -698,10 +698,11 @@ NSString *URLMethod(NSString *rout) {
     NSString *method = @"profile/logo";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"token"] = NIL_TO_NULL([[Settings instance] token]);
+    //param[@"token"] = NIL_TO_NULL([[Settings instance] token]);
     
     PRTParameters(param, URLMethod(method));
     
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
     [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *imageData = UIImagePNGRepresentation(image);
         if (imageData)
