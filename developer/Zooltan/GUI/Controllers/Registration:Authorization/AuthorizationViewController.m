@@ -43,6 +43,17 @@
     
     if (IS_COURIER_APP)
         self.enterWithFB.hidden = YES;
+    
+#ifdef DEBUG
+    if (IS_CUSTOMER_APP) {
+        self.phoneField.text = @"+380 93 2664 344";
+        self.passField.text = @"qwerty";
+    } else {
+        self.phoneField.text = @"+380 93 2664 343";
+        self.passField.text = @"qwerty";
+    }
+#endif
+    
 }
 
 - (void)viewDidLayoutSubviews

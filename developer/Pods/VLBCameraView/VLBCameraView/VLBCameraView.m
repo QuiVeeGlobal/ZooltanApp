@@ -160,11 +160,18 @@ VLBCameraViewInit const VLBCameraViewInitBlock = ^(VLBCameraView *cameraView){
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     
     if(error){
-        [NSException raise:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
-                    format:[error localizedDescription], nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                        message:[error localizedDescription]
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
     
-    [self.session addInput:deviceInput];
+    if ([self.session canAddInput:deviceInput])
+    {
+        [self.session addInput:deviceInput];
+    }
     
     self.stillImageOutput = [AVCaptureStillImageOutput new];
     [self.session addOutput:self.stillImageOutput];
