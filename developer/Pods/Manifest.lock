@@ -21,6 +21,9 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CocoaLumberjack (1.6.2)
+  - EAIntroView (2.7.4):
+    - EARestrictedScrollView (~> 0.2.0)
+  - EARestrictedScrollView (0.2.0)
   - Google/Analytics (1.2.1):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -47,6 +50,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - EAIntroView
   - Google/Analytics
   - GoogleMaps
   - MoABContactsManager
@@ -56,6 +60,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: 38fa640b1467deaf665b3f7b3b08f837b55c9660
+  EAIntroView: 50b85eedf414260e61330070ffe5947e72493a62
+  EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   Google: fd33b5fa40fa3aaee5176de49c873a74e3d11dce
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03

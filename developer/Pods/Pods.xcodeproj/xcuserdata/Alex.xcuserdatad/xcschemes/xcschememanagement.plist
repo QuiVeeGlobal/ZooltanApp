@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EAIntroView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EARestrictedScrollView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MoABContactsManager-MoABContactsManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +52,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>002E9BAA1D2AA02228A57EDECEA6506F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1F17B0696B72D3F440BE3892B3B78565</key>
+		<key>3B3935B24F59296BAB94A6E413071EC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +62,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>490849C4A941DD5C281B64B5099871FA</key>
+		<key>488A77D94DBEE8D47A05A3DB79B0FF5B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60C8D161C545097CA3C73B5A2DB181F1</key>
+		<key>5A5112D059C4636C33840C64145136DA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>851D216FF51CCC703092FE0E0E86A15B</key>
+		<key>9EF67E7520CA005513D4C42F8D763865</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E0C025C23DC59D30BE1C81F02C073AA</key>
+		<key>B70A2BD7644447EC648B276CB86B59FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9A16ABBBC9968D8F0F47367B7822DF6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E619E165046C0C6C87B890BDA5204094</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED280C521D86B3EDD0C782FF54D74BE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

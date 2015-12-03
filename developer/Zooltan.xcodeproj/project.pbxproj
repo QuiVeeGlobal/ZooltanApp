@@ -1216,7 +1216,7 @@
 		67F1AC441B38448C00C76F75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA79268B1BF4A588004E6FC0 /* PaackagePhoto */,
+				FA79268B1BF4A588004E6FC0 /* PackagePhoto */,
 				444B57BB1BD624BF00A8C394 /* Contacts */,
 				446EDE811BB542CC00FA13CD /* Statistic */,
 				446389191B9EC7C7008B4B0B /* Package */,
@@ -1377,7 +1377,7 @@
 			name = PrivacyPolicy;
 			sourceTree = "<group>";
 		};
-		FA79268B1BF4A588004E6FC0 /* PaackagePhoto */ = {
+		FA79268B1BF4A588004E6FC0 /* PackagePhoto */ = {
 			isa = PBXGroup;
 			children = (
 				FA79268C1BF4A5B0004E6FC0 /* PackagePhotoViewController.h */,
@@ -1385,7 +1385,7 @@
 				FAC127811BF66BF600128F6F /* PhotoViewerViewController.h */,
 				FAC127821BF66BF600128F6F /* PhotoViewerViewController.m */,
 			);
-			name = PaackagePhoto;
+			name = PackagePhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

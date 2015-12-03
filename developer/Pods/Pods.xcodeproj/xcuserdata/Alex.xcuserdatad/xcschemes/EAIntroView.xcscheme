@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F7E938EB6E5703B9E1A4E60A"
-               BuildableName = "libVLBCameraView.a"
-               BlueprintName = "VLBCameraView"
+               BlueprintIdentifier = "DD5533584986D52F1F64C063"
+               BuildableName = "libEAIntroView.a"
+               BlueprintName = "EAIntroView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
