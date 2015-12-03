@@ -270,6 +270,8 @@
 		67F81B591B43FD0900D0A2DF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F81B581B43FD0900D0A2DF /* BaseViewController.m */; };
 		67F81B5D1B43FD3C00D0A2DF /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F81B5C1B43FD3C00D0A2DF /* CreateViewController.m */; };
 		EE3673F6E19DA81BB1CDF9BA /* libPods-Zooltan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686D207296239E7371A3B610 /* libPods-Zooltan.a */; };
+		FA434E5A1C10F3D4001D194A /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA434E591C10F3D4001D194A /* TutorialViewController.m */; };
+		FA434E5B1C10F3D4001D194A /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA434E591C10F3D4001D194A /* TutorialViewController.m */; };
 		FA4FA2E01B970299005B7229 /* CourierHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */; };
 		FA4FA2E31B970341005B7229 /* CourierHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2E21B970341005B7229 /* CourierHistoryCell.m */; };
 		FA5045801BE774190032EF74 /* Courier.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446389001B958E7E008B4B0B /* Courier.storyboard */; };
@@ -549,6 +551,8 @@
 		9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zooltan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zooltan/Pods-Zooltan.release.xcconfig"; sourceTree = "<group>"; };
 		DC4634756D25B5995CC877FA /* Pods-Zooltan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zooltan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zooltan/Pods-Zooltan.debug.xcconfig"; sourceTree = "<group>"; };
 		FA3EEE5B1C03B3C700ED1E48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FA434E581C10F3D4001D194A /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController.h; path = Tutorial/TutorialViewController.h; sourceTree = "<group>"; };
+		FA434E591C10F3D4001D194A /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = Tutorial/TutorialViewController.m; sourceTree = "<group>"; };
 		FA4FA2DE1B970299005B7229 /* CourierHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryViewController.h; sourceTree = "<group>"; };
 		FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierHistoryViewController.m; sourceTree = "<group>"; };
 		FA4FA2E11B970341005B7229 /* CourierHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryCell.h; sourceTree = "<group>"; };
@@ -1216,6 +1220,7 @@
 		67F1AC441B38448C00C76F75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA434E571C10F3B9001D194A /* Tutorial */,
 				FA79268B1BF4A588004E6FC0 /* PackagePhoto */,
 				444B57BB1BD624BF00A8C394 /* Contacts */,
 				446EDE811BB542CC00FA13CD /* Statistic */,
@@ -1337,6 +1342,15 @@
 				9E7EB21F6CEC09160380F102 /* Pods-Zooltan.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA434E571C10F3B9001D194A /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				FA434E581C10F3D4001D194A /* TutorialViewController.h */,
+				FA434E591C10F3D4001D194A /* TutorialViewController.m */,
+			);
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		FA6F0A441C03D81100FD1D31 /* BLMultiColorLoader */ = {
@@ -1641,6 +1655,7 @@
 			files = (
 				FA74C6861BFA421900CA8E3C /* TermsViewController.m in Sources */,
 				446388811B958E04008B4B0B /* PlaceModel.m in Sources */,
+				FA434E5B1C10F3D4001D194A /* TutorialViewController.m in Sources */,
 				FA74C6821BFA420400CA8E3C /* PolicyViewController.m in Sources */,
 				1E271CEE1BAFFC0D00914CDC /* RoutModel.m in Sources */,
 				1E271D101BB0DBEB00914CDC /* AsyncHTTPConnection.m in Sources */,
@@ -1790,6 +1805,7 @@
 				67F81B5D1B43FD3C00D0A2DF /* CreateViewController.m in Sources */,
 				67B7E5051B4EA80A0023D485 /* DeliveryCell.m in Sources */,
 				67D679321B38241C006F5578 /* Fonts.m in Sources */,
+				FA434E5A1C10F3D4001D194A /* TutorialViewController.m in Sources */,
 				67D679061B3823C3006F5578 /* NSSet+Additions.m in Sources */,
 				675CC7031B6BD5A4009DE725 /* CHCircleGaugeView.m in Sources */,
 				446EDE841BB542E500FA13CD /* StatisticViewController.m in Sources */,

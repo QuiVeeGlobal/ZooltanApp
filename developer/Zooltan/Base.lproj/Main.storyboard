@@ -4113,6 +4113,41 @@
             </objects>
             <point key="canvasLocation" x="-1491" y="2079"/>
         </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="XYa-hN-DQA">
+            <objects>
+                <viewController storyboardIdentifier="TutorialViewController" id="XVR-2R-cbh" customClass="TutorialViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MEw-56-hUt"/>
+                        <viewControllerLayoutGuide type="bottom" id="njk-LV-leX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qtp-es-yvs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AqV-hW-gIs" customClass="EAIntroView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AqV-hW-gIs" firstAttribute="leading" secondItem="Qtp-es-yvs" secondAttribute="leading" id="5Oi-jv-bOF"/>
+                            <constraint firstItem="njk-LV-leX" firstAttribute="top" secondItem="AqV-hW-gIs" secondAttribute="bottom" id="GPg-as-RYI"/>
+                            <constraint firstItem="AqV-hW-gIs" firstAttribute="top" secondItem="Qtp-es-yvs" secondAttribute="top" id="aco-Wh-R7I"/>
+                            <constraint firstAttribute="trailing" secondItem="AqV-hW-gIs" secondAttribute="trailing" id="rNk-gJ-oxX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tutorialView" destination="AqV-hW-gIs" id="bai-Ze-SmS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vrF-7w-UFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2154" y="30"/>
+        </scene>
         <!--New Password View Controller-->
         <scene sceneID="5Lh-X3-NDP">
             <objects>
@@ -4288,7 +4323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3s-EM-ZIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2154" y="699"/>
+            <point key="canvasLocation" x="-2154" y="715"/>
         </scene>
         <!--Package Photo View Controller-->
         <scene sceneID="IXs-Ni-ZRa">

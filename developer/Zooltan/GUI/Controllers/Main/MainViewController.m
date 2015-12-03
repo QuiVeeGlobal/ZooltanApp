@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import "AuthorizationViewController.h"
 #import "RegistrationViewController.h"
-#import "CreateViewController.h"
 #import "PackagePhotoViewController.h"
 #import "DeliveryCell.h"
 
@@ -28,8 +27,12 @@
 {
     [super viewDidLoad];
     
-    if (![[Settings instance] token] || [[[Settings instance] token] isEqualToString:@""])
-        [self showLoginView];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLaunch"])
+        [self showTutorialView];
+    else {
+        if (![[Settings instance] token] || [[[Settings instance] token] isEqualToString:@""])
+            [self showLoginView];
+    }
     
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -67,9 +70,6 @@
 
 - (IBAction)create:(id)sender
 {
-//    CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-//    [self.navigationController pushViewController:createViewController animated:YES];
-    
     PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self.navigationController pushViewController:ctr animated:YES];
 }

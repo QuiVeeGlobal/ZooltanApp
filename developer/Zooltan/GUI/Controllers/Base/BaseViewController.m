@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "CreateViewController.h"
 #import "ProfileViewController.h"
+#import "TutorialViewController.h"
 
 @interface BaseViewController () <UIScrollViewDelegate>
 {
@@ -104,8 +105,22 @@
 {
     STLogMethod;
     
-    AuthorizationViewController *authorizationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AuthorizationViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authorizationViewController];
+    AuthorizationViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"AuthorizationViewController"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:ctr];
+    navigationController.navigationBar.hidden = YES;
+    [self presentViewController:navigationController
+                       animated:NO
+                     completion:nil];
+}
+
+#pragma mark - Open Tutorial
+
+- (void)showTutorialView
+{
+    STLogMethod;
+    
+    TutorialViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:ctr];
     navigationController.navigationBar.hidden = YES;
     [self presentViewController:navigationController
                        animated:NO

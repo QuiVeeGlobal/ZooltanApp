@@ -101,13 +101,13 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:[Constants currentStoryboardName]
                                                          bundle:nil];
+    
     if (IS_CUSTOMER_APP)
         self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
     else
         self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
     
     [self.navigation setViewControllers:@[self.mainView]];
-    
     
     self.navigation = [[BaseNavigationCtrl alloc] initWithRootViewController:self.mainView];
     self.navigation.navigationBarHidden = YES;

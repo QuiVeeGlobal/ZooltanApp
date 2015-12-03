@@ -32,5 +32,6 @@
 - (IBAction)actionLeftMenu:(id)sender;
 
 - (void)showLoginView;
+- (void)showTutorialView;
 
 @end
