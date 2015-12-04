@@ -26,7 +26,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic,strong) CLLocation *currentLocation;
-@property (nonatomic,strong) CLLocationManager  *locationManager;
+@property (nonatomic,strong) CLLocationManager *locationManager;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) BaseNavigationCtrl *rootNavigationCtrl;

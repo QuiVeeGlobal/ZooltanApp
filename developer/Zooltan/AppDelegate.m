@@ -91,8 +91,6 @@
     [[Logger instance] start];
     [[Logger instance] setLevelMask:LoggerLevelAll];
     
-    [Utilities getAllContacts];
-    
     //Window
     self.navigation = (BaseNavigationCtrl *)self.window.rootViewController;
     self.navigation.navigationBarHidden = YES;
@@ -199,26 +197,9 @@
 
 #pragma mark - CLLocationManager Delegates
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-   self.currentLocation = locations.lastObject;
-
-//    [[Server instance] GMSCurrentPlaceSuccess:^(NSArray *places) {
-//        //
-//        PlaceModel *place = places.firstObject;
-//        self.currentAdrees = place.formatted_address;
-//        self.currentLocation = [[CLLocation alloc] initWithLatitude:place.location.latitude
-//                                                          longitude:place.location.longitude];
-//
-//        
-//        
-//        
-//        STLogDebug(@"[%@] - %@",self.currentLocation,self.currentAdrees);
-//        
-//    } failure:nil];
-    
-    
-    //STLogDebug(@"longitude:%f latitude:%f", self.currentLocation.coordinate.longitude, self.currentLocation.coordinate.latitude);
+    self.currentLocation = locations.lastObject;
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     

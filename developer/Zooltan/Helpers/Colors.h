@@ -38,4 +38,9 @@
 
 + (UIColor *)blueTextColor;
 
+// History Cell Background Colors
++ (UIColor *)lightGreenColor;
++ (UIColor *)lightYellowColor;
++ (UIColor *)lightRedColor;
+
 @end

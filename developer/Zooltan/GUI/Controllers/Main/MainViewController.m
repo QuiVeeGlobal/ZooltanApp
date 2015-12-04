@@ -27,12 +27,8 @@
 {
     [super viewDidLoad];
     
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLaunch"])
-        [self showTutorialView];
-    else {
-        if (![[Settings instance] token] || [[[Settings instance] token] isEqualToString:@""])
-            [self showLoginView];
-    }
+    if (![[Settings instance] token] || [[[Settings instance] token] isEqualToString:@""])
+        [self showLoginView];
     
     self.navigationController.navigationBar.hidden = YES;
 }

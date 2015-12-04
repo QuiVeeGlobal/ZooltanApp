@@ -16,14 +16,6 @@
 + (UIColor *) fbBlueColor        { return [self colorWithHexString:@"#163b8e"]; }
 + (UIColor *) lightGreyColor     { return [self colorWithHexString:@"#403f3d"]; }
 
-
-
-
-
-
-
-
-
 + (UIColor *)viewColor { return [self colorWithHexString:@"#f18700"]; }
 
 + (UIColor *)toolBarColor { return [self colorWithHexString:@"#659a15"]; }
@@ -46,6 +38,9 @@
 
 + (UIColor *)blueTextColor  { return [self colorWithHexString:@"#7AD9ED"]; }
 
-
+// History Cell Background Colors
++ (UIColor *)lightGreenColor     { return [self colorWithHexString:@"#adffb7"]; }
++ (UIColor *)lightYellowColor    { return [self colorWithHexString:@"#ffdc98"]; }
++ (UIColor *)lightRedColor       { return [self colorWithHexString:@"#ff8c97"]; }
 
 @end

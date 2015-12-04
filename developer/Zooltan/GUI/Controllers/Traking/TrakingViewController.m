@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *callCourierButton;
 
 @property (weak, nonatomic) IBOutlet UIView *packageView;
+@property (weak, nonatomic) IBOutlet UIView *blurView;
 @property (weak, nonatomic) IBOutlet UIImageView *packageImageView;
 @property (weak, nonatomic) IBOutlet UILabel *packageTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *activityView;
@@ -87,6 +88,7 @@
     
     [self getOrderData];
     [self setMapView];
+    [self startLoader];
     
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
@@ -132,8 +134,8 @@
     }
     
     if (!self.packageImageView.image) {
-        self.activityView.hidden = YES;
-        self.packageTitleLabel.hidden = YES;
+        self.blurView.hidden = YES;
+        self.packageView.backgroundColor = [Colors yellowColor];
     }
 }
 
@@ -260,7 +262,6 @@
         self.packageImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.activityView.hidden = NO;
         self.packageTitleLabel.hidden = NO;
-        [self startLoader];
         
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {}];
 }
@@ -270,7 +271,7 @@
 
 - (void)startLoader
 {
-    self.loaderView.lineWidth = 2.5;
+    self.loaderView.lineWidth = 2.7;
     self.loaderView.colorArray = @[[Colors yellowColor]];
     [self.loaderView startAnimation];
 }

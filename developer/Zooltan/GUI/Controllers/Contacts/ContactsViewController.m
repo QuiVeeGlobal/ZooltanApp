@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    [Utilities getAllContacts];
+    
     [[MoABContactsManager sharedManager] setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES]]];
     [[MoABContactsManager sharedManager] setFieldsMask:MoContactFieldFirstName | MoContactFieldLastName | MoContactFieldPhones | MoContactFieldThumbnailProfilePicture | MoContactFieldAddress];
     [[MoABContactsManager sharedManager] setDelegate:self];

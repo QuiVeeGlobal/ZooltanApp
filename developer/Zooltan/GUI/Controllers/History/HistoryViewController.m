@@ -194,6 +194,15 @@
     if ([order.size isEqualToString:@"BIG_BOX"])
         cell.packageImage.image = [UIImage imageNamed:@"BigBoxIcon"];
     
+    if (order.orderStatus == OrderStatusNew)
+        cell.bgView.backgroundColor = [Colors lightBlueColor];
+    else if (order.orderStatus == OrderStatusProgress)
+        cell.bgView.backgroundColor = [Colors lightYellowColor];
+    else if (order.orderStatus == OrderStatusClose)
+        cell.bgView.backgroundColor = [Colors lightRedColor];
+    else
+        cell.bgView.backgroundColor = [Colors lightGreenColor];
+    
     return cell;
 }
 

@@ -12,6 +12,7 @@
 #import "PackageViewController.h"
 #import "CourierHistoryViewController.h"
 #import "PackagePhotoViewController.h"
+#import "TutorialViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -24,6 +25,7 @@ typedef enum : NSUInteger {
     MenuCellTypeProfile,
     MenuCellTypeInfo,
     MenuCellTypeAbout,
+    MEnuCellTypeTutorial,
     MenuCellTypeLogout,
     MenuCellTypeSendNew,
 } MenuCellType;
@@ -44,6 +46,7 @@ typedef enum : NSUInteger {
         case MenuCellTypeProfile:   return NSLocalizedString(@"ctrl.menu.profile", nil);
         case MenuCellTypeInfo:      return NSLocalizedString(@"ctrl.menu.info", nil);
         case MenuCellTypeAbout:     return NSLocalizedString(@"ctrl.menu.about", nil);
+        case MEnuCellTypeTutorial:  return NSLocalizedString(@"ctrl.menu.tutorial", nil);
         case MenuCellTypeLogout:    return NSLocalizedString(@"ctrl.menu.logout", nil);
         case MenuCellTypeSendNew:   return NSLocalizedString(@"ctrl.menu.sendNew", nil);
         default: return @"";
@@ -61,7 +64,8 @@ typedef enum : NSUInteger {
                  @(MenuCellTypeInfo),
                  @(MenuCellTypeAbout),
                  @(MenuCellTypeLogout),
-                 @(MenuCellTypeDeliveres)];
+                 @(MenuCellTypeDeliveres),
+                 @(MEnuCellTypeTutorial)];
         
     } else {
         
@@ -70,7 +74,8 @@ typedef enum : NSUInteger {
                  @(MenuCellTypeProfile),
                  @(MenuCellTypeInfo),
                  @(MenuCellTypeLogout),
-                 @(MenuCellTypeDeliveres)];
+                 @(MenuCellTypeDeliveres),
+                 @(MEnuCellTypeTutorial)];
     }
     return array;
 }
@@ -201,6 +206,7 @@ typedef enum : NSUInteger {
         case MenuCellTypeAbout:     [self showAboutUs]; break;
         case MenuCellTypeLogout:    [self logout]; break;
         case MenuCellTypeSendNew:   [self showCreateDeliveries]; break;
+        case MEnuCellTypeTutorial:  [self showTutorial]; break;
         default: break;
     }
 }
@@ -241,6 +247,12 @@ typedef enum : NSUInteger {
     [self openController:ctr];
 }
 
+- (void) showTutorial
+{
+    TutorialViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
+    [self openController:ctr];
+}
+
 - (void) logout
 {
     UserModel *userModel = [UserModel new];
@@ -264,8 +276,6 @@ typedef enum : NSUInteger {
 
 - (void) showCreateDeliveries
 {
-//    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-//    [self openController:ctr];
     PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self openController:ctr];
 }

@@ -11,9 +11,9 @@
 #import "MenuViewController.h"
 #import "CreateViewController.h"
 #import "ProfileViewController.h"
-#import "TutorialViewController.h"
+#import "EAIntroView.h"
 
-@interface BaseViewController () <UIScrollViewDelegate>
+@interface BaseViewController () <UIScrollViewDelegate, EAIntroDelegate>
 {
     UIBezierPath *navigationBarShadowPath;
     BaseViewController *destinationViewController;
@@ -29,25 +29,6 @@
 {
     STLogMethod;
     
-    // Configure Background ViewController Color
-    //self.view.backgroundColor = [Colors backgroundColor];
-    //
-    //[self.navigationBar setShadowImage:[UIImage new]];
-    //[self.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_navbar"] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    
-    // Configure navigationBar buttons
-    //self.menuButton.tintColor = [Colors greenColor];
-    //self.backButton.tintColor = [Colors greenColor];
-    
-    // Configure navigationBar shadow
-    //navigationBarShadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, self.navigationBar.height, self.navigationBar.width, 1) cornerRadius:1];
-    //[self.navigationBar.layer setShadowColor:[UIColor blackColor].CGColor];
-    
-    // Configure navigationBar
-    //[self.navigationBar setBackgroundColor:[Colors yellowColor]];
-    //[self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [Colors blackColor],
-    //                                                 NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]}];
-    
     // Configure Tap Gesture for close keyboards
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(closeKeyboards)];
@@ -59,11 +40,6 @@
     [super viewDidLoad];
     
     self.screenName = self.className;
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(enteredIntoApp)
-//                                                 name:showCenterView
-//                                               object:nil];
     
     // Configure view
     [self configureView];
@@ -117,14 +93,36 @@
 
 - (void)showTutorialView
 {
-    STLogMethod;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    TutorialViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:ctr];
-    navigationController.navigationBar.hidden = YES;
-    [self presentViewController:navigationController
-                       animated:NO
-                     completion:nil];
+    EAIntroPage *page1 = [EAIntroPage page];
+    page1.title = @"This is page 1";
+    page1.bgImage = [UIImage imageNamed:@"bg1"];
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    page2.title = @"This is page 2";
+    page2.bgImage = [UIImage imageNamed:@"bg2"];
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    page3.title = @"This is page 3";
+    page3.bgImage = [UIImage imageNamed:@"bg3"];
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    page4.bgImage = [UIImage imageNamed:@"bg4"];
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1, page2, page3, page4]];
+    [intro.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [intro setDelegate:self];
+    
+    [intro showInView:self.view animateDuration:0.3];
+}
+
+#pragma mark - EAIntroView delegate
+
+- (void)introDidFinish:(EAIntroView *)introView
+{
+    NSLog(@"tutorialDidFinish callback");
 }
 
 #pragma mark -
@@ -166,27 +164,6 @@
 - (IBAction) closeAction:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction) showMenuAction:(id)sender
-{
-    ProfileViewController *menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:menuViewController];
-    navigationController.navigationBar.hidden = YES;
-    [self presentViewController:navigationController
-                       animated:YES
-                     completion:nil];
-}
-
-- (IBAction) addAction:(id)sender
-{
-    CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-    [self.navigationController pushViewController:createViewController animated:YES];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:createViewController];
-//    navigationController.navigationBar.hidden = YES;
-//    [self presentViewController:navigationController
-//                       animated:YES
-//                     completion:nil];
 }
 
 #pragma mark - KeyboardNotifications

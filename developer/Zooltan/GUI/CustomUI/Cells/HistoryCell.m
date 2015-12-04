@@ -25,7 +25,7 @@
 //    self.pickedUpTitle.text = NSLocalizedString(@"ctrl.history.cell.pickedUp", nil);
 //    self.deliveredTitle.text = NSLocalizedString(@"ctrl.history.cell.delivered", nil);
 
-    self.bgView.backgroundColor = [Colors lightBlueColor];
+//    self.bgView.backgroundColor = [Colors lightBlueColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

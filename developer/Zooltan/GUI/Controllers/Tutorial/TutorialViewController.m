@@ -7,12 +7,12 @@
 //
 
 #import "TutorialViewController.h"
-#import "AuthorizationViewController.h"
 #import "EAIntroView.h"
 
 @interface TutorialViewController () <EAIntroDelegate>
 
-@property (nonatomic, weak) IBOutlet EAIntroView *tutorialView;
+@property (nonatomic, weak) IBOutlet EAIntroView *introView;
+@property (nonatomic, strong) EAIntroView *intro;
 
 @end
 
@@ -21,9 +21,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = @"This is page 1";
@@ -40,11 +37,11 @@
     EAIntroPage *page4 = [EAIntroPage page];
     page4.bgImage = [UIImage imageNamed:@"bg4"];
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.tutorialView.bounds andPages:@[page1, page2, page3, page4]];
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1, page2, page3, page4]];
     [intro.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
     [intro setDelegate:self];
     
-    [intro showInView:self.tutorialView animateDuration:0.3];
+    [intro showInView:self.view animateDuration:0.3];
 }
 
 #pragma mark - EAIntroView delegate
@@ -53,8 +50,7 @@
 {
     NSLog(@"tutorialDidFinish callback");
     
-    AuthorizationViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"AuthorizationViewController"];
-    [self presentViewController:ctr animated:YES completion:nil];
+    [self actionLeftMenu:nil];
 }
 
 - (void)didReceiveMemoryWarning {

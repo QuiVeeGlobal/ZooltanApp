@@ -100,6 +100,7 @@
 "ctrl.menu.profile"                          = "PROFILE";
 "ctrl.menu.info"                             = "INFORMATION";
 "ctrl.menu.about"                            = "ABOUT US";
+"ctrl.menu.tutorial"                         = "TUTORIAL";
 "ctrl.menu.logout"                           = "LOG OUT";
 "ctrl.menu.sendNew"                          = "SEND NEW";
 
