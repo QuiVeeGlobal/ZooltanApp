@@ -7,21 +7,8 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="OPENSANS-LIGHT.TTF">
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-        </mutableArray>
         <mutableArray key="OPENSANS-REGULAR.TTF">
+            <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -146,6 +133,20 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Light_0.ttf">
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -3105,10 +3106,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="3ij-bf-Dd9"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="FWH-QV-4xZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSs-rT-14f">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSs-rT-14f">
                                 <rect key="frame" x="175" y="150" width="250" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3124,10 +3125,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="uRm-hF-A36"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="aHF-0M-tQQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-yQ-Zjl">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-yQ-Zjl">
                                 <rect key="frame" x="175" y="210" width="250" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3143,10 +3144,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="hPq-xQ-egE"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="cS2-XX-gYB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHR-Vp-3XV">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHR-Vp-3XV">
                                 <rect key="frame" x="175" y="270" width="250" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3162,10 +3163,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="k22-PQ-fUD"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="RX8-Ml-bwe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqx-VK-5gd" userLabel="TUTORIAL">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqx-VK-5gd" userLabel="TUTORIAL">
                                 <rect key="frame" x="175" y="330" width="250" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3181,7 +3182,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="8NK-N1-4ZZ"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="Sh7-5y-z2r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9O-fe-uRk">
@@ -3200,7 +3201,35 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="Vhg-1A-ucC"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="f62-Sn-BQp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTIONS?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21X-lB-mH8">
+                                <rect key="frame" x="200" y="460" width="200" height="20"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="J2d-Ah-MHO"/>
+                                    <constraint firstAttribute="height" constant="20" id="Y9f-YO-3TB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCT-oS-UeN">
+                                <rect key="frame" x="200" y="500" width="200" height="35"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.97254901959999995" green="0.52549019610000003" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Nvc-0C-FvX"/>
+                                    <constraint firstAttribute="height" constant="35" id="br9-GZ-uQc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                <state key="normal" title="CALL SUPPORT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="callSupportAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="5I7-VD-xCh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2R-Ak-Rh7">
@@ -3217,26 +3246,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="9ng-e6-xVg"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A26-Lo-hM4">
-                                <rect key="frame" x="175" y="150" width="250" height="40"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="6wO-bs-lLk"/>
-                                    <constraint firstAttribute="height" constant="40" id="V00-W6-zSA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                                <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="EXPENSE" image="banknote">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="Yt5-CZ-46n"/>
+                                    <action selector="catgoryAction:" destination="xgY-PW-yOp" eventType="touchUpInside" id="DsI-Py-Iyq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3244,6 +3254,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oqx-VK-5gd" firstAttribute="centerX" secondItem="cho-dr-119" secondAttribute="centerX" id="1SY-7P-zbp"/>
+                            <constraint firstItem="kCT-oS-UeN" firstAttribute="top" secondItem="21X-lB-mH8" secondAttribute="bottom" constant="20" id="5eb-yb-5ll"/>
                             <constraint firstAttribute="centerX" secondItem="J2g-yQ-Zjl" secondAttribute="centerX" id="6sA-Gf-uK3"/>
                             <constraint firstItem="GPr-sk-1yL" firstAttribute="top" secondItem="fzd-jk-eke" secondAttribute="bottom" constant="90" id="Ccz-CW-JN7"/>
                             <constraint firstItem="oqx-VK-5gd" firstAttribute="top" secondItem="SHR-Vp-3XV" secondAttribute="bottom" constant="20" id="DZw-n6-rds"/>
@@ -3255,14 +3266,15 @@
                             <constraint firstItem="ZZf-Yo-4bm" firstAttribute="leading" secondItem="cho-dr-119" secondAttribute="leading" id="SKk-OC-DDC"/>
                             <constraint firstItem="iqE-AO-Ybi" firstAttribute="top" secondItem="ZZf-Yo-4bm" secondAttribute="bottom" id="UsT-5C-fjk"/>
                             <constraint firstItem="X9O-fe-uRk" firstAttribute="top" secondItem="oqx-VK-5gd" secondAttribute="bottom" constant="20" id="cSq-ll-v6g"/>
-                            <constraint firstAttribute="centerX" secondItem="A26-Lo-hM4" secondAttribute="centerX" id="cj1-0v-F2U"/>
+                            <constraint firstItem="kCT-oS-UeN" firstAttribute="centerX" secondItem="cho-dr-119" secondAttribute="centerX" id="dkj-0h-ekk"/>
                             <constraint firstItem="J2g-yQ-Zjl" firstAttribute="top" secondItem="XSs-rT-14f" secondAttribute="bottom" constant="20" id="gUg-vY-Jai"/>
+                            <constraint firstItem="Y2R-Ak-Rh7" firstAttribute="top" secondItem="kCT-oS-UeN" secondAttribute="bottom" constant="20" id="jFW-7k-h4r"/>
                             <constraint firstAttribute="centerX" secondItem="Y2R-Ak-Rh7" secondAttribute="centerX" id="jhl-OR-bfl"/>
                             <constraint firstItem="iqE-AO-Ybi" firstAttribute="top" secondItem="Y2R-Ak-Rh7" secondAttribute="bottom" constant="10" id="kAT-i9-B5I"/>
+                            <constraint firstItem="21X-lB-mH8" firstAttribute="centerX" secondItem="cho-dr-119" secondAttribute="centerX" id="nGJ-GW-uDC"/>
                             <constraint firstAttribute="centerX" secondItem="GPr-sk-1yL" secondAttribute="centerX" id="nRg-Kn-Trf"/>
                             <constraint firstAttribute="centerX" secondItem="XSs-rT-14f" secondAttribute="centerX" id="oGO-bI-gGY"/>
                             <constraint firstItem="ZZf-Yo-4bm" firstAttribute="top" secondItem="fzd-jk-eke" secondAttribute="bottom" id="qqA-PW-hJb"/>
-                            <constraint firstItem="A26-Lo-hM4" firstAttribute="top" secondItem="GPr-sk-1yL" secondAttribute="bottom" constant="20" id="t0a-zY-Jtd"/>
                             <constraint firstItem="XSs-rT-14f" firstAttribute="top" secondItem="GPr-sk-1yL" secondAttribute="bottom" constant="20" id="tOS-cR-bkZ"/>
                         </constraints>
                         <variation key="default">
@@ -3273,13 +3285,16 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="callSupport" destination="kCT-oS-UeN" id="65R-0v-d1M"/>
+                        <outlet property="questions" destination="21X-lB-mH8" id="9UD-8q-8ho"/>
                         <outlet property="sendNew" destination="Y2R-Ak-Rh7" id="X8h-wt-nff"/>
-                        <outletCollection property="buttons" destination="GPr-sk-1yL" id="Tq4-4r-yNr"/>
-                        <outletCollection property="buttons" destination="A26-Lo-hM4" id="R9T-je-ywJ"/>
-                        <outletCollection property="buttons" destination="XSs-rT-14f" id="T1B-oG-kCR"/>
-                        <outletCollection property="buttons" destination="J2g-yQ-Zjl" id="trf-Ve-oKy"/>
-                        <outletCollection property="buttons" destination="SHR-Vp-3XV" id="l49-nb-L8I"/>
-                        <outletCollection property="buttons" destination="X9O-fe-uRk" id="cM4-IR-VAe"/>
+                        <outletCollection property="buttons" destination="GPr-sk-1yL" id="ekQ-Jx-trg"/>
+                        <outletCollection property="buttons" destination="XSs-rT-14f" id="3ly-P7-xJX"/>
+                        <outletCollection property="buttons" destination="J2g-yQ-Zjl" id="saf-Kc-pzm"/>
+                        <outletCollection property="buttons" destination="SHR-Vp-3XV" id="dYj-y3-AkU"/>
+                        <outletCollection property="buttons" destination="oqx-VK-5gd" id="jb7-lz-tJZ"/>
+                        <outletCollection property="buttons" destination="X9O-fe-uRk" id="NR9-tB-KKc"/>
+                        <outletCollection property="buttons" destination="Y2R-Ak-Rh7" id="veK-dl-kWS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHe-zU-Gob" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5389,7 +5404,6 @@
         <image name="archive2" width="14" height="13"/>
         <image name="archiveIcon" width="11" height="11"/>
         <image name="backBtn" width="20" height="17"/>
-        <image name="banknote" width="18" height="19"/>
         <image name="banknoteIcon" width="15" height="15"/>
         <image name="cameraFlashBtn" width="13" height="19"/>
         <image name="closeBtn" width="11" height="11"/>

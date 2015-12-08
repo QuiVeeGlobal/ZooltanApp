@@ -21,7 +21,6 @@
 typedef enum : NSUInteger {
     MenuCellTypeDeliveres,
     MenuCellTypePickupList,
-    MenuCellTypeExpense,
     MenuCellTypeProfile,
     MenuCellTypeInfo,
     MenuCellTypeAbout,
@@ -42,7 +41,6 @@ typedef enum : NSUInteger {
     switch (type) {
         case MenuCellTypeDeliveres: return NSLocalizedString(@"ctrl.menu.deliveres", nil);
         case MenuCellTypePickupList:return NSLocalizedString(@"ctrl.menu.pickupList", nil);
-        case MenuCellTypeExpense:   return NSLocalizedString(@"ctrl.menu.expense", nil);
         case MenuCellTypeProfile:   return NSLocalizedString(@"ctrl.menu.profile", nil);
         case MenuCellTypeInfo:      return NSLocalizedString(@"ctrl.menu.info", nil);
         case MenuCellTypeAbout:     return NSLocalizedString(@"ctrl.menu.about", nil);
@@ -59,23 +57,20 @@ typedef enum : NSUInteger {
     if (IS_COURIER_APP) {
         
         return @[@(MenuCellTypeDeliveres),
-                 @(MenuCellTypeExpense),
                  @(MenuCellTypeProfile),
                  @(MenuCellTypeInfo),
-                 @(MenuCellTypeAbout),
-                 @(MenuCellTypeLogout),
-                 @(MenuCellTypeDeliveres),
-                 @(MEnuCellTypeTutorial)];
+                 @(MEnuCellTypeTutorial),
+                 @(MenuCellTypeLogout)];
         
     } else {
         
         return @[@(MenuCellTypePickupList),
-                 @(MenuCellTypeDeliveres),
                  @(MenuCellTypeProfile),
                  @(MenuCellTypeInfo),
+                 @(MenuCellTypeAbout),
+                 @(MEnuCellTypeTutorial),
                  @(MenuCellTypeLogout),
-                 @(MenuCellTypeDeliveres),
-                 @(MEnuCellTypeTutorial)];
+                 @(MenuCellTypeSendNew)];
     }
     return array;
 }
@@ -84,10 +79,13 @@ typedef enum : NSUInteger {
 
 
 @interface LeftMenuViewController ()
-{}
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+
 @property (weak, nonatomic) IBOutlet UIButton *sendNew;
+@property (weak, nonatomic) IBOutlet UIButton *callSupport;
+
+@property (weak, nonatomic) IBOutlet UILabel *questions;
 
 @property (nonatomic, strong) NSArray *source;
 
@@ -95,8 +93,10 @@ typedef enum : NSUInteger {
 
 @implementation LeftMenuViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     self.source = [Menu source];
     self.view.backgroundColor = [Colors yellowColor];
 
@@ -134,6 +134,7 @@ typedef enum : NSUInteger {
     [super configureView];
     
     [self addCornerRadius:self.sendNew];
+    [self addCornerRadius:self.callSupport];
 
     self.sendNew.titleLabel.text = [Menu titleByType:MenuCellTypeSendNew];
     self.sendNew.tag = MenuCellTypeSendNew;
@@ -144,12 +145,6 @@ typedef enum : NSUInteger {
         [[self.buttons objectAtIndex:idx] setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
         [[self.buttons objectAtIndex:idx] setTag:type];
     }];
-//    for (int i = 0; i < self.buttons.count; i++)
-//    {
-//        NSString *titleString = [NSString stringWithFormat:@"ctrl.menu.button.0%zd", i+1];
-//        [[self.buttons objectAtIndex:i] setTitle:NSLocalizedString(titleString, nil) forState:0];
-//        [[self.buttons objectAtIndex:i] setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-//    }
 }
 
 - (void) addCornerRadius:(UIButton *) btn
@@ -200,13 +195,12 @@ typedef enum : NSUInteger {
     switch (type) {
         case MenuCellTypeDeliveres: [self showDelivers]; break;
         case MenuCellTypePickupList:[self showDelivers]; break;
-        case MenuCellTypeExpense:   [self showExpense];  break;
         case MenuCellTypeProfile:   [self showProfile]; break;
         case MenuCellTypeInfo:      [self showInformation]; break;
         case MenuCellTypeAbout:     [self showAboutUs]; break;
+        case MEnuCellTypeTutorial:  [self showTutorial]; break;
         case MenuCellTypeLogout:    [self logout]; break;
         case MenuCellTypeSendNew:   [self showCreateDeliveries]; break;
-        case MEnuCellTypeTutorial:  [self showTutorial]; break;
         default: break;
     }
 }
@@ -221,12 +215,6 @@ typedef enum : NSUInteger {
         CourierHistoryViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
         [self openController:ctr];
     }
-}
-
-- (void) showExpense
-{
-    ExpanceViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ExpanceViewController"];
-    [self openController:ctr];
 }
 
 - (void) showProfile
@@ -308,6 +296,22 @@ typedef enum : NSUInteger {
 //    [self.mm_drawerController setCenterViewController:navCtr
 //                                   withCloseAnimation:YES
 //                                           completion:^(BOOL finished) {}];
+    
+}
+- (IBAction)callSupportAction:(id)sender
+{
+    NSURL *phoneUrl = [NSURL URLWithString:@"telprompt:+123456789"];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+        
+    } else {
+        [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
+                                message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
+                      otherButtonTitles:nil, nil];
+    }
 }
 
 #pragma mark -
