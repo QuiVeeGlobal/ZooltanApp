@@ -135,6 +135,8 @@ typedef enum : NSUInteger {
     
     [self addCornerRadius:self.sendNew];
     [self addCornerRadius:self.callSupport];
+    
+    self.questions.text = NSLocalizedString(@"ctrl.menu.questionsLabel", nil);
 
     self.sendNew.titleLabel.text = [Menu titleByType:MenuCellTypeSendNew];
     self.sendNew.tag = MenuCellTypeSendNew;

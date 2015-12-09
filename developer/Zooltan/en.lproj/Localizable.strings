@@ -103,6 +103,7 @@
 "ctrl.menu.tutorial"                         = "TUTORIAL";
 "ctrl.menu.logout"                           = "LOG OUT";
 "ctrl.menu.sendNew"                          = "SEND NEW";
+"ctrl.menu.questionsLabel"                   = "QUESTIONS?";
 
 
 // History || Deliveries

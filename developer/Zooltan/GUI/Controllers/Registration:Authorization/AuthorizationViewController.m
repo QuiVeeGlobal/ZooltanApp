@@ -283,7 +283,7 @@ NSString* deteckScreen()
                                   }];
         
     } failure:^(NSError *error, NSString *status) {
-        
+        NSLog(@"ERROR:%@", status);
     }];
 }
 

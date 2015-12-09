@@ -93,9 +93,6 @@
 
 - (void)showTutorialView
 {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     EAIntroPage *page1 = [EAIntroPage page];
     page1.title = @"This is page 1";
     page1.bgImage = [UIImage imageNamed:@"bg1"];
@@ -123,6 +120,11 @@
 - (void)introDidFinish:(EAIntroView *)introView
 {
     NSLog(@"tutorialDidFinish callback");
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstLaunch"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [introView hideWithFadeOutDuration:3.0];
 }
 
 #pragma mark -
