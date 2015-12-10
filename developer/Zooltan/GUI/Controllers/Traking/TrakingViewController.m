@@ -13,6 +13,7 @@
 #import "HistoryViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "BLMultiColorLoader.h"
+#import "DXStarRatingView.h"
 
 #define layerCornerRadius 2.5
 #define layerBorderWidth 1.5
@@ -23,6 +24,7 @@
 @interface TrakingViewController () <UIScrollViewDelegate, CLLocationManagerDelegate, GMSMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *courierView;
+@property (weak, nonatomic) IBOutlet DXStarRatingView *starRatingView;
 @property (weak, nonatomic) IBOutlet UIImageView *courierAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *courierNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *callCourierButton;
@@ -69,6 +71,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -136,6 +140,17 @@
     if (!self.packageImageView.image) {
         self.blurView.hidden = YES;
         self.packageView.backgroundColor = [Colors yellowColor];
+    }
+    
+    if (self.order.orderStatus != OrderStatusDelivery)
+        self.starRatingView.hidden = YES;
+    else {
+        self.starRatingView.hidden = NO;
+        [self.starRatingView setStars:0 callbackBlock:^(NSNumber *newRating) {
+            [[Server instance] rateCourier:self.order.courierId withRaiting:newRating success:^{}
+                                   failure:^(NSError *error, NSInteger code) {}];
+
+        }];
     }
 }
 

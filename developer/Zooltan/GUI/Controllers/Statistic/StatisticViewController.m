@@ -82,7 +82,8 @@
 
 #pragma mark - Action
 
-- (IBAction)changeSegmentAction:(UISegmentedControl *)sender {
+- (IBAction)changeSegmentAction:(UISegmentedControl *)sender
+{
     STLogMethod;
     StatisticRange range = (StatisticRange)sender.selectedSegmentIndex;
     

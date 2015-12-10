@@ -272,22 +272,6 @@
     [self.view endEditing:YES];
 }
 
-//#pragma mark - PopupDelegate
-//
-//- (void)popupViewDidPressClose:(PopupView *)popupView {
-//
-//    if (popupView.tag == PopupTagNoInternet) {
-//        [self systemPing:NO];
-//        [self dismissPopupViewCompletion:^{
-//            [self backToMain];
-//            [self startSystemPing];
-//        }];
-//
-//    } else {
-//        [super popupViewDidPressClose:popupView];
-//    }
-//}
-
 #pragma mark - Memory
 
 - (void)didReceiveMemoryWarning

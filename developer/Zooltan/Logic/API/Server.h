@@ -67,6 +67,11 @@ typedef enum : NSUInteger {
                   success:(void (^)(StatisticModel *statistic))success
                   failure:(void (^)(NSError *error, NSInteger code))failure;
 
+- (void)rateCourier:(NSString *)courier
+        withRaiting:(NSNumber *)rating
+            success:(void (^)(void))success
+            failure:(void (^)(NSError *error, NSInteger code))failure;
+
 - (void)trackingOrder:(OrderModel *)order
               success:(void (^)(void))success
               failure:(void (^)(NSError *error, NSInteger code))failure;

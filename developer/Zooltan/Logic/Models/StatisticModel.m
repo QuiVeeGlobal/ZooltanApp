@@ -32,8 +32,6 @@
     self.statisticRange = range;
     self.allMoneyReceived = NULL_TO_NIL(dictionary[@"sum"]);
     self.deliveries = NULL_TO_NIL(dictionary[@"deliveries"]);
-    //self.rating = NULL_TO_NIL(dictionary[@"rating"]);
-    
 }
 
 - (NSString *)statisticRangeName {

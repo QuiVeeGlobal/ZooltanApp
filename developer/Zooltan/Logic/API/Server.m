@@ -467,15 +467,6 @@ NSString *URLMethod(NSString *rout) {
         PRTFailureOperation(operation);
         @try { failure (error, operation.response.statusCode); }
         @catch (NSException *exception) { STLogException(exception); }
-
-//        if (operation.response.statusCode == 200 || operation.response.statusCode == 204) {
-//            @try { success();}
-//            @catch (NSException *exception) { STLogException(exception); }
-//            
-//        } else {
-//            @try { failure (error, operation.response.statusCode); }
-//            @catch (NSException *exception) { STLogException(exception); }
-//        }
     }];
 }
 
@@ -576,7 +567,7 @@ NSString *URLMethod(NSString *rout) {
         [stat mappingAllStatisticDictionary:responseObject];
         
         /* Select/configure statistics by range */
-        NSString *method = [NSString stringWithFormat:@"statistic/%@",stat.statisticRangeName];
+        NSString *method = [NSString stringWithFormat:@"statistic/%@", stat.statisticRangeName];
         PRTParameters(nil, URLMethod(method));
         
         [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
@@ -591,6 +582,33 @@ NSString *URLMethod(NSString *rout) {
             @try { failure (error, operation.response.statusCode); }
             @catch (NSException *exception) { STLogException(exception); }
         }];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PRTFailureOperation(operation);
+        @try { failure (error, operation.response.statusCode); }
+        @catch (NSException *exception) { STLogException(exception); }
+    }];
+}
+
+- (void)rateCourier:(NSString *)courier
+        withRaiting:(NSNumber *)rating
+            success:(void (^)(void))success
+            failure:(void (^)(NSError *, NSInteger))failure
+{
+    NSMutableDictionary *param  = [NSMutableDictionary dictionary];
+    param[@"rate"]              = NIL_TO_NULL(rating);
+    param[@"courier"]           = NIL_TO_NULL(courier);
+    
+    NSString *method = [NSString stringWithFormat:@"rate"];
+    
+    PRTParameters(param, URLMethod(method));
+    
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  formData) {
+    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
+        PRTSuccessOperation(operation);
+        @try { success();}
+        @catch (NSException *exception) { STLogException(exception); }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PRTFailureOperation(operation);

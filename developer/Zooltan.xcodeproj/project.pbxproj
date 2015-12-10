@@ -272,6 +272,8 @@
 		EE3673F6E19DA81BB1CDF9BA /* libPods-Zooltan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686D207296239E7371A3B610 /* libPods-Zooltan.a */; };
 		FA434E5F1C1202EB001D194A /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA434E5E1C1202EB001D194A /* TutorialViewController.m */; };
 		FA434E601C1202EB001D194A /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA434E5E1C1202EB001D194A /* TutorialViewController.m */; };
+		FA4F33751C1881C100D0D113 /* DXStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4F33741C1881C100D0D113 /* DXStarRatingView.m */; };
+		FA4F33761C1881C100D0D113 /* DXStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4F33741C1881C100D0D113 /* DXStarRatingView.m */; };
 		FA4FA2E01B970299005B7229 /* CourierHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */; };
 		FA4FA2E31B970341005B7229 /* CourierHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2E21B970341005B7229 /* CourierHistoryCell.m */; };
 		FA5045801BE774190032EF74 /* Courier.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446389001B958E7E008B4B0B /* Courier.storyboard */; };
@@ -553,6 +555,8 @@
 		FA3EEE5B1C03B3C700ED1E48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FA434E5D1C1202EB001D194A /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController.h; path = Tutorial/TutorialViewController.h; sourceTree = "<group>"; };
 		FA434E5E1C1202EB001D194A /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = Tutorial/TutorialViewController.m; sourceTree = "<group>"; };
+		FA4F33731C1881C100D0D113 /* DXStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DXStarRatingView.h; path = DXStarRatingView/DXStarRatingView.h; sourceTree = "<group>"; };
+		FA4F33741C1881C100D0D113 /* DXStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DXStarRatingView.m; path = DXStarRatingView/DXStarRatingView.m; sourceTree = "<group>"; };
 		FA4FA2DE1B970299005B7229 /* CourierHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryViewController.h; sourceTree = "<group>"; };
 		FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierHistoryViewController.m; sourceTree = "<group>"; };
 		FA4FA2E11B970341005B7229 /* CourierHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryCell.h; sourceTree = "<group>"; };
@@ -1207,6 +1211,7 @@
 		67F1AC431B38448C00C76F75 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				FA4F33691C18817D00D0D113 /* DXStarRatingView */,
 				FA6F0A441C03D81100FD1D31 /* BLMultiColorLoader */,
 				675CC6FF1B6BD5A4009DE725 /* CHCircleGaugeView */,
 				675912431B5D2243007471E3 /* ActivityIndicator */,
@@ -1351,6 +1356,15 @@
 				FA434E5E1C1202EB001D194A /* TutorialViewController.m */,
 			);
 			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		FA4F33691C18817D00D0D113 /* DXStarRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				FA4F33731C1881C100D0D113 /* DXStarRatingView.h */,
+				FA4F33741C1881C100D0D113 /* DXStarRatingView.m */,
+			);
+			name = DXStarRatingView;
 			sourceTree = "<group>";
 		};
 		FA6F0A441C03D81100FD1D31 /* BLMultiColorLoader */ = {
@@ -1744,6 +1758,7 @@
 				446388C11B958E04008B4B0B /* Colors.m in Sources */,
 				446388C21B958E04008B4B0B /* main.m in Sources */,
 				446388C31B958E04008B4B0B /* PopAnimation.m in Sources */,
+				FA4F33761C1881C100D0D113 /* DXStarRatingView.m in Sources */,
 				444B57FC1BD66B9700A8C394 /* UITextField+Additions.m in Sources */,
 				446388C41B958E04008B4B0B /* UITableViewCell+Additions.m in Sources */,
 				446388C51B958E04008B4B0B /* NSIndexPath+Additions.m in Sources */,
@@ -1861,6 +1876,7 @@
 				673180611B5E77E3006E8E53 /* Utilities.m in Sources */,
 				675912521B5D3748007471E3 /* SocialManager.m in Sources */,
 				67050A7F1B611A5700D916EB /* MMDrawerController.m in Sources */,
+				FA4F33751C1881C100D0D113 /* DXStarRatingView.m in Sources */,
 				FA74C6741BFA3F1400CA8E3C /* LegalInformationViewController.m in Sources */,
 				67D679041B3823C3006F5578 /* NSMutableArray+Additions.m in Sources */,
 				67050A861B611BB200D916EB /* LeftMenuViewController.m in Sources */,
