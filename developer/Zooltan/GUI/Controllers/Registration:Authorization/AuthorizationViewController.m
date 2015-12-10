@@ -44,8 +44,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLaunch"])
-        [self showTutorialView];
+//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLaunch"])
+//        [self showTutorialView];
 }
 
 - (void)viewDidLayoutSubviews
