@@ -20,18 +20,16 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>31</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>FacebookAppID</key>
+	<string>958468550863646</string>
+	<key>FacebookDisplayName</key>
+	<string>Zooltan</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>auth0</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>aOA2hAbb335j3k</string>
-			</array>
-		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -43,14 +41,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>31</string>
-	<key>FacebookAppID</key>
-	<string>958468550863646</string>
-	<key>FacebookDisplayName</key>
-	<string>Zooltan</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -8,4 +8,5 @@ target "Zooltan" do
     pod "OCGoogleDirectionsAPI"
     pod "VLBCameraView"
     pod 'EAIntroView'
+    pod 'IQKeyboardManager'
 end

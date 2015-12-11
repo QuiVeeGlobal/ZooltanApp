@@ -26,10 +26,6 @@
 #define REQUEST self.manager
 
 @interface CreateViewController () <TextFieldButtonDelegate, UITextFieldDelegate, UIScrollViewDelegate, GMSMapViewDelegate, CLLocationManagerDelegate>
-{
-    BOOL pressedLastFrom;
-    BOOL pressedLastTo;
-}
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UILabel *mainTitleLabel;
@@ -111,6 +107,22 @@
     [self setOrderData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.receiverNameField.text.length <= 0)
+        [self.receiverNameField becomeFirstResponder];
+    
+    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length <= 0)
+        [self performSelector:@selector(toAdressAction:) withObject:nil afterDelay:0.5];
+    
+    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.receiverNameField.text.length > 0 &&self.commentsTextField.text.length <= 0) {
+        //[self.commentsTextField becomeFirstResponder];
+        [self.commentsTextField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.5];
+    }
+}
+
 - (void) setOrderData
 {
     self.fromAddress = [[Settings instance] fromAddress];
@@ -122,29 +134,15 @@
     self.fromAddressLabel.text = self.fromAddress.formatted_address;
     self.toAddressLabel.text = self.toAddress.formatted_address;
     
-    if ([self.fromAddressLabel.text isEqualToString:self.toAddressLabel.text]) {
-        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredSameAdresses", nil) target:self];
-        self.toAddressLabel.text = @"";
-        //self.toAddress.location = CLLocationCoordinate2DMake(0, 0);
-        
-        if (pressedLastFrom) {
-            self.fromAddressLabel.text = @"";
-        }
-        if (pressedLastTo) {
-            self.toAddressLabel.text = @"";
-        }
-    }
-    
-    if (self.fromAddress.formatted_address != nil && self.toAddress.formatted_address != nil) {
+    if (self.fromAddress.formatted_address != nil && self.toAddress.formatted_address != nil)
         [self showRoute];
-    }
     
     if (self.contact) {
         self.receiverNameField.placeholder = self.contact.fullName;
         self.receiverNameField.text = self.contact.fullName;
-        if ([self.contact.phonesValues count] > 0) {
+        
+        if ([self.contact.phonesValues count] > 0)
             self.receiverNumberField.text = self.contact.phonesValues[0];
-        }
         
         [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
         [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
@@ -156,27 +154,6 @@
     [super configureView];
     
     [self setMapView];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    
-    [keyboardToolbar setTintColor:[UIColor blackColor]];
-    
-    self.receiverNameField.inputAccessoryView = keyboardToolbar;
-    self.receiverNumberField.inputAccessoryView = keyboardToolbar;
-    self.commentsTextField.inputAccessoryView = keyboardToolbar;
     
     self.receiverNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.receiverNumberField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -325,8 +302,6 @@
     FromViewController *fromViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FromViewController"];
     fromViewController.addressType = FromAddress;
     fromViewController.callController = Create;
-    pressedLastFrom = YES;
-    pressedLastTo = NO;
     [self.mapView_ clear];
     
     [self.navigationController pushViewController:fromViewController animated:YES];
@@ -340,8 +315,6 @@
     fromViewController.addressType = ToAddress;
     fromViewController.callController = Create;
     fromViewController.contact = self.contact;
-    pressedLastTo = YES;
-    pressedLastFrom = NO;
     [self.mapView_ clear];
     
     [self.navigationController pushViewController:fromViewController animated:YES];
@@ -367,9 +340,8 @@
 
 - (IBAction)sendOrderAction:(id)sender
 {
-    if ([self validateFields]) {
+    if ([self validateFields])
         [self sendOrder];
-    }
 }
 
 - (void)sendOrder
@@ -473,13 +445,6 @@
     [self.commentsTextField resignFirstResponder];
 }
 
-- (void)scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnimation];
-}
-
 #pragma mark - validate Fields
 #pragma mark -
 
@@ -505,16 +470,20 @@
         [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredToAddress", nil) target:self];
         return NO;
     }
+    else if ([self.fromAddressLabel.text isEqualToString:self.toAddressLabel.text]) {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredSameAdresses", nil) target:self];
+        return NO;
+    }
     
     return YES;
 }
 
-- (void)setTextCololInField:(TextField *)textfild colol:(UIColor *)color
+- (void)setTextCololInField:(TextField *)textField colol:(UIColor *)color
 {
     [UIView animateWithDuration:durationAnimation
                      animations:^{
-                         textfild.textColor = color;
-                         [textfild setValue:color forKeyPath:@"_placeholderLabel.textColor"];
+                         textField.textColor = color;
+                         [textField setValue:color forKeyPath:@"_placeholderLabel.textColor"];
                      }];
 }
 
@@ -523,22 +492,18 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.commentsTextField.bottom+keyboardHeight);
-    } afterDelay:0];
-    
     [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
     [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
     [self setTextCololInField:self.commentsTextField colol:[UIColor darkGrayColor]];
-    
-    if (textField == self.commentsTextField) {
-        [self scrollRectToVisible:CGRectMake(0, self.commentsTextField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
+    if (self.receiverNumberField == textField) {
+        [self lowerKeyboard];
+        if (self.fromAddressLabel.text.length <= 0)
+            [self performSelector:@selector(fromAdressAction:) withObject:nil afterDelay:0.5];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -551,17 +516,6 @@
     }
     
     return true;
-}
-
-#pragma mark - UIKeyboardWillHideNotification
-#pragma mark -
-
-- (void)keyboardWillHide:(NSNotification *)notifications
-{
-    [UIView animateWithDuration:0.35f
-                     animations:^{
-                         self.scrollView.contentSize = CGSizeMake(self.scrollView.width, self.mapView_.bottom);
-                     }];
 }
 
 #pragma mark - POST methods

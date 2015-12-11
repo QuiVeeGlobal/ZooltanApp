@@ -137,13 +137,12 @@
         self.cancelOrderButton.enabled = NO;
     }
     
-    if (!self.packageImageView.image) {
-        self.blurView.hidden = YES;
+    if (!self.packageImageView.image)
         self.packageView.backgroundColor = [Colors yellowColor];
-    }
     
     if (self.order.orderStatus != OrderStatusDelivery)
         self.starRatingView.hidden = YES;
+    
     else {
         self.starRatingView.hidden = NO;
         [self.starRatingView setStars:0 callbackBlock:^(NSNumber *newRating) {

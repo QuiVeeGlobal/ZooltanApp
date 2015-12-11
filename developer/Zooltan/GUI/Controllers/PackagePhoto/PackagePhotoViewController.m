@@ -152,7 +152,9 @@
 
 - (IBAction)skipAction:(id)sender
 {
+    self.skipButton.hidden = YES;
     self.skipButton.enabled = NO;
+    
     CreateViewController *createViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
     [self.navigationController pushViewController:createViewController animated:YES];
 }

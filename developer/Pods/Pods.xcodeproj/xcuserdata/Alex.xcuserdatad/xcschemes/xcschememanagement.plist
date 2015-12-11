@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MoABContactsManager-MoABContactsManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3B3935B24F59296BAB94A6E413071EC7</key>
+		<key>021831EFBA2CD6B03C8FAC24C3482E38</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14B8CF78B3E41026BC68F6F868C782EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D12BFEB878094269D3FC27482A5CF9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,37 +77,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>488A77D94DBEE8D47A05A3DB79B0FF5B</key>
+		<key>5CC456EA431FF449162709F27A9E4184</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A5112D059C4636C33840C64145136DA</key>
+		<key>81CB6F5F7A7921323FA68382A48267F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EF67E7520CA005513D4C42F8D763865</key>
+		<key>BC7BB57E08146D53530B4D4D5F5C8C54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B70A2BD7644447EC648B276CB86B59FB</key>
+		<key>E46102F67B4B04883F733380B28CB963</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9A16ABBBC9968D8F0F47367B7822DF6</key>
+		<key>EC2330FF16561CE536A5043E85B299DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E619E165046C0C6C87B890BDA5204094</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED280C521D86B3EDD0C782FF54D74BE7</key>
+		<key>FAA6463CD6C3F9F3B2E00FB876789A39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
