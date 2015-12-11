@@ -48,14 +48,6 @@
 //        [self showTutorialView];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    if (IS_COURIER_APP)
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.registrationBtn.bottom+10);
-    else
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.enterWithFB.bottom+10);
-}
-
 - (void)configureView
 {
     [super configureView];
@@ -81,25 +73,6 @@
         
         self.forgotPassBtn.titleLabel.attributedText = attributedString;
     }
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    self.phoneField.inputAccessoryView = keyboardToolbar;
-    self.passField.inputAccessoryView = keyboardToolbar;
-    
-    keyboardToolbar.translucent = YES;
-    keyboardToolbar.barTintColor = [UIColor blackColor];
-    [keyboardToolbar setTintColor:[UIColor whiteColor]];
     
     self.mainLabel.text = NSLocalizedString(@"ctrl.authorization.description", nil);
     self.phoneField.placeholder = NSLocalizedString(@"ctrl.authorization.placeholder.phone", nil);
@@ -250,6 +223,9 @@ NSString* deteckScreen()
 - (IBAction) conectWithFacebook:(UIButton *)sender
 {
     [[SocialManager instance] autoriseInFBAndGetUseDataWithSuccess:^(UserModel *userModel) {
+        
+        [[AppDelegate instance] showLoadingView];
+        
         UserModel *_userModel = [[UserModel alloc] init];
         _userModel.socialId  = userModel.socialId;
         _userModel.password  = userModel.socialId;
@@ -262,7 +238,7 @@ NSString* deteckScreen()
         
         [[Server instance] loginWithModel:_userModel
                                   success:^(UserModel *userModel) {
-                                      
+                                      [[AppDelegate instance] hideLoadingView];
                                       [[Settings instance] setCurrentUser:userModel];
                                       
                                       [super getUserData];
@@ -271,6 +247,7 @@ NSString* deteckScreen()
                                           [[NSNotificationCenter defaultCenter] postNotificationName:showCenterView object:nil];
                                       }];
                                   } failure:^(NSError *error, NSInteger code) {
+                                      [[AppDelegate instance] hideLoadingView];
                                       switch (code) {
                                           case 404:
                                               [self showCompleteRegistrationView:_userModel];
@@ -282,9 +259,7 @@ NSString* deteckScreen()
                                       }
                                   }];
         
-    } failure:^(NSError *error, NSString *status) {
-        NSLog(@"ERROR:%@", status);
-    }];
+    } failure:^(NSError *error, NSString *status) {}];
 }
 
 - (void) showCompleteRegistrationView:(UserModel *) userModel
@@ -317,16 +292,6 @@ NSString* deteckScreen()
     return YES;
 }
 
-- (void) doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void) cancelAction
-{
-    [self lowerKeyboard];
-}
-
 - (void) lowerKeyboard
 {
     [self.phoneField resignFirstResponder];
@@ -340,13 +305,6 @@ NSString* deteckScreen()
                          textfild.textColor = color;
                          [textfild setValue:color forKeyPath:@"_placeholderLabel.textColor"];
                      }];
-}
-
-- (void) scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnomation];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -372,30 +330,10 @@ NSString* deteckScreen()
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.enterWithFB.bottom+keyboardHeight);
-    } afterDelay:0];
-    
     if (textField == self.phoneField) {
-        if (textField.isEmpty) {
+        if (textField.isEmpty)
             textField.text = [NSString stringWithFormat:@"%@ ",kPhoneCodePrefix];
-        }
-        [self scrollRectToVisible:CGRectMake(0, self.phoneField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
     }
-    
-    else if (textField == self.passField)
-        [self scrollRectToVisible:CGRectMake(0, self.passField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-}
-
-#pragma mark - UIKeyboardWillHideNotification
-#pragma mark -
-
-- (void)keyboardWillHide:(NSNotification *)notifications
-{
-    [UIView animateWithDuration:0.35f
-                     animations:^{
-                         self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
-                     }];
 }
 
 #pragma mark -

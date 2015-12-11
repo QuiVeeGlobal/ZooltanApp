@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define kFacebookAppId              @"958468550863646"
+#define kFacebookAppId              @"467613690097837"
 #define googlURL                    @"https://maps.googleapis.com/maps/api/"
 #define googlAPIKey                 @"AIzaSyCrFx2QMIXOCeN5jtA6SqjmKqy99JlhYl0"
 #define browserGooglAPIKey          @"AIzaSyBNlbUrNtAy5GNSIG--Oo_kPuWAPOK7sNw"

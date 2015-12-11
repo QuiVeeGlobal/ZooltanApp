@@ -47,10 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -62,34 +58,9 @@
                                                   object:nil];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.fbBtn.bottom+30);
-}
-
 - (void)configureView
 {
     [super configureView];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    self.nameField.inputAccessoryView = keyboardToolbar;
-    self.phoneField.inputAccessoryView = keyboardToolbar;
-    self.passField.inputAccessoryView = keyboardToolbar;
-    
-    keyboardToolbar.translucent = YES;
-    keyboardToolbar.barTintColor = [UIColor blackColor];
-    [keyboardToolbar setTintColor:[UIColor whiteColor]];
 
     self.phoneField.keyboardType = UIKeyboardTypePhonePad;
     self.phoneField.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -219,17 +190,43 @@ NSString* _deteckScreen()
 - (IBAction) enterWithFacebook:(UIButton *)sender
 {
     [[SocialManager instance] autoriseInFBAndGetUseDataWithSuccess:^(UserModel *userModel) {
-        UserModel *_userModel = [[UserModel alloc] init];
-        _userModel.socialId   = userModel.socialId;
-        _userModel.password   = userModel.socialId;
-        _userModel.name       = userModel.name;
-        _userModel.avatarURL  = userModel.avatarURL;
-        _userModel.isFB       = YES;
-
-        [self showCompleteRegistrationView:_userModel];
-    } failure:^(NSError *error, NSString *status) {
         
-    }];
+        [[AppDelegate instance] showLoadingView];
+        
+        UserModel *_userModel = [[UserModel alloc] init];
+        _userModel.socialId  = userModel.socialId;
+        _userModel.password  = userModel.socialId;
+        _userModel.name      = userModel.name;
+        _userModel.avatarURL = userModel.avatarURL;
+        _userModel.isFB      = YES;
+        
+        NSString *md5 = userModel.socialId.md5;
+        _userModel.socialHash = md5.sha1;
+        
+        [[Server instance] loginWithModel:_userModel
+                                  success:^(UserModel *userModel) {
+                                      [[AppDelegate instance] hideLoadingView];
+                                      [[Settings instance] setCurrentUser:userModel];
+                                      
+                                      [super getUserData];
+                                      
+                                      [self dismissViewControllerAnimated:YES completion:^{
+                                          [[NSNotificationCenter defaultCenter] postNotificationName:showCenterView object:nil];
+                                      }];
+                                  } failure:^(NSError *error, NSInteger code) {
+                                      [[AppDelegate instance] hideLoadingView];
+                                      switch (code) {
+                                          case 404:
+                                              [self showCompleteRegistrationView:_userModel];
+                                              break;
+                                              
+                                          default:
+                                              [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
+                                              break;
+                                      }
+                                  }];
+        
+    } failure:^(NSError *error, NSString *status) {}];
 }
 
 - (IBAction)agreeAction:(id)sender
@@ -318,35 +315,19 @@ NSString* _deteckScreen()
                      }];
 }
 
-- (void) scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnomation];
-}
-
 #pragma mark - UITextFieldDelegate
 #pragma mark -
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.fbBtn.bottom+keyboardHeight);
-    } afterDelay:0];
-    
     [self setTextCololInField:self.nameField colol:[UIColor whiteColor]];
     [self setTextCololInField:self.phoneField colol:[UIColor whiteColor]];
     [self setTextCololInField:self.passField colol:[UIColor whiteColor]];
     
-    if (textField == self.nameField)
-        [self scrollRectToVisible:CGRectMake(0, self.nameField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    else if (textField == self.phoneField) {
+    if (textField == self.phoneField) {
         if (textField.isEmpty)
             textField.text = [NSString stringWithFormat:@"%@ ",kPhoneCodePrefix];
-        [self scrollRectToVisible:CGRectMake(0, self.phoneField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
     }
-    else if (textField == self.passField)
-        [self scrollRectToVisible:CGRectMake(0, self.passField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -364,17 +345,6 @@ NSString* _deteckScreen()
     }
     
     return true;
-}
-
-#pragma mark - UIKeyboardWillHideNotification
-#pragma mark -
-
-- (void)keyboardWillHide:(NSNotification *)notifications
-{
-    [UIView animateWithDuration:0.35f
-                     animations:^{
-                        self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
-                     }];
 }
 
 #pragma mark -

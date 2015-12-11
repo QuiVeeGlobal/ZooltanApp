@@ -31,33 +31,9 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.sendBtn.bottom+110);
-}
-
 - (void)configureView
 {
     [super configureView];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    self.phoneField.inputAccessoryView = keyboardToolbar;
-    
-    keyboardToolbar.translucent = YES;
-    keyboardToolbar.barTintColor = [UIColor blackColor];
-    [keyboardToolbar setTintColor:[UIColor whiteColor]];
     
     self.phoneField.keyboardType = UIKeyboardTypePhonePad;
     self.phoneField.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -174,16 +150,6 @@
 
 }
 
-- (void) doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void) cancelAction
-{
-    [self lowerKeyboard];
-}
-
 - (void) lowerKeyboard
 {
     [self.phoneField resignFirstResponder];
@@ -199,13 +165,6 @@
     return YES;
 }
 
-- (void) scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnomation];
-}
-
 #pragma mark - UITextFieldDelegate
 #pragma mark -
 
@@ -218,27 +177,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.sendBtn.bottom+keyboardHeight);
-    } afterDelay:0];
-    
     if (textField == self.phoneField) {
         if (textField.isEmpty) {
             textField.text = [NSString stringWithFormat:@"%@ ",kPhoneCodePrefix];
         }
-        [self scrollRectToVisible:CGRectMake(0, self.phoneField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
     }
-}
-
-#pragma mark - UIKeyboardWillHideNotification
-#pragma mark -
-
-- (void)keyboardWillHide:(NSNotification *)notifications
-{
-    [UIView animateWithDuration:0.35f
-                     animations:^{
-                         self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
-                     }];
 }
 
 #pragma mark -

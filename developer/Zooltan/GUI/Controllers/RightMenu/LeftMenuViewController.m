@@ -13,7 +13,6 @@
 #import "CourierHistoryViewController.h"
 #import "PackagePhotoViewController.h"
 #import "TutorialViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #define layerCornerRadius 2.5
@@ -255,7 +254,6 @@ typedef enum : NSUInteger {
     [[Settings instance] setWorkAddress:pM];
 
     if (IS_CUSTOMER_APP) {
-        [FBSession.activeSession closeAndClearTokenInformation];
         FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
         [login logOut];
     }

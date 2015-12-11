@@ -24,8 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet TextField *nameField;
 @property (weak, nonatomic) IBOutlet TextField *phoneField;
-@property (weak, nonatomic) IBOutlet TextField *homeAddressField;
-@property (weak, nonatomic) IBOutlet TextField *workAddressField;
 @property (weak, nonatomic) IBOutlet TextField *oldPassField;
 @property (weak, nonatomic) IBOutlet TextField *nPassField;
 @property (weak, nonatomic) IBOutlet TextField *repeatPassField;
@@ -41,6 +39,9 @@
 
 @property (nonatomic, retain) PlaceModel *homeAddress;
 @property (nonatomic, retain) PlaceModel *workAddress;
+
+@property (weak, nonatomic) IBOutlet UILabel *homeAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *workAddressLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel *navTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *phoneNumberTitleLabel;
@@ -82,34 +83,10 @@
 {
     [super configureView];
     
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    
-    [keyboardToolbar sizeToFit];
-    
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    
-    [keyboardToolbar setTintColor:[UIColor blackColor]];
-    
-    self.nameField.inputAccessoryView = keyboardToolbar;
-    self.phoneField.inputAccessoryView = keyboardToolbar;
-    self.oldPassField.inputAccessoryView = keyboardToolbar;
-    self.nPassField.inputAccessoryView = keyboardToolbar;
-    self.repeatPassField.inputAccessoryView = keyboardToolbar;
-    
     self.nameField.tintColor = [Colors yellowColor];
     
-    [self setTextColor:self.homeAddressField];
-    [self setTextColor:self.workAddressField];
+//    [self setTextColor:self.homeAddressField];
+//    [self setTextColor:self.workAddressField];
     [self setTextColor:self.phoneField];
     [self setTextColor:self.oldPassField];
     [self setTextColor:self.nPassField];
@@ -208,8 +185,8 @@
     STLogDebug(@"homeAddress %@", self.homeAddress.formatted_address);
     STLogDebug(@"workAddress %@", self.workAddress.formatted_address);
     
-    self.homeAddressField.text = self.homeAddress.formatted_address;
-    self.workAddressField.text = self.workAddress.formatted_address;
+    self.homeAddressLabel.text = self.homeAddress.formatted_address;
+    self.workAddressLabel.text = self.workAddress.formatted_address;
     
     if (self.userModel.socialId && ![self.userModel.socialId isEqualToString:@""]) {
         self.fbBtn.enabled = NO;
@@ -319,16 +296,6 @@
 {
     StatisticViewController *ctrl = [self.storyboard instantiateViewControllerWithIdentifier:StatisticViewController.className];
     [self.navigationController pushViewController:ctrl animated:YES];
-}
-
-- (void)doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void) cancelAction
-{
-    [self lowerKeyboard];
 }
 
 #pragma mark - UIActionSheet
@@ -636,13 +603,6 @@
     [self.oldPassField resignFirstResponder];
     [self.nPassField resignFirstResponder];
     [self.repeatPassField resignFirstResponder];
-    
-    [self performBlock:^{
-        [UIView animateWithDuration:durationAnimation
-                         animations:^{
-                             self.scrollView.contentSize = CGSizeMake(self.view.width, self.saveBtn.bottom+10);
-                         }];
-    } afterDelay:0];
 }
 
 - (UserModel *) _getUserData
@@ -674,31 +634,15 @@
     [self setTextCololInField:self.nPassField colol:[UIColor darkGrayColor]];
     [self setTextCololInField:self.repeatPassField colol:[UIColor darkGrayColor]];
     
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.saveBtn.bottom+keyboardHeight);
-    } afterDelay:0];
-    
-    if (textField == self.oldPassField)
-        [self scrollRectToVisible:CGRectMake(0, self.oldPassField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    else if (textField == self.nPassField)
-        [self scrollRectToVisible:CGRectMake(0, self.nPassField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    else if (textField == self.repeatPassField)
-        [self scrollRectToVisible:CGRectMake(0, self.repeatPassField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    else if (textField == self.phoneField) {
+    if (textField == self.phoneField) {
         if (textField.isEmpty)
-            textField.text = [NSString stringWithFormat:@"%@ ",kPhoneCodePrefix];
-        [self scrollRectToVisible:CGRectMake(0, self.phoneField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
+            textField.text = [NSString stringWithFormat:@"%@ ", kPhoneCodePrefix];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        [UIView animateWithDuration:durationAnimation
-                         animations:^{
-                             self.scrollView.contentSize = CGSizeMake(self.view.width, self.saveBtn.bottom+10);
-                         }];
-    } afterDelay:0];
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -711,13 +655,6 @@
     }
     
     return true;
-}
-
-- (void) scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnimation];
 }
 
 #pragma mark -

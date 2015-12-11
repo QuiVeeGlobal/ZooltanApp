@@ -146,7 +146,7 @@
          annotation:(id)annotation {
     
     if (IS_CUSTOMER_APP)
-        if ([url.absoluteString hasPrefix:[NSString stringWithFormat:@"fb%@",kFacebookAppId]])
+        if ([url.absoluteString hasPrefix:[NSString stringWithFormat:@"fb%@", kFacebookAppId]])
             return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                   openURL:url
                                                         sourceApplication:sourceApplication

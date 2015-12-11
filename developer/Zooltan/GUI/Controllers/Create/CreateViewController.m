@@ -428,16 +428,6 @@
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
 }
 
-- (void)doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void)cancelAction
-{
-    [self lowerKeyboard];
-}
-
 - (void)lowerKeyboard
 {
     [self.receiverNameField resignFirstResponder];

@@ -29,37 +29,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor blackColor];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.sendBtn.bottom+150);
 }
 
 - (void)configureView
 {
     [super configureView];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    self.nPassField.inputAccessoryView = keyboardToolbar;
-    self.repeatPassField.inputAccessoryView = keyboardToolbar;
-    
-    keyboardToolbar.translucent = YES;
-    keyboardToolbar.barTintColor = [UIColor blackColor];
-    [keyboardToolbar setTintColor:[UIColor whiteColor]];
     
     self.nPassField.secureTextEntry = YES;
     self.repeatPassField.secureTextEntry = YES;
@@ -152,16 +128,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void) cancelAction
-{
-    [self lowerKeyboard];
-}
-
 - (void) lowerKeyboard
 {
     [self.nPassField resignFirstResponder];
@@ -186,39 +152,12 @@
     return YES;
 }
 
-- (void) scrollRectToVisible:(CGRect) rect
-{
-    [self performBlock:^{
-        [self.scrollView scrollRectToVisible:rect animated:YES];
-    } afterDelay:durationAnomation];
-}
-
 #pragma mark - UITextFieldDelegate
 #pragma mark -
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self performBlock:^{
-        self.scrollView.contentSize = CGSizeMake(self.view.width, self.sendBtn.bottom+keyboardHeight);
-    } afterDelay:0];
-    
-    if (textField == self.nPassField) {
-        [self scrollRectToVisible:CGRectMake(0, self.nPassField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    }
-    else if (textField == self.repeatPassField) {
-        [self scrollRectToVisible:CGRectMake(0, self.repeatPassField.y-keyboardHeight/2, self.scrollView.width, self.scrollView.height)];
-    }
-}
 
-#pragma mark - UIKeyboardWillHideNotification
-#pragma mark -
-
-- (void)keyboardWillHide:(NSNotification *)notifications
-{
-    [UIView animateWithDuration:0.35f
-                     animations:^{
-                         self.scrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
-                     }];
 }
 
 #pragma mark -

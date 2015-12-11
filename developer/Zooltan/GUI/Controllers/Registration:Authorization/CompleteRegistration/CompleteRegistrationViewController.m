@@ -39,24 +39,6 @@
 {
     [super configureView];
     
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
-    [keyboardToolbar sizeToFit];
-    UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                     target:self
-                                                                                     action:@selector(cancelAction)];
-    
-    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(doneAction)];
-    keyboardToolbar.items = @[cancelBarButton, flexBarButton, doneBarButton];
-    
-    keyboardToolbar.translucent = YES;
-    keyboardToolbar.barTintColor = [UIColor blackColor];
-    [keyboardToolbar setTintColor:[UIColor whiteColor]];
-    
-    self.phoneField.inputAccessoryView = keyboardToolbar;
     self.phoneField.keyboardType = UIKeyboardTypePhonePad;
     self.phoneField.keyboardAppearance = UIKeyboardAppearanceDark;
     
@@ -107,7 +89,7 @@
         
         self.userModel.phone = phone;
         self.userModel.isFB = YES;
-
+        
         [[CheckMobi instance] verifyPhoneNumber:phone
                                 completionBlock:^(NSError *error) {
                                     
@@ -129,23 +111,6 @@
     animation.subtype = kCATransitionFromTop;
     [self.navigationController.view.layer addAnimation:animation forKey:nil];
     [self.navigationController pushViewController:ctr animated:NO];
-}
-
-//- (IBAction) skipAction:(UIButton *)sender
-//{
-//    self.userModel.isFB = YES;
-//    
-//    [self signUpWithFacebook];
-//}
-
-- (void) doneAction
-{
-    [self lowerKeyboard];
-}
-
-- (void) cancelAction
-{
-    [self lowerKeyboard];
 }
 
 - (void) lowerKeyboard

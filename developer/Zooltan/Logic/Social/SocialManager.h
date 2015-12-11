@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Accounts/ACAccountStore.h>
 #import <Accounts/ACAccount.h>
-#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "UserModel.h"
@@ -19,7 +18,7 @@
 
 @class Settings;
 
-@interface SocialManager : NSObject <FBViewControllerDelegate, FBPlacePickerDelegate, FBLoginViewDelegate>
+@interface SocialManager : NSObject
 @property (nonatomic, strong) Settings *settings;
 
 + (SocialManager*) instance;
