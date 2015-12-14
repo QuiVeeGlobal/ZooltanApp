@@ -114,7 +114,7 @@
 "ctrl.history.cell.pickedUp"                 = "Picked Up:";
 "ctrl.history.cell.delivered"                = "Delivered:";
 "ctrl.history.cell.status.title"             = "Status:";
-"ctrl.history.cell.note.title"               = "Note:";
+"ctrl.history.cell.note.title"               = "Comments:";
 
 "ctrl.courier.history.cell.pickupDistance"   = "Distance to the pickup location:";
 "ctrl.courier.history.cell.betweenDistance"  = "Distance between pickup and destination:";
@@ -140,7 +140,7 @@
 "ctrl.create.from.title"                     = "From:";
 "ctrl.create.to.title"                       = "To:";
 "ctrl.create.placeholder.comments"           = "optional";
-"ctrl.create.comments.title"                 = "Note:";
+"ctrl.create.comments.title"                 = "Comments:";
 "ctrl.create.photoAttached.title"            = "Photo attached";
 "ctrl.create.noPhotoAttached.title"          = "No photo";
 "ctrl.create.button.photoView"               = "view";
@@ -158,7 +158,7 @@
 "ctrl.traking.title.package"                 = "package type";
 "ctrl.traking.title.trackId"                 = "tracking ID";
 "ctrl.traking.title.price"                   = "PRICE:";
-"ctrl.traking.title.comments"                = "Note:";
+"ctrl.traking.title.comments"                = "Comments:";
 "ctrl.traking.title.callSupport.button"      = "CALL SUPPORT";
 "ctrl.traking.title.callCourier.button"      = "CALL COURIER";
 "ctrl.traking.title.cancelOrder.button"      = "CANCEL ORDER";
@@ -171,11 +171,11 @@
 "ctrl.package.title.status"                  = "status";
 "ctrl.package.title.trackId"                 = "tracking ID";
 "ctrl.package.title.cost"                    = "Price:";
-"ctrl.package.title.note"                    = "Note:";
+"ctrl.package.title.note"                    = "Comments:";
 "ctrl.package.title.photoAttached"           = "Photo attached";
 "ctrl.package.title.pickupDistance"          = "Distance to the pickup location:";
 "ctrl.package.title.betweenDistance"         = "Distance from pickup to destination:";
-"ctrl.package.title.note"                    = "Note:";
+"ctrl.package.title.note"                    = "Comments:";
 "ctrl.package.title.destinationArea"         = "Area of destination:";
 "ctrl.package.title.receiverName"            = "Receiver’s name:";
 "ctrl.package.title.receiverPhone"           = "Receiver’s phone:";

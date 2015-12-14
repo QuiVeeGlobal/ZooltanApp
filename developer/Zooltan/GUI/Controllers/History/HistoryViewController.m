@@ -24,7 +24,7 @@
 @property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (strong, nonatomic) NSMutableArray *ordersArray;
 @property (strong, nonatomic) NSDictionary *currentOrderDic;
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSString *requerstUrl;
 
 @end
@@ -34,6 +34,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+    self.refreshControl.tintColor = [Colors yellowColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshTable)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)refreshTable
+{
+    [self getOrders];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,7 +59,9 @@
 
 - (void)getOrders
 {
-    [[AppDelegate instance] showLoadingView];
+    if (!self.refreshControl.isRefreshing) {
+        [[AppDelegate instance] showLoadingView];
+    }
     
     if (!self.requerstUrl) {
         self.requerstUrl = [NSString stringWithFormat:@"/client/orders/1/100"];
@@ -61,14 +77,13 @@
          if (operation.response.statusCode == 200 || operation.response.statusCode == 201)
          {
              self.ordersArray = responseObject[@"orders"];
-             
              [self.tableView reloadData];
-             
+             [self.refreshControl endRefreshing];
              [[AppDelegate instance] hideLoadingView];
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          STLogSuccess(@"/client/orders failure: %@",operation.responseString);
-         
+         [self.refreshControl endRefreshing];
          [[AppDelegate instance] hideLoadingView];
      }];
 }

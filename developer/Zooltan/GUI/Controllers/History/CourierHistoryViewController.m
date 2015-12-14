@@ -72,20 +72,18 @@ typedef enum : NSUInteger {
     if (![[Settings instance] token] || [[[Settings instance] token] isEqualToString:@""])
         [self showLoginView];
     
-    if (IS_COURIER_APP) {
-        // Initialize the refresh control only for Courier
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        self.refreshControl.backgroundColor = [UIColor clearColor];
-        self.refreshControl.tintColor = [UIColor whiteColor];
-        [self.refreshControl addTarget:self
-                                action:@selector(refreshTable)
-                      forControlEvents:UIControlEventValueChanged];
-        
-        [self.tableView addSubview:self.refreshControl];
-    }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshTable)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView addSubview:self.refreshControl];
 }
 
-- (void)refreshTable {
+- (void)refreshTable
+{
     [self getOrders];
 }
 
@@ -150,12 +148,6 @@ typedef enum : NSUInteger {
     if (!self.requerstUrl) {
         self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=local&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
     }
-    
-    //    if (self.topSegment.selectedSegmentIndex == 1) {
-    //        if (self.destinationAddress.formatted_address != 0) {
-    //            self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=way&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
-    //        }
-    //    }
     
     STLogDebug(@"--> self.requerstUrl: %@",self.requerstUrl);
     
@@ -384,6 +376,7 @@ typedef enum : NSUInteger {
     STLogDebug(@"SELECTED: TOP:%zd  BOTTOM:%zd",
                self.topSegment.selectedSegmentIndex,
                self.bottomSegment.selectedSegmentIndex);
+    
     [self getOrders];
 }
 
