@@ -97,16 +97,16 @@
     if (self.receiverNameField.text.length <= 0)
         [self.receiverNameField becomeFirstResponder];
     
-    if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length <= 0)
+    else if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length <= 0)
         [self.receiverNumberField becomeFirstResponder];
     
-    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length <= 0)
+    else if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length <= 0)
         [self performSelector:@selector(toAdressAction:) withObject:nil afterDelay:0.5];
     
-    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.receiverNameField.text.length > 0 &&self.commentsTextField.text.length <= 0)
+    else if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length > 0 && self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.commentsTextField.text.length <= 0)
         [self.commentsTextField becomeFirstResponder];
     
-    if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length > 0 && self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.commentsLabel.text.length > 0)
+    else
         [self.receiverNameField becomeFirstResponder];
 }
 
@@ -434,11 +434,17 @@
 
 - (void)clearOrderData
 {
+    self.receiverNameField.text = @"";
+    self.receiverNumberField.text = @"";
+    self.commentsTextField.text = @"";
+    
     [kUserDefaults removeObjectForKey:@"settings_fromAddress"];
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
-    [kUserDefaults removeObjectForKey:@"reciever_name"];
-    [kUserDefaults removeObjectForKey:@"reciever_number"];
-    [kUserDefaults removeObjectForKey:@"comments"];
+//    [kUserDefaults removeObjectForKey:@"reciever_name"];
+//    [kUserDefaults removeObjectForKey:@"reciever_number"];
+//    [kUserDefaults removeObjectForKey:@"comments"];
+//    
+//    [kUserDefaults synchronize];
 }
 
 - (void)lowerKeyboard

@@ -71,14 +71,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self startLoader];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
     [self stopLoader];
 }
 
@@ -93,7 +97,6 @@
     
     [self getOrderData];
     [self setMapView];
-    [self startLoader];
     
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
