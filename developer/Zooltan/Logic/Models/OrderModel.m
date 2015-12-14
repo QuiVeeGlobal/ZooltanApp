@@ -212,7 +212,7 @@
         case OrderStatusAccept: return OrderStatusPickUp;
         case OrderStatusPickUp: return OrderStatusProgress;
         case OrderStatusProgress: return OrderStatusDelivery;
-        case OrderStatusDelivery: return OrderStatusClose;
+        //case OrderStatusDelivery: return OrderStatusClose;
         default: return OrderStatusClose;
     }
 }

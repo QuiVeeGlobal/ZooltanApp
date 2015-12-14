@@ -202,9 +202,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidHideNotification
                                                   object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:clearOrder
-                                                  object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notifications

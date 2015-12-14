@@ -47,16 +47,17 @@ typedef enum : NSUInteger {
     NSMutableArray *array = [NSMutableArray array];
     if (IS_COURIER_APP) {
         
-        return @[@(InfoCellTypePrivacyPolicy),
+        return @[@(InfoCellTypeLegalInf)/*,
+                 @(InfoCellTypePrivacyPolicy),
                  @(InfoCellTypeTermsAndCondotions),
                  @(InfoCellTypeFAQ),
-                 @(InfoCellTypeLegalDoc)];
+                 @(InfoCellTypeLegalDoc)*/];
         
     } else {
         
-        return @[@(InfoCellTypeLegalInf),
+        return @[@(InfoCellTypeLegalInf)/*,
                  @(InfoCellTypeFAQ),
-                 @(InfoCellTypeTariffs)];
+                 @(InfoCellTypeTariffs)*/];
     }
     return array;
 }

@@ -21,7 +21,6 @@
 
 #define showLogin @"showLoginView"
 #define showCenterView @"setCenterView"
-#define clearOrder @"clearOrder"
 #define closeKeyboard @"closeKeyboard"
 
 // Include any system framework and library headers here that should be included in all compilation units.

@@ -151,7 +151,6 @@
         serchField.layer.borderColor = [Colors lightGrayColor].CGColor;
         serchField.layer.borderWidth = border_Width;
         serchField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        serchField.returnKeyType = UIReturnKeyDone;
         serchField.placeholder = NSLocalizedString(@"ctrl.from.placeholder.serach", nil);
         serchField.edgeInsets = UIEdgeInsetsMake(0, kIconSize+15, 0, 0);
         [serchField addSubview:[self setIconWithImage:[UIImage imageNamed:@"searchIcon"]frame:CGRectMake(10, serchField.height/2-kIconSize/2, kIconSize, kIconSize)]];
@@ -162,16 +161,6 @@
         }
         
         [self addCornerRadius:serchField];
-        
-        UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
-        UIBarButtonItem *cancelBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                         target:self
-                                                                                         action:@selector(cancelAction)];
-        
-        keyboardToolbar.items = @[cancelBarButton];
-        [keyboardToolbar setTintColor:[UIColor blackColor]];
-        [keyboardToolbar sizeToFit];
-        serchField.inputAccessoryView = keyboardToolbar;
         
         [serchField addTarget:self action:@selector(searchFieldDidChangeValue)
              forControlEvents:UIControlEventEditingChanged];
@@ -255,9 +244,10 @@
 {
     [[AppDelegate instance] showLoadingView];
     
+    [serchField resignFirstResponder];
+    
     STLogMethod;
     STLogDebug(@"indexPath: %@",indexPath);
-    
     
     if (indexPath.row != 0)
     {
@@ -367,11 +357,6 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 //}
 
-- (void)cancelAction
-{
-    [serchField resignFirstResponder];
-}
-
 - (IBAction)segmentAction:(UISegmentedControl *)sender
 {
     PlaceModel *from = [[Settings instance] homeAddress];
@@ -414,13 +399,6 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
 }
 
 - (void)searchFieldDidChangeValue {

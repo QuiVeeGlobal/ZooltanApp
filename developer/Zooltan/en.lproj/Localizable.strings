@@ -55,7 +55,7 @@
 
 // Courier Registration
 "ctrl.courier.registration.msg.title"        = "COURIER REGISTRATION";
-"ctrl.courier.registration.msg"              = "Courier registration text";
+"ctrl.courier.registration.msg"              = "Contact support to register and activate your courier account.";
 
 
 // Recovery Password

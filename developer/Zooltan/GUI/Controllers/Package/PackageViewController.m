@@ -259,10 +259,6 @@
     
     switch (self.order.orderStatus) {
             
-        case OrderStatusClose:
-            self.takeButton.hidden = YES;
-            break;
-            
         case OrderStatusProgress:
             title = NSLocalizedString(@"ctrl.package.button.title.finish", nil);
             break;
@@ -276,7 +272,8 @@
             break;
 
         case OrderStatusDelivery:
-            title = NSLocalizedString(@"ctrl.package.button.title.close", nil);
+            self.takeButton.hidden = YES;
+            //title = NSLocalizedString(@"ctrl.package.button.title.close", nil);
             break;
             
         default:
@@ -310,15 +307,9 @@
                         withStatus:self.order.nextStatus
                            success:^
      {
-         if (self.order.orderStatus == OrderStatusClose) {
-             [[AppDelegate instance] hideLoadingView];
-             [self.navigationController popViewControllerAnimated:YES];
-
-         } else {
-             [self updateTakeButton];
-             [self updateStatusTitle];
-             [[AppDelegate instance] hideLoadingView];
-         }
+         [self updateTakeButton];
+         [self updateStatusTitle];
+         [[AppDelegate instance] hideLoadingView];
 
      } failure:^(NSError *error, NSInteger code) {
          

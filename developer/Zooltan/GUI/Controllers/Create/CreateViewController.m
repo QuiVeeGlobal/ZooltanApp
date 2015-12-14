@@ -83,26 +83,9 @@
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(clearOrderData)
-                                                 name:clearOrder
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(lowerKeyboard)
                                                  name:closeKeyboard
                                                object:nil];
-    
-    if (!self.packageImage) {
-        self.photoAttachedLabel.text = NSLocalizedString(@"ctrl.create.noPhotoAttached.title", nil);
-        self.photoViewBtn.titleLabel.text = NSLocalizedString(@"ctrl.create.button.addPhoto", nil);
-        self.photoViewBtn.hidden = YES;
-        self.photoViewBtn.enabled = NO;
-        self.addPhotoBtn.hidden = NO;
-        self.addPhotoBtn.enabled = YES;
-    } else {
-        self.addPhotoBtn.hidden = YES;
-        self.addPhotoBtn.enabled = NO;
-    }
     
     [self setOrderData];
 }
@@ -114,17 +97,35 @@
     if (self.receiverNameField.text.length <= 0)
         [self.receiverNameField becomeFirstResponder];
     
+    if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length <= 0)
+        [self.receiverNumberField becomeFirstResponder];
+    
     if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length <= 0)
         [self performSelector:@selector(toAdressAction:) withObject:nil afterDelay:0.5];
     
-    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.receiverNameField.text.length > 0 &&self.commentsTextField.text.length <= 0) {
-        //[self.commentsTextField becomeFirstResponder];
-        [self.commentsTextField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.5];
-    }
+    if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.receiverNameField.text.length > 0 &&self.commentsTextField.text.length <= 0)
+        [self.commentsTextField becomeFirstResponder];
+    
+    if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length > 0 && self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.commentsLabel.text.length > 0)
+        [self.receiverNameField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [kUserDefaults setObject:self.receiverNameField.text forKey:@"reciever_name"];
+    [kUserDefaults setObject:self.receiverNumberField.text forKey:@"reciever_number"];
+    [kUserDefaults setObject:self.commentsTextField.text forKey:@"comments"];
+    [kUserDefaults synchronize];
 }
 
 - (void) setOrderData
 {
+    self.receiverNameField.text = [kUserDefaults objectForKey:@"reciever_name"];
+    self.receiverNumberField.text = [kUserDefaults objectForKey:@"reciever_number"];
+    self.commentsTextField.text = [kUserDefaults objectForKey:@"comments"];
+    
     self.fromAddress = [[Settings instance] fromAddress];
     self.toAddress = [[Settings instance] toAddress];
     
@@ -146,6 +147,18 @@
         
         [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
         [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
+    }
+    
+    if (!self.packageImage) {
+        self.photoAttachedLabel.text = NSLocalizedString(@"ctrl.create.noPhotoAttached.title", nil);
+        self.photoViewBtn.titleLabel.text = NSLocalizedString(@"ctrl.create.button.addPhoto", nil);
+        self.photoViewBtn.hidden = YES;
+        self.photoViewBtn.enabled = NO;
+        self.addPhotoBtn.hidden = NO;
+        self.addPhotoBtn.enabled = YES;
+    } else {
+        self.addPhotoBtn.hidden = YES;
+        self.addPhotoBtn.enabled = NO;
     }
 }
 
@@ -335,6 +348,7 @@
     animation.subtype = kCATransitionFromLeft;
     [self.navigationController.view.layer addAnimation:animation forKey:nil];
     [self.navigationController pushViewController:ctr animated:NO];
+    
     [self lowerKeyboard];
 }
 
@@ -402,6 +416,7 @@
         if (operation.response.statusCode == 200 || operation.response.statusCode == 201) {
             [[Server instance] viewOrder:order success:^{
                 [[AppDelegate instance] hideLoadingView];
+                [self clearOrderData];
                 TrakingViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
                 ctr.order = order;
                 [self.navigationController pushViewController:ctr animated:YES];
@@ -419,13 +434,11 @@
 
 - (void)clearOrderData
 {
-    self.receiverNameField.text = @"";
-    self.receiverNumberField.text = @"";
-    self.fromAddressLabel.text = @"";
-    self.toAddressLabel.text = @"";
-    
     [kUserDefaults removeObjectForKey:@"settings_fromAddress"];
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
+    [kUserDefaults removeObjectForKey:@"reciever_name"];
+    [kUserDefaults removeObjectForKey:@"reciever_number"];
+    [kUserDefaults removeObjectForKey:@"comments"];
 }
 
 - (void)lowerKeyboard
