@@ -645,24 +645,26 @@ NSString *URLMethod(NSString *rout) {
     }];
 }
 
-//- (void)supportPhone:(NSString *)supportPhoneNumber
-//             success:(void (^)(void))success
-//             failure:(void (^)(NSError *error, NSInteger code))failure
-//{
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//    NSString *method = [NSString stringWithFormat:@"support"];
-//    
-//    PRTParameters(param, URLMethod(method));
-//    
-//    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
-//    [REQUEST GET:URLMethod(method) parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        PRTSuccessOperation(operation);
-//        if (success) success();
-//        
-//    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-//        if (failure) failure(error, operation.response.statusCode);
-//    }];
-//}
+- (void)supportPhoneSuccess:(void (^)(NSString *phoneNumber))success
+                    failure:(void (^)(NSError *error, NSInteger code))failure
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    NSString *method = [NSString stringWithFormat:@"support"];
+    
+    PRTParameters(param, URLMethod(method));
+    
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+    [REQUEST GET:URLMethod(method) parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        PRTSuccessOperation(operation);
+        NSString *phoneNumber = responseObject[@"support_number"];
+        if (success) success(phoneNumber);
+        
+    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+        PRTFailureOperation(operation);
+        @try { failure (error, operation.response.statusCode); }
+        @catch (NSException *exception) { STLogException(exception); }
+    }];
+}
 
 #pragma mark - Restore password
 

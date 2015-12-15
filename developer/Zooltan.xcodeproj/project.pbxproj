@@ -1458,10 +1458,20 @@
 				TargetAttributes = {
 					4463887E1B958E04008B4B0B = {
 						DevelopmentTeam = 7A72VR26GY;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					67F1AC0F1B3806D200C76F75 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 7A72VR26GY;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

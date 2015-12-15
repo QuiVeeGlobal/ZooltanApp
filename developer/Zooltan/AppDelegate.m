@@ -66,6 +66,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self configureGeneralNavigationBar];
     
+    //Push Notifications
+//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    
     //Lean Testing
     [LeanTesting activateSDKWithKey:[Constants leanTestingKey] projectID:[Constants leanTestingId]];
     
@@ -153,6 +156,23 @@
                                                                annotation:annotation];
     return NO;
 }
+
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//{
+//    NSLog(@"device token is: %@", deviceToken);
+//    //[server sendToken:deviceToken];
+//}
+//
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//{
+//    NSLog(@"Did Fail to Register for Remote Notifications");
+//    NSLog(@"%@, %@", error, error.localizedDescription);
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    NSLog(@"received notification");
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
