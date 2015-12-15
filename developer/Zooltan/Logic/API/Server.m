@@ -643,20 +643,26 @@ NSString *URLMethod(NSString *rout) {
             if (failure) failure(error, operation.response.statusCode);
         }
     }];
-//    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
-//        PRTSuccessOperation(operation);
-//        if (success) success(YES);
-//
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        PRTFailureOperation(operation);
-//        if (operation.response.statusCode == 409) {
-//            if (success) success(NO);
-//        } else {
-//            if (failure) failure(error, operation.response.statusCode);
-//        }
-//    }];
 }
+
+//- (void)supportPhone:(NSString *)supportPhoneNumber
+//             success:(void (^)(void))success
+//             failure:(void (^)(NSError *error, NSInteger code))failure
+//{
+//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+//    NSString *method = [NSString stringWithFormat:@"support"];
+//    
+//    PRTParameters(param, URLMethod(method));
+//    
+//    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+//    [REQUEST GET:URLMethod(method) parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        PRTSuccessOperation(operation);
+//        if (success) success();
+//        
+//    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+//        if (failure) failure(error, operation.response.statusCode);
+//    }];
+//}
 
 #pragma mark - Restore password
 

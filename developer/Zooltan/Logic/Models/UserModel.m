@@ -40,11 +40,11 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
-        self._id        = [decoder decodeObjectForKey:kSettingsUserId];
-        self.avatarURL  = [decoder decodeObjectForKey:kSettingsUserAvatarURL];
-        self.phone      = [decoder decodeObjectForKey:kSettingsUserPhone];
-        self.socialId   = [decoder decodeObjectForKey:kSettingsUserSocialId];
-        self.name   = [decoder decodeObjectForKey:kSettingsUserName];
+        self._id           = [decoder decodeObjectForKey:kSettingsUserId];
+        self.avatarURL     = [decoder decodeObjectForKey:kSettingsUserAvatarURL];
+        self.phone         = [decoder decodeObjectForKey:kSettingsUserPhone];
+        self.socialId      = [decoder decodeObjectForKey:kSettingsUserSocialId];
+        self.name          = [decoder decodeObjectForKey:kSettingsUserName];
         //self.password   = [decoder decodeObjectForKey:kSettingsUserSocialId];
 //        self.email      = [decoder decodeObjectForKey:kSettingsUserEmail];
 //        self.gender     = [decoder decodeObjectForKey:kSettingsUserGender];
@@ -65,11 +65,11 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:self._id          forKey:kSettingsUserId];
-    [encoder encodeObject:self.avatarURL    forKey:kSettingsUserAvatarURL];
-    [encoder encodeObject:self.phone        forKey:kSettingsUserPhone];
-    [encoder encodeObject:self.socialId     forKey:kSettingsUserSocialId];
-    [encoder encodeObject:self.name         forKey:kSettingsUserName];
+    [encoder encodeObject:self._id           forKey:kSettingsUserId];
+    [encoder encodeObject:self.avatarURL     forKey:kSettingsUserAvatarURL];
+    [encoder encodeObject:self.phone         forKey:kSettingsUserPhone];
+    [encoder encodeObject:self.socialId      forKey:kSettingsUserSocialId];
+    [encoder encodeObject:self.name          forKey:kSettingsUserName];
    // [encoder encodeObject:self.password     forKey:kSettingsUserSocialId];
 //    [encoder encodeObject:self.email        forKey:kSettingsUserEmail];
 //    [encoder encodeObject:self.gender       forKey:kSettingsUserGender];

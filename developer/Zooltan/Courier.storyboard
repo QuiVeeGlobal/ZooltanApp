@@ -4925,7 +4925,7 @@
                                         <barButtonItem key="leftBarButtonItem" image="closeBtn" id="VCJ-7w-6mf">
                                             <inset key="imageInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <connections>
-                                                <action selector="closeAction:" destination="vXe-S1-EpA" id="pBU-hV-7nQ"/>
+                                                <action selector="closeAction:" destination="vXe-S1-EpA" id="ON6-g1-DQU"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

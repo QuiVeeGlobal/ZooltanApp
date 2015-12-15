@@ -14,7 +14,9 @@
 #import "PackagePhotoViewController.h"
 #import "TutorialViewController.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
+#define REQUEST self.manager
 #define layerCornerRadius 2.5
 
 typedef enum : NSUInteger {
@@ -87,6 +89,10 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *questions;
 
 @property (nonatomic, strong) NSArray *source;
+@property (nonatomic, strong) NSString *supportPhone;
+
+@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+@property (strong, nonatomic) NSString *requerstUrl;
 
 @end
 
@@ -112,8 +118,6 @@ typedef enum : NSUInteger {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    //[super getUserData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -290,26 +294,58 @@ typedef enum : NSUInteger {
     [navCtr setViewControllers:@[ctr] animated:NO];
     
     [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-//    
-//    [self.mm_drawerController setCenterViewController:navCtr
-//                                   withCloseAnimation:YES
-//                                           completion:^(BOOL finished) {}];
-    
 }
+
 - (IBAction)callSupportAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:@"telprompt:+123456789"];
+    if (IS_CUSTOMER_APP)
+        self.requerstUrl = [NSString stringWithFormat:@"/client/support"];
+    if (IS_COURIER_APP)
+        self.requerstUrl = [NSString stringWithFormat:@"/courier/support"];
     
-    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [[UIApplication sharedApplication] openURL:phoneUrl];
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+    [REQUEST GET:self.requerstUrl parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         STLogSuccess(@"/support RESPONSE: %@", responseObject);
+         if (operation.response.statusCode == 200 || operation.response.statusCode == 201)
+         {
+             self.supportPhone = responseObject[@"support_number"];
+             NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", self.supportPhone]];
+             if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+                 [[UIApplication sharedApplication] openURL:phoneUrl];
+             }
+             else {
+                 [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
+                                         message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
+                                        delegate:nil
+                               cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
+                               otherButtonTitles:nil, nil];
+             }
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         STLogSuccess(@"/support failure: %@", operation.responseString);
+     }];
+}
+
+#pragma mark - POST methods
+
+- (AFHTTPRequestOperationManager *)manager
+{
+    if (!_manager)
+    {
+        _manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[Constants baseURL]]];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
         
-    } else {
-        [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
-                                message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
-                               delegate:nil
-                      cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
-                      otherButtonTitles:nil, nil];
+        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
+        [jsonAcceptableContentTypes addObject:@"application/json"];
+        jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+        _manager.responseSerializer = jsonResponseSerializer;
     }
+    
+    return _manager;
 }
 
 #pragma mark -

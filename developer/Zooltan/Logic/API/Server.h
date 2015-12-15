@@ -61,6 +61,11 @@ typedef enum : NSUInteger {
               success:(void (^)(BOOL hasSocialId))success
               failure:(void (^)(NSError *error, NSInteger code))failure;
 
+//- (void)supportPhone:(NSString *)supportPhoneNumber
+//             success:(void (^)(void))success
+//             failure:(void (^)(NSError *error, NSInteger code))failure;
+
+
 //////// Courier ///////
 
 - (void)statisticsByRange:(StatisticRange)range

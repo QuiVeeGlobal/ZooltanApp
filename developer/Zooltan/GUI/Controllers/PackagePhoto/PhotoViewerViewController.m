@@ -47,10 +47,11 @@
     [self.packageImageView setImageWithURLRequest:request
                                  placeholderImage:nil
                                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                  self.packageImageView.image = image;
+                                                  self.packageImageView.contentMode = UIViewContentModeScaleAspectFit;
+                                              });
                                               [[AppDelegate instance] hideLoadingView];
-                                              self.packageImageView.image = image;
-                                              self.packageImageView.contentMode = UIViewContentModeScaleAspectFit;
-                                              
                                           } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                               NSLog(@"Failed to load image:\nrequest=%@\nresponse=%@\nerror=%@",request,response,[error description]);
                                           }];
