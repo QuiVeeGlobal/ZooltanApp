@@ -67,7 +67,11 @@
     [self configureGeneralNavigationBar];
     
     //Push Notifications
-//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
     //Lean Testing
     [LeanTesting activateSDKWithKey:[Constants leanTestingKey] projectID:[Constants leanTestingId]];
@@ -97,16 +101,27 @@
     //Window
     self.navigation = (BaseNavigationCtrl *)self.window.rootViewController;
     self.navigation.navigationBarHidden = YES;
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:[Constants currentStoryboardName]
                                                          bundle:nil];
     
-    if (IS_CUSTOMER_APP)
-        self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+    NSDictionary *pushNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if (IS_CUSTOMER_APP) {
+        if (pushNotification)
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+        else
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+    }
     else
         self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
+    
+//    if (IS_CUSTOMER_APP)
+//        self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+//    else
+//        self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
     
     [self.navigation setViewControllers:@[self.mainView]];
     
@@ -157,22 +172,59 @@
     return NO;
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//{
-//    NSLog(@"device token is: %@", deviceToken);
-//    //[server sendToken:deviceToken];
-//}
-//
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-//{
-//    NSLog(@"Did Fail to Register for Remote Notifications");
-//    NSLog(@"%@, %@", error, error.localizedDescription);
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-//    NSLog(@"received notification");
-//}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *deviceTokenString = [[[deviceToken description]
+                                     stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                     stringByReplacingOccurrencesOfString: @">" withString: @""];
+    [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:@"deviceId"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"device token is: %@", deviceTokenString);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Did Fail to Register for Remote Notifications");
+    NSLog(@"%@, %@", error, error.localizedDescription);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"%@", userInfo);
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:[Constants currentStoryboardName]
+                                                         bundle:nil];
+    
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        if (IS_CUSTOMER_APP)
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+        else
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
+    }
+    else if (state == UIApplicationStateInactive) {
+        if (IS_CUSTOMER_APP)
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+        else
+            self.mainView = [storyboard instantiateViewControllerWithIdentifier:@"CourierHistoryViewController"];
+    }
+    
+    [self.navigation setViewControllers:@[self.mainView]];
+    
+    self.navigation = [[BaseNavigationCtrl alloc] initWithRootViewController:self.mainView];
+    self.navigation.navigationBarHidden = YES;
+    
+    self.leftMenu = [storyboard instantiateViewControllerWithIdentifier:@"LeftMenuViewController"];
+    
+    MMDrawerController *drawerController = [self configureDrawerMenuWithLeft:self.leftMenu
+                                                                   andCenter:self.navigation];
+    self.drawerMenu = drawerController;
+    
+    [self.window addSubview:self.drawerMenu.view];
+    [self.window setRootViewController:self.drawerMenu];
+    [self.window makeKeyAndVisible];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -190,6 +242,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [FBSDKAppEvents activateApp];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

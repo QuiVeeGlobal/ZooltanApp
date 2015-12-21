@@ -193,8 +193,14 @@ NSString* _deteckScreen()
         
         [[AppDelegate instance] showLoadingView];
         
+        NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
+        
         UserModel *_userModel = [[UserModel alloc] init];
+        
+        _userModel.deviceId = deviceId;
+        
         _userModel.socialId  = userModel.socialId;
+        _userModel.deviceId  = userModel.deviceId;
         _userModel.password  = userModel.socialId;
         _userModel.name      = userModel.name;
         _userModel.avatarURL = userModel.avatarURL;

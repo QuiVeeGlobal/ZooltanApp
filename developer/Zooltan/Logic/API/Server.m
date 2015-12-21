@@ -153,15 +153,15 @@ NSString *URLMethod(NSString *rout) {
                       @"name":userModel.name,
                       @"phone":userModel.phone,
                       @"social":userModel.socialId,
-                      @"logo":userModel.avatarURL
-                      };
+                      @"logo":userModel.avatarURL,
+                      @"device_id":userModel.deviceId};
         }
         else
         {
             param = @{@"password":userModel.password,
                       @"name":userModel.name,
-                      @"phone":userModel.phone
-                      };
+                      @"phone":userModel.phone,
+                      @"device_id":userModel.deviceId};
         }
         
     }
@@ -218,12 +218,14 @@ NSString *URLMethod(NSString *rout) {
         if (userModel.isFB)
         {
             param = @{@"id":userModel.socialId,
-                      @"hash":userModel.socialHash};
+                      @"hash":userModel.socialHash,
+                      @"device_id":userModel.deviceId};
         }
         else
         {
             param = @{@"phone":userModel.phone,
-                      @"password":userModel.password};
+                      @"password":userModel.password,
+                      @"device_id":userModel.deviceId};
         }
     }
     @catch (NSException *exception) { STLogException(exception); }

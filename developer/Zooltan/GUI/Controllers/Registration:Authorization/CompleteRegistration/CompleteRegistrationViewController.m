@@ -93,9 +93,8 @@
         [[CheckMobi instance] verifyPhoneNumber:phone
                                 completionBlock:^(NSError *error) {
                                     
-                                    if (!error) {
+                                    if (!error)
                                         [self showValidationScreen];
-                                    }
                                 }];
     }
 }

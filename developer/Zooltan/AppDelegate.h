@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <HockeySDK/HockeySDK.h>
-#import "MyApplication.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "MMDrawerVisualState.h"
 #import "MMDrawerController.h"

@@ -105,6 +105,8 @@
 {
     [[AppDelegate instance] showLoadingView];
     
+    self.userModel.deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
+    
     [[Server instance] signUpWithModel:self.userModel
                                success:^(UserModel *userModel) {
                                    
@@ -117,6 +119,7 @@
                                    
                                    [[AppDelegate instance] hideLoadingView];
                                    [[Settings instance] setCurrentUser:userModel];
+                                   
                                    [super getUserData];
                                    
                                    [self dismissViewControllerAnimated:YES completion:^{

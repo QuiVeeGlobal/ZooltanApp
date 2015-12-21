@@ -38,7 +38,6 @@
 		446388831B958E04008B4B0B /* UIAlertView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678E71B3823C3006F5578 /* UIAlertView+Additions.m */; };
 		446388841B958E04008B4B0B /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678D91B3823C3006F5578 /* NSDate+Additions.m */; };
 		446388851B958E04008B4B0B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6774F7471B39980A005B5043 /* MainViewController.m */; };
-		446388861B958E04008B4B0B /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DE481E1B42CCDA00C5286B /* MyApplication.m */; };
 		446388871B958E04008B4B0B /* NSArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678CD1B3823C3006F5578 /* NSArray+Additions.m */; };
 		446388881B958E04008B4B0B /* CompleteRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F4CE531B6233EB003486C5 /* CompleteRegistrationViewController.m */; };
 		446388891B958E04008B4B0B /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D678E11B3823C3006F5578 /* NSObject+Additions.m */; };
@@ -226,7 +225,6 @@
 		67D679321B38241C006F5578 /* Fonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D679281B38241C006F5578 /* Fonts.m */; };
 		67D679331B38241C006F5578 /* Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D6792A1B38241C006F5578 /* Helpers.m */; };
 		67D679341B38241C006F5578 /* UILabel+AtrributedText.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D6792C1B38241C006F5578 /* UILabel+AtrributedText.m */; };
-		67DE481F1B42CCDA00C5286B /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DE481E1B42CCDA00C5286B /* MyApplication.m */; };
 		67DE48231B42DD1900C5286B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DE48221B42DD1900C5286B /* ProfileViewController.m */; };
 		67EE80411B457B0100B95A27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE803F1B457B0100B95A27 /* Main.storyboard */; };
 		67EEF1C01B4D1829008049A9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EEF1BF1B4D1829008049A9 /* InformationViewController.m */; };
@@ -489,8 +487,6 @@
 		67D6792B1B38241C006F5578 /* UILabel+AtrributedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AtrributedText.h"; sourceTree = "<group>"; };
 		67D6792C1B38241C006F5578 /* UILabel+AtrributedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AtrributedText.m"; sourceTree = "<group>"; };
 		67D679361B382537006F5578 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		67DE481D1B42CCDA00C5286B /* MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
-		67DE481E1B42CCDA00C5286B /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
 		67DE48211B42DD1900C5286B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		67DE48221B42DD1900C5286B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		67EE80401B457B0100B95A27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1052,8 +1048,6 @@
 				67DE48191B42CCAA00C5286B /* Models */,
 				6759124F1B5D3748007471E3 /* Social */,
 				1E271D0A1BB0DBEB00914CDC /* CheckMobi */,
-				67DE481D1B42CCDA00C5286B /* MyApplication.h */,
-				67DE481E1B42CCDA00C5286B /* MyApplication.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1460,7 +1454,7 @@
 						DevelopmentTeam = 7A72VR26GY;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1469,7 +1463,7 @@
 						DevelopmentTeam = 7A72VR26GY;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1676,7 +1670,6 @@
 				446388831B958E04008B4B0B /* UIAlertView+Additions.m in Sources */,
 				446388841B958E04008B4B0B /* NSDate+Additions.m in Sources */,
 				446388851B958E04008B4B0B /* MainViewController.m in Sources */,
-				446388861B958E04008B4B0B /* MyApplication.m in Sources */,
 				446388871B958E04008B4B0B /* NSArray+Additions.m in Sources */,
 				1E4D37301BA6CBA800EAE7BF /* TrackingViewController.m in Sources */,
 				446388881B958E04008B4B0B /* CompleteRegistrationViewController.m in Sources */,
@@ -1785,7 +1778,6 @@
 				67D679071B3823C3006F5578 /* NSDate+Additions.m in Sources */,
 				6774F7481B39980A005B5043 /* MainViewController.m in Sources */,
 				1E4D372F1BA6CBA800EAE7BF /* TrackingViewController.m in Sources */,
-				67DE481F1B42CCDA00C5286B /* MyApplication.m in Sources */,
 				67D679021B3823C3006F5578 /* NSArray+Additions.m in Sources */,
 				67F4CE541B6233EB003486C5 /* CompleteRegistrationViewController.m in Sources */,
 				FA79268E1BF4A5B0004E6FC0 /* PackagePhotoViewController.m in Sources */,

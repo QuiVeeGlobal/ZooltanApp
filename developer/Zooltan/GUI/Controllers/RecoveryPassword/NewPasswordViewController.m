@@ -101,9 +101,12 @@
 {
     [[AppDelegate instance] showLoadingView];
     
+    NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
+    
     UserModel *userModel = self.userModel;
     userModel.phone = self.userModel.phone;
     userModel.password = self.nPassField.text;
+    userModel.deviceId = deviceId;
     
     [[Server instance] loginWithModel:userModel
                               success:^(UserModel *userModel) {

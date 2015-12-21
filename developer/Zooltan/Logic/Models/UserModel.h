@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *avatarURL;
 @property (nonatomic, retain) NSString *socialId;
+@property (nonatomic, retain) NSString *deviceId;
 
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSString *nPassword;

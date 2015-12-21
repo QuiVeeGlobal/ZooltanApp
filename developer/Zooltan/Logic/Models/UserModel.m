@@ -115,6 +115,9 @@
             
             id socialId = NULL_TO_NIL(dictionary[@"social"]);
             if (socialId) self.socialId = dictionary[@"social"];
+            
+            id deviceId = NIL_TO_NULL(dictionary[@"device_id"]);
+            if (deviceId) self.deviceId = dictionary[@"device_id"];
         }
         @catch (NSException *exception) { STLogException(exception); }
     }

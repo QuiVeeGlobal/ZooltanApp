@@ -77,11 +77,13 @@
                          NSLog(@"result %@", result);
                          
                          NSDictionary *userData = (NSDictionary *)result;
+                         NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
                          
                          UserModel *userModel = [[UserModel alloc] init];
                          userModel.avatarURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", userData[@"id"]];
                          userModel.socialId = [NSString stringWithFormat:@"%@", userData[@"id"]];
                          userModel.name = userData[@"name"];
+                         userModel.deviceId = deviceId;
                          
                          success(userModel);
                      }

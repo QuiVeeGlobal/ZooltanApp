@@ -174,20 +174,20 @@ NSString* deteckScreen()
         [[AppDelegate instance] showLoadingView];
         
         NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
         
         UserModel *userModel = [[UserModel alloc] init];
         userModel.phone = phone;
         userModel.password = self.passField.text;
+        userModel.deviceId = deviceId;
         userModel.isFB = NO;        
         
         [[Server instance] loginWithModel:userModel
                                   success:^(UserModel *userModel)
          {
              [[AppDelegate instance] hideLoadingView];
-             
              [[Settings instance] setPassword:self.passField.text];
              [[Settings instance] setCurrentUser:userModel];
-             
              [super getUserData];
              
              if (IS_COURIER_APP)
@@ -226,8 +226,14 @@ NSString* deteckScreen()
         
         [[AppDelegate instance] showLoadingView];
         
+        NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
+        
         UserModel *_userModel = [[UserModel alloc] init];
+        
+        _userModel.deviceId = deviceId;
+        
         _userModel.socialId  = userModel.socialId;
+        _userModel.deviceId  = userModel.deviceId;
         _userModel.password  = userModel.socialId;
         _userModel.name      = userModel.name;
         _userModel.avatarURL = userModel.avatarURL;
