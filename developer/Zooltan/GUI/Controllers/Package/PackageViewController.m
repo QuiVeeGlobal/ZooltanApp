@@ -275,6 +275,10 @@
             self.takeButton.hidden = YES;
             //title = NSLocalizedString(@"ctrl.package.button.title.close", nil);
             break;
+        
+        case OrderStatusClose:
+            self.takeButton.hidden = YES;
+            break;
             
         default:
             title = NSLocalizedString(@"ctrl.package.button.title.accept", nil);

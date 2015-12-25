@@ -41,7 +41,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
@@ -60,6 +59,12 @@
         [self.segmentedControl setEnabled:NO forSegmentAtIndex:1];
         [[self.segmentedControl.subviews objectAtIndex:0] setTintColor:[UIColor lightGrayColor]];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [serchField becomeFirstResponder];
 }
 
 - (void)getPlaceByString
@@ -140,8 +145,7 @@
 
 - (UIView *) setHeaderView
 {
-    if (!serchField)
-    {
+    if (!serchField) {
         serchField = [[TextField alloc] init];
         serchField.frame = CGRectMake(0, 0, self.tableView.width, 35);
         serchField.delegate = self;

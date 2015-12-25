@@ -21,6 +21,7 @@ typedef enum : NSUInteger {
 - (void)checkPhoneNumber:(NSString *)phone
                  success:(void (^)(void))success
                  failure:(void (^)(NSError *error, NSInteger code))failure;
+
 - (void)checkForRecoveryPhoneNumber:(NSString *)phone
                             success:(void (^)(void))success
                             failure:(void (^)(NSError *error, NSInteger code))failure;
@@ -63,6 +64,9 @@ typedef enum : NSUInteger {
 
 - (void)supportPhoneSuccess:(void (^)(NSString *phoneNumber))success
                     failure:(void (^)(NSError *error, NSInteger code))failure;
+
+- (void)clearBadgesSuccess:(void (^)(void))success
+                   failure:(void (^)(NSError *error, NSInteger code))failure;
 
 
 //////// Courier ///////

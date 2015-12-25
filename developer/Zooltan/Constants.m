@@ -11,7 +11,6 @@
 @implementation Constants
 
 + (NSString *)baseURL {
-    //return @"http://private-c58bd-zoltan1.apiary-mock.com";
     return @"http://zooltan.rexit.info";
     //return @"http://52.24.56.225";
 }

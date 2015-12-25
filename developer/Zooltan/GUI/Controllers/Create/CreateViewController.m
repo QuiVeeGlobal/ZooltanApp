@@ -440,11 +440,7 @@
     
     [kUserDefaults removeObjectForKey:@"settings_fromAddress"];
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
-//    [kUserDefaults removeObjectForKey:@"reciever_name"];
-//    [kUserDefaults removeObjectForKey:@"reciever_number"];
-//    [kUserDefaults removeObjectForKey:@"comments"];
-//    
-//    [kUserDefaults synchronize];
+    [kUserDefaults synchronize];
 }
 
 - (void)lowerKeyboard

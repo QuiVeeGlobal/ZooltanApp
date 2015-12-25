@@ -15,6 +15,20 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
         </mutableArray>
+        <mutableArray key="OPENSANS-LIGHT.TTF">
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+        </mutableArray>
         <mutableArray key="OPENSANS-REGULAR.TTF">
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -133,20 +147,6 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
-        </mutableArray>
-        <mutableArray key="OpenSans-Light_0.ttf">
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -4299,6 +4299,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="grZ-jD-XDK" secondAttribute="bottom" constant="20" id="2HT-OS-Cad"/>
                                             <constraint firstItem="grZ-jD-XDK" firstAttribute="top" secondItem="a4D-M1-uUy" secondAttribute="bottom" constant="15" id="4uY-DC-CZc"/>
                                             <constraint firstItem="u0S-Id-cps" firstAttribute="top" secondItem="k42-bp-RVE" secondAttribute="bottom" constant="10" id="6le-6a-ywO"/>
                                             <constraint firstAttribute="trailing" secondItem="k42-bp-RVE" secondAttribute="trailing" id="95H-QZ-qdF"/>

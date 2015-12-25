@@ -86,11 +86,6 @@
     [self stopLoader];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    self.scrollView.contentSize = CGSizeMake(self.view.width, self.cancelOrderButton.bottom+10);
-}
-
 - (void)configureView
 {
     [super configureView];

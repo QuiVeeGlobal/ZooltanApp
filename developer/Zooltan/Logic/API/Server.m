@@ -193,14 +193,7 @@ NSString *URLMethod(NSString *rout) {
         else
             failure(nil, operation.response.statusCode);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"statusCode %zd", operation.response.statusCode);
         STLogSuccess(@"/client/registration ERROR: %@",operation.responseString);
-        
-        //        NSError *_error;
-        //        NSDictionary *__dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&_error];
-        
-        
-        
         failure(operation.responseString, operation.response.statusCode);
     }];
 }
@@ -662,6 +655,27 @@ NSString *URLMethod(NSString *rout) {
         if (success) success(phoneNumber);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+        PRTFailureOperation(operation);
+        @try { failure (error, operation.response.statusCode); }
+        @catch (NSException *exception) { STLogException(exception); }
+    }];
+}
+
+- (void)clearBadgesSuccess:(void (^)(void))success
+                   failure:(void (^)(NSError *error, NSInteger code))failure
+{
+    NSMutableDictionary *param  = [NSMutableDictionary dictionary];
+    NSString *method = [NSString stringWithFormat:@"profile/badge"];
+    PRTParameters(param, URLMethod(method));
+    
+    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
+        PRTSuccessOperation(operation);
+        @try { success();}
+        @catch (NSException *exception) { STLogException(exception); }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PRTFailureOperation(operation);
         @try { failure (error, operation.response.statusCode); }
         @catch (NSException *exception) { STLogException(exception); }

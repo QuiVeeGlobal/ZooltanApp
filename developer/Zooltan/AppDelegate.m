@@ -240,9 +240,15 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
     [FBSDKAppEvents activateApp];
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    [[Server instance] clearBadgesSuccess:^{
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    } failure:^(NSError *error, NSInteger code) {
+        
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

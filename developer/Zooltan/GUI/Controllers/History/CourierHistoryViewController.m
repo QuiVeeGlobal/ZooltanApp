@@ -103,6 +103,7 @@ typedef enum : NSUInteger {
         self.addressLabel.text = self.destinationAddress.formatted_address;
         destinationLatitude = self.destinationAddress.location.latitude;
         destinationLongitude = self.destinationAddress.location.longitude;
+        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=way&&radius25&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
     }
     else
         self.addressLabel.text = NSLocalizedString(@"ctrl.destination.label.title", nil);
@@ -113,7 +114,6 @@ typedef enum : NSUInteger {
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
     [kUserDefaults removeObjectForKey:@"settings_destinationAddress"];
 }
 
@@ -141,13 +141,11 @@ typedef enum : NSUInteger {
 
 - (void)getOrders
 {
-    if (!self.refreshControl.isRefreshing) {
+    if (!self.refreshControl.isRefreshing)
         [[AppDelegate instance] showLoadingView];
-    }
     
-    if (!self.requerstUrl) {
-        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=local&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
-    }
+    if (!self.requerstUrl)
+        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=local&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
     
     STLogDebug(@"--> self.requerstUrl: %@",self.requerstUrl);
     
@@ -273,6 +271,7 @@ typedef enum : NSUInteger {
 - (IBAction)topSegmentAction:(id)sender
 {
     switch (self.topSegment.selectedSegmentIndex) {
+            
         case SearchSegTypeLocal:
             //self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=local&radius=5&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
             if (searchIsOpen)
@@ -302,46 +301,36 @@ typedef enum : NSUInteger {
         default:
             break;
     }
+    
     [self bottomSegmentAction:self.bottomSegment];
 }
 
 - (IBAction)bottomSegmentAction:(id)sender
 {
     switch (self.bottomSegment.selectedSegmentIndex) {
+            
         case StatusSegTypeNew:
             
             switch (self.topSegment.selectedSegmentIndex) {
                 case SearchSegTypeLocal:
-                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=local&radius5&longitude=%f&latitude=%f",
+                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=local&radius5&longitude=%f&latitude=%f",
                                         currentLongitude, currentLatitude];
                     break;
                 case SearchSegTypeWay: {
                     if (self.destinationAddress.formatted_address != 0) {
-                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=way&&radius25&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
+                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=way&&radius25&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
                     } else {
-                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=none&longitude=%f&latitude=%f",
+                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=none&longitude=%f&latitude=%f",
                                             currentLongitude, currentLatitude];
                     }
                 } break;
                     
                 case SearchSegTypeFullTime:
-                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=full&radius50&longitude=%f&latitude=%f",
+                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/new/1/100?type=full&radius50&longitude=%f&latitude=%f",
                                         currentLongitude, currentLatitude];
                     break;
             }
             
-            
-            //            if (self.topSegment.selectedSegmentIndex == 0) {
-            //                self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=local&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
-            //            }
-            //            if (self.topSegment.selectedSegmentIndex == 1) {
-            //                if (self.destinationAddress.formatted_address != 0) {
-            //                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=way&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
-            //                }
-            //            }
-            //            if (self.topSegment.selectedSegmentIndex == 2) {
-            //                self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/1/100?type=full&longitude=%f&latitude=%f", currentLongitude, currentLatitude];
-            //            }
             self.navItem.title = NSLocalizedString(@"ctrl.courier.history.bottomnavigation.title0", nil);
             break;
             
@@ -353,8 +342,12 @@ typedef enum : NSUInteger {
                                         currentLongitude, currentLatitude];
                     break;
                 case SearchSegTypeWay: {
-                    self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/active/1/100?type=way&longitude=%f&latitude=%f",
-                                        currentLongitude, currentLatitude];
+                    if (self.destinationAddress.formatted_address != 0) {
+                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/active/1/100?type=way&&radius25&longitude=%f&latitude=%f&destination_longitude=%f&destination_latitude=%f", currentLongitude, currentLatitude, destinationLongitude, destinationLatitude];
+                    } else {
+                        self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/active/1/100?type=none&longitude=%f&latitude=%f",
+                                            currentLongitude, currentLatitude];
+                    }
                 } break;
                     
                 case SearchSegTypeFullTime:
@@ -366,6 +359,7 @@ typedef enum : NSUInteger {
             break;
             
         case StatusSegTypeHistory:
+            
             self.requerstUrl = [NSString stringWithFormat:@"/courier/orders/history/1/100"];
             self.navItem.title = NSLocalizedString(@"ctrl.courier.history.bottomnavigation.title2", nil);
             break;
@@ -373,6 +367,7 @@ typedef enum : NSUInteger {
         default:
             break;
     }
+    
     STLogDebug(@"SELECTED: TOP:%zd  BOTTOM:%zd",
                self.topSegment.selectedSegmentIndex,
                self.bottomSegment.selectedSegmentIndex);

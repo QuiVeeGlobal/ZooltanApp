@@ -59,13 +59,11 @@
 
 - (void)getOrders
 {
-    if (!self.refreshControl.isRefreshing) {
+    if (!self.refreshControl.isRefreshing)
         [[AppDelegate instance] showLoadingView];
-    }
     
-    if (!self.requerstUrl) {
-        self.requerstUrl = [NSString stringWithFormat:@"/client/orders/1/100"];
-    }
+    if (!self.requerstUrl)
+        self.requerstUrl = [NSString stringWithFormat:@"/client/orders/active/1/100"];
     
     [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
     
@@ -86,10 +84,6 @@
          [self.refreshControl endRefreshing];
          [[AppDelegate instance] hideLoadingView];
      }];
-}
-
-- (void)viewDidLayoutSubviews
-{
 }
 
 - (void)configureView
@@ -134,20 +128,9 @@
 - (IBAction) segmentedAction:(UISegmentedControl *) sender
 {
     switch (self.segmentedControl.selectedSegmentIndex) {
-        case 0:
-            
-            self.requerstUrl = [NSString stringWithFormat:@"/client/orders/1/100"];
-            
-            break;
-            
-        case 1:
-            
-            self.requerstUrl = [NSString stringWithFormat:@"/client/orders/history/1/100"];
-            
-            break;
-            
-        default:
-            break;
+        case 0: self.requerstUrl = [NSString stringWithFormat:@"/client/orders/active/1/100"]; break;
+        case 1: self.requerstUrl = [NSString stringWithFormat:@"/client/orders/history/1/100"]; break;
+        default: break;
     }
     [self getOrders];
 }
@@ -158,8 +141,6 @@
 
 - (IBAction) showCreateDeliveries
 {
-    //    CreateViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateViewController"];
-    //    [self.navigationController pushViewController:ctr animated:YES];
     PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self.navigationController pushViewController:ctr animated:YES];
 }
