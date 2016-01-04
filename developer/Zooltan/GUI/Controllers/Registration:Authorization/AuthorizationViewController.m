@@ -161,9 +161,29 @@ NSString* deteckScreen()
         /* Courier registration only on server side */
         [UIAlertView showAlertWithTitle:NSLocalizedString(@"ctrl.courier.registration.msg.title", nil)
                                 message:NSLocalizedString(@"ctrl.courier.registration.msg", nil)
-                               delegate:nil
+                               delegate:self
                       cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
-                      otherButtonTitles:nil, nil];
+                      otherButtonTitles:NSLocalizedString(@"generic.call", nil), nil];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [[Server instance] supportPhoneSuccess:^(NSString *phoneNumber) {
+            NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", phoneNumber]];
+            if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+                [[UIApplication sharedApplication] openURL:phoneUrl];
+            }
+            else {
+                [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
+                                        message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
+                                       delegate:nil
+                              cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
+                              otherButtonTitles:nil, nil];
+            }
+        } failure:^(NSError *error, NSInteger code) {}];
     }
 }
 

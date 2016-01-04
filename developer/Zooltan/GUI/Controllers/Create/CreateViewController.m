@@ -139,7 +139,6 @@
         [self showRoute];
     
     if (self.contact) {
-        self.receiverNameField.placeholder = self.contact.fullName;
         self.receiverNameField.text = self.contact.fullName;
         
         if ([self.contact.phonesValues count] > 0)
@@ -372,6 +371,8 @@
     NSString *toLatitude    = [NSString stringWithFormat:@"%f", self.toAddress.location.latitude];
     NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
     NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    phone = [phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    phone = [phone stringByReplacingOccurrencesOfString:@")" withString:@""];
     NSString *comment       = self.commentsTextField.text;
     UIImage  *packageImage  = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
     NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.5);

@@ -80,9 +80,9 @@ typedef enum : NSUInteger {
             success:(void (^)(void))success
             failure:(void (^)(NSError *error, NSInteger code))failure;
 
-- (void)trackingOrder:(OrderModel *)order
-              success:(void (^)(void))success
-              failure:(void (^)(NSError *error, NSInteger code))failure;
+//- (void)trackingOrder:(OrderModel *)order
+//              success:(void (^)(void))success
+//              failure:(void (^)(NSError *error, NSInteger code))failure;
 
 - (void)updateOrder:(OrderModel *)order
          withStatus:(OrderStatus)status

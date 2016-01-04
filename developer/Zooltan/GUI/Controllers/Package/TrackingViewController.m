@@ -44,38 +44,38 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(trackLocationNotification:)
-                                                 name:kNotificationTrackLocation
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(trackLocationNotification:)
+//                                                 name:kNotificationTrackLocation
+//                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kNotificationTrackLocation
-                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:kNotificationTrackLocation
+//                                                  object:nil];
 }
 
-#pragma mark - Track Location Notification
-
-- (void)trackLocationNotification:(NSNotification *)notification {
-    CLLocation *location = [[AppDelegate instance] currentLocation];
-
-    NSDictionary *pos = notification.object;
-    if (location.coordinate.latitude == 0 ||
-        location.coordinate.longitude == 0 ||
-        ![pos isKindOfClass:[NSDictionary class]] ||
-        !self.order) {
-        return;
-    }
-    STLogDebug(@"notification: %@",notification.object);
-        
-    if (![_lastHashOrderLocation isEqualToString:self.order.hashCurrentLocationAddress]) {
-        _lastHashOrderLocation = self.order.hashCurrentLocationAddress;
-        [self trackingOrderFetcher];
-    }
-}
+//#pragma mark - Track Location Notification
+//
+//- (void)trackLocationNotification:(NSNotification *)notification {
+//    CLLocation *location = [[AppDelegate instance] currentLocation];
+//
+//    NSDictionary *pos = notification.object;
+//    if (location.coordinate.latitude == 0 ||
+//        location.coordinate.longitude == 0 ||
+//        ![pos isKindOfClass:[NSDictionary class]] ||
+//        !self.order) {
+//        return;
+//    }
+//    STLogDebug(@"notification: %@",notification.object);
+//        
+//    if (![_lastHashOrderLocation isEqualToString:self.order.hashCurrentLocationAddress]) {
+//        _lastHashOrderLocation = self.order.hashCurrentLocationAddress;
+//        [self trackingOrderFetcher];
+//    }
+//}
 
 
 - (IBAction)openCloseTrackingAction:(id)sender
@@ -186,26 +186,26 @@ typedef enum : NSUInteger {
 }
 
 
-#pragma mark - Fetcher
-
-- (void)trackingOrderFetcher {
-
-    if (_isTracking) {
-        return;
-    }
-    
-    [self performBlock:^{
-        _isTracking = YES;
-        
-        [[Server instance] trackingOrder:self.order success:^{
-            _isTracking = NO;
-            [self.tableView reloadData];
-            
-        } failure:^(NSError *error, NSInteger code) {
-            _isTracking = NO;
-        }];
-
-    } afterDelay:1];
-}
+//#pragma mark - Fetcher
+//
+//- (void)trackingOrderFetcher {
+//
+//    if (_isTracking) {
+//        return;
+//    }
+//    
+//    [self performBlock:^{
+//        _isTracking = YES;
+//        
+//        [[Server instance] trackingOrder:self.order success:^{
+//            _isTracking = NO;
+//            [self.tableView reloadData];
+//            
+//        } failure:^(NSError *error, NSInteger code) {
+//            _isTracking = NO;
+//        }];
+//
+//    } afterDelay:1];
+//}
 
 @end

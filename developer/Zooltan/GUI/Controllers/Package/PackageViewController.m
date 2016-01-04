@@ -97,6 +97,7 @@
     [self.callSenderButton setTitle:NSLocalizedString(@"ctrl.package.title.callSender", nil) forState:UIControlStateNormal];
     
     self.takeButton.layer.cornerRadius = kViewCornerRadius;
+    
     [self updateView];
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,19 +110,19 @@
 {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(trackingViewDidUpdateNotification:)
-                                                 name:kNotificationTrackingViewDidUpdate
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(trackingViewDidUpdateNotification:)
+//                                                 name:kNotificationTrackingViewDidUpdate
+//                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kNotificationTrackingViewDidUpdate
-                                                  object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:kNotificationTrackingViewDidUpdate
+//                                                  object:nil];
 }
 
 - (void)getPackageData
@@ -139,6 +140,11 @@
         self.pickUpDistanceLabel.text = @"";
     else
         self.pickUpDistanceLabel.text = [NSString stringWithFormat:@"%@ km", self.order.distanceTo];
+    
+    if ([self.order.packageImageUrl isEqual:@"<null>"]) {
+        self.viewPhotoButton.hidden = YES;
+        self.photoAttachedTitle.hidden = YES;
+    }
     
     [self.callButton setTitle:self.order.phone forState:UIControlStateNormal];
 }
@@ -329,16 +335,16 @@
      }];
 }
 
-#pragma mark - TrackingView Update
-
-- (void)trackingViewDidUpdateNotification:(NSNotification *)notification {
-    STLogMethod;
-    CGFloat trackingViewHeight = [notification.object floatValue];
-    CGFloat contentHight = self.trackingView.y + trackingViewHeight;
-    self.scrollView.contentSize = CGSizeMake(self.view.width, contentHight);
-    [self.scrollView scrollRectToVisible:CGRectMake(0, self.trackingView.y, self.trackingView.width, trackingViewHeight)
-                                animated:YES];
-}
+//#pragma mark - TrackingView Update
+//
+//- (void)trackingViewDidUpdateNotification:(NSNotification *)notification {
+//    STLogMethod;
+//    CGFloat trackingViewHeight = [notification.object floatValue];
+//    CGFloat contentHight = self.trackingView.y + trackingViewHeight;
+//    self.scrollView.contentSize = CGSizeMake(self.view.width, contentHight);
+//    [self.scrollView scrollRectToVisible:CGRectMake(0, self.trackingView.y, self.trackingView.width, trackingViewHeight)
+//                                animated:YES];
+//}
 
 #pragma mark - Storyboard Segue
 

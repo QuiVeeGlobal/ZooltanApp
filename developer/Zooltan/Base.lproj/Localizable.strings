@@ -3,7 +3,7 @@
 "generic.ok"                                 = "Ok";
 "generic.yes"                                = "Yes";
 "generic.no"                                 = "No";
-"generic.call"                               = "Call";
+"generic.call"                               = "Call support";
 "generic.legalInf"                           = "Legal information";
 "generic.legalDoc"                           = "Legal documents";
 "generic.FAQ"                                = "FAQ";
@@ -54,8 +54,8 @@
 
 
 // Courier Registration
-"ctrl.courier.registration.msg.title"        = "COURIER REGISTRATION";
-"ctrl.courier.registration.msg"              = "Contact support to register and activate your courier account.";
+"ctrl.courier.registration.msg.title"        = "REGISTRATION";
+"ctrl.courier.registration.msg"              = "To use the app you need to have verified account. Call support for further information please.";
 
 
 // Recovery Password

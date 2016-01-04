@@ -435,35 +435,35 @@ NSString *URLMethod(NSString *rout) {
     }];
 }
 
-#pragma mark - Courier
-#pragma mark - Track Order
-
-- (void) trackingOrder:(OrderModel *)order
-               success:(void (^)(void))success
-               failure:(void (^)(NSError *error, NSInteger code))failure {
-    
-    NSMutableDictionary *param  = [NSMutableDictionary dictionary];
-    param[@"location"]          = NIL_TO_NULL(order.hashCurrentLocationAddress);
-    param[@"address"]           = NIL_TO_NULL(order.currentAddress);
-    param[@"longitude"]         = [NSString stringWithFormat:@"%f", order.packageLocation.longitude];
-    param[@"latitude"]          = [NSString stringWithFormat:@"%f", order.packageLocation.latitude];
-    
-    NSString *method = [NSString stringWithFormat:@"track"];
-    PRTParameters(param, URLMethod(method));
-    
-    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
-    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
-        PRTSuccessOperation(operation);
-        @try { success();}
-        @catch (NSException *exception) { STLogException(exception); }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        PRTFailureOperation(operation);
-        @try { failure (error, operation.response.statusCode); }
-        @catch (NSException *exception) { STLogException(exception); }
-    }];
-}
+//#pragma mark - Courier
+//#pragma mark - Track Order
+//
+//- (void) trackingOrder:(OrderModel *)order
+//               success:(void (^)(void))success
+//               failure:(void (^)(NSError *error, NSInteger code))failure {
+//    
+//    NSMutableDictionary *param  = [NSMutableDictionary dictionary];
+//    param[@"location"]          = NIL_TO_NULL(order.hashCurrentLocationAddress);
+//    param[@"address"]           = NIL_TO_NULL(order.currentAddress);
+//    param[@"longitude"]         = [NSString stringWithFormat:@"%f", order.packageLocation.longitude];
+//    param[@"latitude"]          = [NSString stringWithFormat:@"%f", order.packageLocation.latitude];
+//    
+//    NSString *method = [NSString stringWithFormat:@"track"];
+//    PRTParameters(param, URLMethod(method));
+//    
+//    [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
+//    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
+//        PRTSuccessOperation(operation);
+//        @try { success();}
+//        @catch (NSException *exception) { STLogException(exception); }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        PRTFailureOperation(operation);
+//        @try { failure (error, operation.response.statusCode); }
+//        @catch (NSException *exception) { STLogException(exception); }
+//    }];
+//}
 
 #pragma mark - UpdateOrder
 

@@ -11,8 +11,8 @@
 @implementation Constants
 
 + (NSString *)baseURL {
-    return @"http://zooltan.rexit.info";
-    //return @"http://52.24.56.225";
+    //return @"http://zooltan.rexit.info";
+    return @"http://52.24.56.225";
 }
 
 + (NSString *)currentStoryboardName {
