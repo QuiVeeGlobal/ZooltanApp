@@ -173,8 +173,12 @@
     else
         cell.photo.image = [UIImage imageNamed:@"no_image"];
     
-    if ([contact.phonesValues count] > 0)
-        cell.phone.text = [NSString stringWithFormat:@"%@", contact.phonesValues[0]];
+    if ([contact.phonesValues count] > 0) {
+        NSString *phone = [NSString stringWithFormat:@"%@", contact.phonesValues[0]];
+        phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+        cell.phone.text = phone;
+    }
+        //cell.phone.text = [NSString stringWithFormat:@"%@", contact.phonesValues[0]];
     else
         cell.phone.text = @"";
     
@@ -194,7 +198,6 @@
     animation.subtype = kCATransitionFromLeft;
     [self.navigationController.view.layer addAnimation:animation forKey:nil];
     [self.navigationController pushViewController:ctr animated:NO];
-
 }
 
 #pragma mark - IBAction

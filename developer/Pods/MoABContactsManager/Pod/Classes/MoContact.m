@@ -35,11 +35,8 @@
     for (NSString *phone in self.phonesValues) {
         [phonesNumbers appendString:phone];
     }
-    
-    NSString *phonesString = [phonesNumbers stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    phonesString = [phonesString stringByReplacingOccurrencesOfString:@")" withString:@""];
-    phonesString = [phonesString stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    phonesString = [phonesString stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSString *phonesString = [[phonesNumbers componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
     return phonesString;
 }
@@ -52,7 +49,7 @@
     return @[];
 }
 
-- (NSString*)addressInfo
+- (NSString *)addressInfo
 {
     NSMutableString *addressInfo = [NSMutableString string];
     NSDictionary *address = self.addressValues.firstObject;

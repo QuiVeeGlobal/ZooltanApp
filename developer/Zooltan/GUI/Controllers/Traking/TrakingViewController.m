@@ -376,24 +376,6 @@
      }];
 }
 
-//#pragma mark - CHCircleGaugeView
-//#pragma mark -
-//
-//- (CHCircleGaugeView *) setGauge
-//{
-//    CHCircleGaugeView *gauge = [[CHCircleGaugeView alloc] init];
-//    //gauge.frame = CGRectMake(self.circleView.x, self.circleView.y, self.circleView.width, self.circleView.height);
-//    [gauge setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    gauge.trackTintColor = [Colors redColor];
-//    gauge.trackWidth = 10;
-//    //gauge.gaugeWidth = 90;
-//    gauge.gaugeTintColor = [UIColor blackColor];
-//    gauge.textColor = [UIColor clearColor];
-//    //gauge.value = 0.42;
-//
-//    return gauge;
-//}
-
 #pragma mark -
 
 - (void)didReceiveMemoryWarning {

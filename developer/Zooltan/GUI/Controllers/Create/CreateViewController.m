@@ -141,8 +141,12 @@
     if (self.contact) {
         self.receiverNameField.text = self.contact.fullName;
         
-        if ([self.contact.phonesValues count] > 0)
-            self.receiverNumberField.text = self.contact.phonesValues[0];
+        if ([self.contact.phonesValues count] > 0) {
+            NSString *phone = self.contact.phonesValues[0];
+            phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+            self.receiverNumberField.text = phone;
+        }
+            //self.receiverNumberField.text = self.contact.phonesValues[0];
         
         [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
         [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
@@ -370,9 +374,7 @@
     NSString *toLongitude   = [NSString stringWithFormat:@"%f", self.toAddress.location.longitude];
     NSString *toLatitude    = [NSString stringWithFormat:@"%f", self.toAddress.location.latitude];
     NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
-    NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    phone = [phone stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    phone = [phone stringByReplacingOccurrencesOfString:@")" withString:@""];
+    NSString *phone         = self.receiverNumberField.text;
     NSString *comment       = self.commentsTextField.text;
     UIImage  *packageImage  = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
     NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.5);
@@ -417,10 +419,10 @@
         if (operation.response.statusCode == 200 || operation.response.statusCode == 201) {
             [[Server instance] viewOrder:order success:^{
                 [[AppDelegate instance] hideLoadingView];
-                [self clearOrderData];
                 TrakingViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
                 ctr.order = order;
                 [self.navigationController pushViewController:ctr animated:YES];
+                [self clearOrderData];
                 
             } failure:^(NSError *error, NSInteger code) {
                 [[AppDelegate instance] hideLoadingView];
