@@ -328,7 +328,7 @@
 //        
 //        placeModel.formatted_address = [[AppDelegate instance] currentAdrees];
 //        placeModel.location = currentLocation.coordinate;
-//        
+//
 //        serchField.text = placeModel.formatted_address;
 //        [serchField becomeFirstResponder];
 //    }

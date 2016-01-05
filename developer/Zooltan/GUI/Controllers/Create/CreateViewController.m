@@ -58,6 +58,9 @@
 @property (nonatomic, retain) PlaceModel *fromAddress;
 @property (nonatomic, retain) PlaceModel *toAddress;
 
+@property (nonatomic, retain) GMSMarker *fromMarker;
+@property (nonatomic, retain) GMSMarker *toMarker;
+
 @property (nonatomic, strong) IBOutlet GMSMapView *mapView_;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
@@ -100,14 +103,22 @@
     else if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length <= 0)
         [self.receiverNumberField becomeFirstResponder];
     
+    else if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length > 0 && self.fromAddressLabel.text.length <= 0)
+        [self performSelector:@selector(fromAdressAction:) withObject:nil afterDelay:0.5];
+    
     else if (self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length <= 0)
         [self performSelector:@selector(toAdressAction:) withObject:nil afterDelay:0.5];
     
+    else if (self.toAddressLabel.text.length > 0 && self.fromAddressLabel.text.length <= 0)
+        [self performSelector:@selector(fromAdressAction:) withObject:nil afterDelay:0.5];
+    
+    else if ([self.toAddressLabel.text isEqualToString:self.fromAddressLabel.text]) {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredSameAdresses", nil) target:self];
+        [self performSelector:@selector(toAdressAction:) withObject:nil afterDelay:0.5];
+    }
+    
     else if (self.receiverNameField.text.length > 0 && self.receiverNumberField.text.length > 0 && self.fromAddressLabel.text.length > 0 && self.toAddressLabel.text.length > 0 && self.commentsTextField.text.length <= 0)
         [self.commentsTextField becomeFirstResponder];
-    
-    else
-        [self.receiverNameField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -125,6 +136,10 @@
     self.receiverNameField.text = [kUserDefaults objectForKey:@"reciever_name"];
     self.receiverNumberField.text = [kUserDefaults objectForKey:@"reciever_number"];
     self.commentsTextField.text = [kUserDefaults objectForKey:@"comments"];
+    
+    [self setTextCololInField:self.receiverNameField colol:[UIColor darkGrayColor]];
+    [self setTextCololInField:self.receiverNumberField colol:[UIColor darkGrayColor]];
+    [self setTextCololInField:self.commentsTextField colol:[UIColor darkGrayColor]];
     
     self.fromAddress = [[Settings instance] fromAddress];
     self.toAddress = [[Settings instance] toAddress];
@@ -221,10 +236,14 @@
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
     
+    self.mapView_.delegate = self;
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude zoom:15];
     self.mapView_.camera = camera;
     self.mapView_.myLocationEnabled = YES;
-    self.mapView_.userInteractionEnabled = NO;
+    //self.mapView_.userInteractionEnabled = NO;
+    self.mapView_.settings.zoomGestures = NO;
+    self.mapView_.settings.scrollGestures = NO;
 }
 
 - (void) showRoute
@@ -232,14 +251,17 @@
     CLLocationCoordinate2D fromLoc = CLLocationCoordinate2DMake(self.fromAddress.location.latitude, self.fromAddress.location.longitude);
     CLLocationCoordinate2D toLoc = CLLocationCoordinate2DMake(self.toAddress.location.latitude, self.toAddress.location.longitude);
     
-    GMSMarker *fromMarker = [GMSMarker markerWithPosition:fromLoc];
-    GMSMarker *toMarker = [GMSMarker markerWithPosition:toLoc];
+    self.fromMarker = [[GMSMarker alloc] init];
+    self.toMarker = [[GMSMarker alloc] init];
     
-    fromMarker.icon = [UIImage imageNamed:@"pickup_dot"];
-    toMarker.icon = [UIImage imageNamed:@"reciver_dot"];
+    self.fromMarker.position = fromLoc;
+    self.toMarker.position = toLoc;
     
-    fromMarker.map = self.mapView_;
-    toMarker.map = self.mapView_;
+    self.fromMarker.icon = [UIImage imageNamed:@"pickup_dot"];
+    self.fromMarker.map = self.mapView_;
+    
+    self.toMarker.icon = [UIImage imageNamed:@"reciver_dot"];
+    self.toMarker.map = self.mapView_;
     
     CLLocation *from = [[CLLocation alloc] initWithLatitude:self.fromAddress.location.latitude longitude:self.fromAddress.location.longitude];
     CLLocation *to = [[CLLocation alloc] initWithLatitude:self.toAddress.location.latitude longitude:self.toAddress.location.longitude];
@@ -247,6 +269,7 @@
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginLocation:from andDestinationLocation:to];
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
     [request setTravelMode:OCDirectionsRequestTravelModeDriving];
+    
     [client directions:request response:^(OCDirectionsResponse *response,  NSError *error) {
         
         if (error)
@@ -269,6 +292,17 @@
         //NSLog(@"RESPONSE %@", response.dictionary);
         
     }];
+}
+
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
+{
+    if (marker == self.fromMarker) {
+        [self fromAdressAction:nil];
+    }
+    if (marker == self.toMarker) {
+        [self toAdressAction:nil];
+    }
+    return YES;
 }
 
 #pragma mark - IBAction
@@ -374,7 +408,7 @@
     NSString *toLongitude   = [NSString stringWithFormat:@"%f", self.toAddress.location.longitude];
     NSString *toLatitude    = [NSString stringWithFormat:@"%f", self.toAddress.location.latitude];
     NSString *distance      = [NSString stringWithFormat:@"%f", orderDist];
-    NSString *phone         = self.receiverNumberField.text;
+    NSString *phone         = [self.receiverNumberField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *comment       = self.commentsTextField.text;
     UIImage  *packageImage  = [UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"package.jpg"]];
     NSData   *imadeData     = UIImageJPEGRepresentation(packageImage, 0.5);
@@ -420,8 +454,8 @@
             [[Server instance] viewOrder:order success:^{
                 [[AppDelegate instance] hideLoadingView];
                 TrakingViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"TrakingViewController"];
-                ctr.order = order;
                 [self.navigationController pushViewController:ctr animated:YES];
+                ctr.order = order;
                 [self clearOrderData];
                 
             } failure:^(NSError *error, NSInteger code) {
@@ -441,8 +475,11 @@
     self.receiverNumberField.text = @"";
     self.commentsTextField.text = @"";
     
+    [kUserDefaults removeObjectForKey:@"reciever_name"];
+    [kUserDefaults removeObjectForKey:@"reciever_number"];
     [kUserDefaults removeObjectForKey:@"settings_fromAddress"];
     [kUserDefaults removeObjectForKey:@"settings_toAddress"];
+    [kUserDefaults removeObjectForKey:@"comments"];
     [kUserDefaults synchronize];
 }
 

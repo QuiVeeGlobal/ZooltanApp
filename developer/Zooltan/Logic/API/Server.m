@@ -1131,7 +1131,7 @@ NSString *URLMethod(NSString *rout) {
                        failure:(void (^)(NSError *error, NSInteger code))failure {
 
     STLogMethod;
-    [[GMSPlacesClient sharedClient] currentPlaceWithCallback:^(GMSPlaceLikelihoodList * _Nullable likelihoodList, NSError * _Nullable error) {
+    [[GMSPlacesClient sharedClient] currentPlaceWithCallback:^(GMSPlaceLikelihoodList *likelihoodList, NSError *error) {
         if (error) {
             if (failure) {
                 failure(error, error.code);

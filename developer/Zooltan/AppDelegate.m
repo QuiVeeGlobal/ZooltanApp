@@ -281,8 +281,8 @@
     self.currentLocation = locations.lastObject;
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    
     CLLocation *location = [[CLLocation alloc] initWithLatitude:self.currentLocation.coordinate.latitude longitude:self.currentLocation.coordinate.longitude];
+    
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
      {
          [geocoder reverseGeocodeLocation:self.currentLocation
@@ -291,7 +291,7 @@
               
               if (error)
               {
-                  STLogDebug(@"Geocode failed with error: %@", error);
+                  STLogDebug(@"Geocode failed with error: %@", error.description);
                   return;
               }
               
