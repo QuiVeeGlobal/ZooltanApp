@@ -739,7 +739,6 @@
                                 </state>
                                 <connections>
                                     <action selector="sendNewAction:" destination="BGb-Ma-DLK" eventType="touchUpInside" id="WQF-Ca-qzo"/>
-                                    <action selector="showCreateDeliveries" destination="BGb-Ma-DLK" eventType="touchUpInside" id="67G-uI-wR9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1411,8 +1410,8 @@
                                     <outlet property="delegate" destination="IW1-kM-dT4" id="lF6-tP-eKK"/>
                                 </connections>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-EN-hyg">
-                                <rect key="frame" x="13" y="-1" width="600" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LmE-EN-hyg">
+                                <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hPN-Qf-TZS"/>
                                 </constraints>
@@ -1430,8 +1429,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LmE-EN-hyg" firstAttribute="top" secondItem="fYR-j2-4AB" secondAttribute="bottom" id="M4D-3R-Ayq"/>
-                            <constraint firstItem="ya6-zJ-3AI" firstAttribute="top" secondItem="LmE-EN-hyg" secondAttribute="bottom" id="S3c-uc-4wa"/>
+                            <constraint firstItem="LmE-EN-hyg" firstAttribute="top" secondItem="fYR-j2-4AB" secondAttribute="bottom" constant="-1" id="M4D-3R-Ayq"/>
+                            <constraint firstItem="ya6-zJ-3AI" firstAttribute="top" secondItem="LmE-EN-hyg" secondAttribute="bottom" constant="1" id="S3c-uc-4wa"/>
                             <constraint firstItem="YVv-RA-BK1" firstAttribute="top" secondItem="ya6-zJ-3AI" secondAttribute="bottom" id="iQx-lg-O6d"/>
                             <constraint firstAttribute="trailing" secondItem="LmE-EN-hyg" secondAttribute="trailing" id="ili-QD-oyU"/>
                             <constraint firstItem="ya6-zJ-3AI" firstAttribute="leading" secondItem="Lvw-1l-Klv" secondAttribute="leading" id="ipR-Mp-ZBc"/>

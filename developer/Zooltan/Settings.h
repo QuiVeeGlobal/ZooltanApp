@@ -35,7 +35,6 @@
 
 @property (nonatomic, strong) NSNumber *rateCounter;
 @property (nonatomic, strong) NSNumber *receivingCoinsMessageCounter;
-- (BOOL)canShowReceivingCoinsMessage;
 
 @property (nonatomic, strong) NSArray *userAwardsTypes;
 

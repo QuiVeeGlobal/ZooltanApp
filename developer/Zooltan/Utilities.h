@@ -32,9 +32,9 @@
 
 + (NSMutableArray *) parsingString:(NSString *) parsingString;
 
-// Phone Number
-+ (BOOL)configurePhoneNumberFromTextField:(UITextField *)textField withCharactersInRange:(NSRange)range;
-+ (NSString *)formatPhomeNumber:(NSString *)phoneNumber;
+//// Phone Number
+//+ (BOOL)configurePhoneNumberFromTextField:(UITextField *)textField withCharactersInRange:(NSRange)range;
+//+ (NSString *)formatPhomeNumber:(NSString *)phoneNumber;
 
 + (void)getAllContacts;
 @end

@@ -158,6 +158,50 @@
     return YES;
 }
 
+#pragma mark - CLLocationManager Delegates
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.currentLocation = locations.lastObject;
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:self.currentLocation.coordinate.latitude longitude:self.currentLocation.coordinate.longitude];
+    
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         [geocoder reverseGeocodeLocation:self.currentLocation
+                        completionHandler:^(NSArray *placemarks, NSError *error)
+          {
+              
+              if (error)
+              {
+                  STLogDebug(@"Geocode failed with error: %@", error.description);
+                  return;
+              }
+              
+              if (placemarks && placemarks.count > 0)
+              {
+                  CLPlacemark *placemark = placemarks[0];
+                  
+                  NSDictionary *addressDictionary = placemark.addressDictionary;
+                  
+                  NSString *street = [addressDictionary objectForKey:@"Street"];
+                  NSString *city = [addressDictionary objectForKey:@"City"];
+                  NSString *state = [addressDictionary objectForKey:@"Country"];
+                  //NSString *Country = [addressDictionary  objectForKey:@"localized_address"];
+                  
+                  self.currentAdrees = [NSString stringWithFormat:@"%@, %@, %@", street, city, state];
+                  //STLogDebug(@"Geocode address: %@", self.currentAdrees);
+                  
+                  if (addressDictionary) {
+                      [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTrackLocation
+                                                                          object:addressDictionary];
+                  }
+              }
+          }];
+     }];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -246,9 +290,7 @@
     
     [[Server instance] clearBadgesSuccess:^{
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    } failure:^(NSError *error, NSInteger code) {
-        
-    }];
+    } failure:^(NSError *error, NSInteger code) {}];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -272,49 +314,6 @@
     NSDictionary *titleParam = @{NSForegroundColorAttributeName : [UIColor whiteColor],
                                  NSFontAttributeName: [Fonts setOpenSansWithFontSize:18]};
     [[UINavigationBar appearance] setTitleTextAttributes:titleParam];
-}
-
-#pragma mark - CLLocationManager Delegates
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    self.currentLocation = locations.lastObject;
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    CLLocation *location = [[CLLocation alloc] initWithLatitude:self.currentLocation.coordinate.latitude longitude:self.currentLocation.coordinate.longitude];
-    
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
-     {
-         [geocoder reverseGeocodeLocation:self.currentLocation
-                        completionHandler:^(NSArray *placemarks, NSError *error)
-          {
-              
-              if (error)
-              {
-                  STLogDebug(@"Geocode failed with error: %@", error.description);
-                  return;
-              }
-              
-              if (placemarks && placemarks.count > 0)
-              {
-                  CLPlacemark *placemark = placemarks[0];
-                  
-                  NSDictionary *addressDictionary = placemark.addressDictionary;
-                  
-                  NSString *street = [addressDictionary objectForKey:@"Street"];
-                  NSString *city = [addressDictionary objectForKey:@"City"];
-                  NSString *state = [addressDictionary objectForKey:@"Country"];
-                  //NSString *Country = [addressDictionary  objectForKey:@"localized_address"];
-                  
-                  self.currentAdrees = [NSString stringWithFormat:@"%@, %@, %@", street, city, state];
-                  
-                  if (addressDictionary) {
-                      [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTrackLocation
-                                                                          object:addressDictionary];
-                  }
-              }
-          }];
-     }];
 }
 
 #pragma mark - Menu Controller

@@ -284,24 +284,37 @@
     }
     else
     {
-        STLogDebug(@"|------");
-        [[Server instance] GMSCurrentPlaceSuccess:^(NSArray *places) {
-            PlaceModel *place = places.firstObject;
-            serchField.text = place.formatted_address;
-            
-            STLogDebug(@"|Place: %@",place);
-            
-            placesArray = places;
-            [self.tableView reloadData];
-            [[AppDelegate instance] hideLoadingView];
-
-        } failure:^(NSError *error, NSInteger code) {
-            // Can't find current location
-            STLogDebug(@"Can't find current location");
-            [[AppDelegate instance] hideLoadingView];
+        CLLocation *location = [[AppDelegate instance] currentLocation];
+        CLLocationCoordinate2D addressCoordinates = [location coordinate];
+        GMSGeocoder *coder = [[GMSGeocoder alloc] init];
+        [coder reverseGeocodeCoordinate:addressCoordinates completionHandler:^(GMSReverseGeocodeResponse *results, NSError *error) {
+            if (error)
+                NSLog(@"Error %@", error.description);
+            else {
+                GMSAddress *address = [results firstResult];
+                serchField.text = [NSString stringWithFormat:@"%@", address.addressLine1];
+                [self getPlaceByString];
+                [self.tableView reloadData];
+                [[AppDelegate instance] hideLoadingView];
+            }
         }];
+//        STLogDebug(@"|------");
+//        [[Server instance] GMSCurrentPlaceSuccess:^(NSArray *places) {
+//            PlaceModel *place = places.firstObject;
+//            serchField.text = place.formatted_address;
+//            
+//            STLogDebug(@"|Place: %@",place);
+//            
+//            placesArray = places;
+//            [self.tableView reloadData];
+//            [[AppDelegate instance] hideLoadingView];
+//
+//        } failure:^(NSError *error, NSInteger code) {
+//            // Can't find current location
+//            STLogDebug(@"Can't find current location");
+//            [[AppDelegate instance] hideLoadingView];
+//        }];
     }
-
     
 //    if (indexPath.row != 0)
 //    {

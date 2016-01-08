@@ -89,7 +89,7 @@
                                              selector:@selector(lowerKeyboard)
                                                  name:closeKeyboard
                                                object:nil];
-    
+
     [self setOrderData];
 }
 
@@ -474,6 +474,8 @@
     self.receiverNameField.text = @"";
     self.receiverNumberField.text = @"";
     self.commentsTextField.text = @"";
+    self.fromAddressLabel.text = @"";
+    self.toAddressLabel.text = @"";
     
     [kUserDefaults removeObjectForKey:@"reciever_name"];
     [kUserDefaults removeObjectForKey:@"reciever_number"];

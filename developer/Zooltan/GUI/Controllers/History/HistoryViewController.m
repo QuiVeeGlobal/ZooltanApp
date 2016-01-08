@@ -137,10 +137,6 @@
 
 - (IBAction) sendNewAction:(UISegmentedControl *) sender
 {
-}
-
-- (IBAction) showCreateDeliveries
-{
     PackagePhotoViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"PackagePhotoViewController"];
     [self.navigationController pushViewController:ctr animated:YES];
 }

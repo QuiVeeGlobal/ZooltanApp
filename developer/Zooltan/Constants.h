@@ -17,6 +17,7 @@
 #define kNotificationOpenSearch     @"kNotificationOpenSearch"
 #define kNotificationOpenProfile    @"kNotificationOpenProfile"
 #define kNotificationTrackLocation  @"kNotificationTrackLocation"
+#define kNotificationClearOrderData @"kNotificationClearOrderData"
 
 #define kAnswersCount 4
 #define kViewCornerRadius 8.0f

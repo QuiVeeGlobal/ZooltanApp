@@ -733,14 +733,13 @@ NSString *URLMethod(NSString *rout) {
     }];
 }
 
-- (void) uploadImage:(UIImage *) image
+- (void)uploadImage:(UIImage *)image
              success:(void (^)(UserModel *userModel))success
              failure:(void (^)(NSError *error, NSInteger code))failure
 {
     NSString *method = @"profile/logo";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    //param[@"token"] = NIL_TO_NULL([[Settings instance] token]);
     
     PRTParameters(param, URLMethod(method));
     
@@ -767,160 +766,6 @@ NSString *URLMethod(NSString *rout) {
         @try { failure (error, operation.response.statusCode); }
         @catch (NSException *exception) { STLogException(exception); }
     }];
-
-    
-    
-    
-    
-    
-    
-    
-    
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/client/profile/logo", [Constants baseURL]]]];
-    
-//    NSString *method = @"profile/logo";
-//    PRTParameters(nil, URLMethod(method));
-//
-//    NSMutableURLRequest *request =
-//    [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:URLMethod(method)]];
-//
-//    
-//    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-//    
-//    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-//    [request setHTTPShouldHandleCookies:NO];
-//    [request setTimeoutInterval:kServerTimeOut];
-//    [request setHTTPMethod:@"POST"];
-//    
-//    NSString *boundary = @"unique-consistent-string";
-//    
-//    // set Content-Type in HTTP header
-//    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-//    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
-//    
-//    // post body
-//    NSMutableData *body = [NSMutableData data];
-//    
-//    // add params (all params are strings)
-//    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"token"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [[Settings instance] token]] dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    // add image data
-//    if (imageData)
-//    {
-//        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@; filename=imageName.jpg\r\n", @"logo"] dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//        [body appendData:imageData];
-//        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    
-//    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    // setting the body of the post to the reqeust
-//    [request setHTTPBody:body];
-//    
-//    // set the content-length
-//    NSString *postLength = [NSString stringWithFormat:@"%zd", [body length]];
-//    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//    
-//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-//        
-//        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        STLogDebug(@"json %@", json);
-//        STLogError(error);
-//
-//        
-//        if (!error)
-//        {
-//            NSError *_error;
-//            
-////            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-////            STLogDebug(@"json %@", json);
-//            NSDictionary *__dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&_error];
-//            
-//            id token = NULL_TO_NIL(__dictionary[@"token"]);
-//            if (token)
-//            {
-//                UserModel *userModel = [[UserModel alloc] initWithDictionary:__dictionary];
-//                success(userModel);
-//            }
-//            else {
-//                failure(error, 0);
-//            }
-//        }
-//        else {
-//            failure(error, 0);
-//        }
-//    }];
-//    
-//    //    NSString *fileName = [NSString stringWithFormat:@"%d", (arc4random()%501)+500];
-//    //
-//    //    NSData *imageData = UIImagePNGRepresentation(image);
-//    //
-//    //    NSString *boundary = @"---------------------------14737809831466499882746641449";
-//    //
-//    //    NSMutableData *body = [NSMutableData data];
-//    //
-//    //    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", @"token"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [[Settings instance] token]] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //
-//    //    //if (fileData)
-//    //    {
-//    //        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"logo\"; filename=\"%@\"\r\n", fileName] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //        [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-//    //        [body appendData:imageData];
-//    //        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //    }
-//    //
-//    ////    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"member_passkey"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"%@\r\n", member_passkey] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //
-//    ////    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"dest_ssdir_id"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"%@\r\n", dest_ssdir_id] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //
-//    ////    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"app_id"] dataUsingEncoding:NSUTF8StringEncoding]];
-//    ////    [body appendData:[[NSString stringWithFormat:@"%@\r\n", AppId] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //
-//    //    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-//    //
-//    //    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    //    sessionConfiguration.HTTPAdditionalHeaders = @{@"Accept"        : @"application/json",
-//    //                                                   @"Content-Type"  : [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]};
-//    //    //@"Token"         : [[Settings instance] token],
-//    //    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
-//    //
-//    //    // Data uploading task. We could use NSURLSessionUploadTask instead of NSURLSessionDataTask if we needed to support uploads in the background
-//    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/client/profile/logo", baseUrl]]];
-//    //    request.HTTPMethod = @"POST";
-//    //    request.HTTPBody = body;
-//    //
-//    //    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//    //
-//    //        NSLog(@"error %@", error);
-//    //
-//    //        NSLog(@"response %@", response);
-//    //
-//    //        //NSError *_error;
-//    //
-//    //        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    //
-//    //        NSLog(@"json %@", json);
-//    //
-//    //        if (json)
-//    //        {
-//    //         //NSDictionary *__dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&_error];
-//    //
-//    //        }
-//    //    }];
-//    //    [uploadTask resume];
-    
 }
 
 //https://maps.googleapis.com/maps/api/place/nearbysearch/output?parameters
@@ -995,118 +840,6 @@ NSString *URLMethod(NSString *rout) {
                                                  if (success) success(placesArray);
                                                  
                                              }];
-    
-    //NSString *street = [NSString stringWithFormat:@"street %@",address];
-    
-//    NSString *parameterString =
-//    [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&&location=%.5f,%.5f&radius=500&types=address&language=en&key=%@",
-//     address, cc0.latitude, cc0.longitude, [Constants browserGMSApiKey]];
-////    NSString *parameterString =
-////    [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?location=%@&radius=%@&address=%@&key=%@",
-////     loc, radius, address, [Constants browserGMSApiKey]];
-//    
-//    //[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?location=%@&radius=%@&key=%@", loc, radius, [Constants browserGMSApiKey]];
-//    //[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?location=%@&radius=%@&key=%@", loc, radius, [Constants browserGMSApiKey]];
-//
-//    NSString *urlString = [parameterString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//   
-//    //[REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
-//    [REQUEST GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        PRTSuccessOperation(operation);
-//        NSLog(@"responseObject %@",responseObject);
-//        
-//        NSString *status = NULL_TO_NIL(responseObject[@"status"]);
-//        if ([status isEqualToString:@"OK"])
-//        {
-//             __block NSMutableArray *placesArray = [NSMutableArray array];
-//            id predictions = NULL_TO_NIL(responseObject[@"predictions"]);
-//            if ([predictions isKindOfClass:[NSArray class]]) {
-//                
-//                [(NSArray *)predictions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                    PlaceModel *palceModel = [[PlaceModel alloc] initWithDictionary:obj];
-//                    [placesArray addObject:palceModel];
-//                }];
-//                
-//            }
-//            if (success) success(placesArray);
-//
-//        } else {
-//            NSError *err = [Errors defaultErrorWithMessage:@"No results"];
-//            if (failure) failure(err,err.code);
-//        }
-//
-//    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
-//        PRTFailureOperation(operation);
-//        if (failure) failure(error, operation.response.statusCode);
-//    }];
-
-    
-    
-    
-    
-    
-    
-//    
-//    
-//    //https://maps.googleapis.com/maps/api/place/textsearch/json?query=street+Glushko&key=AIzaSyBNlbUrNtAy5GNSIG--Oo_kPuWAPOK7sNw"];//urlString];
-//    
-//    NSLog(@"adress %@", adress);
-//    
-////    NSString *parameterString =
-////    [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?destinations=%@,+Odessa,+UA&key=%@", adress, [Constants browserGMSApiKey]];
-//    
-//    //https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants
-//    NSString *parameterString =
-//    [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=street+%@+in+Odessa+UA&key=%@", adress, [Constants browserGMSApiKey]];
-//    
-//    
-//    NSString *urlString = [parameterString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    
-//    
-//    //NSString *urlString = parameterString;//[NSString stringWithFormat:@"%@%@%@",googlURL, @"place/textsearch/json?", [parameterString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    STLog(@"url = %@",urlString);
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-//    [request setHTTPMethod:@"POST"];
-//    [request setTimeoutInterval:240];
-//    NSHTTPURLResponse *response;
-//    NSError *err;
-//    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-//    
-//    NSError *error;
-//    NSDictionary *dictionary;
-//    
-//    NSString *json = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//    
-//    STLog(@"searchPlace %@", json);
-//    
-//    if (json && ![json isEqualToString:@""])
-//    {
-//        dictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
-//        
-//        ResponseModel *response = [[ResponseModel alloc] initWithResponseData:dictionary];
-//        
-//        STLog(@"status %@", response.status);
-//        
-//        if ([response.status isEqualToString:@"OK"])
-//        {
-//            NSMutableArray *placesArray = [NSMutableArray array];
-//            
-//            for (NSDictionary *dictionary in (NSDictionary *)response.data)
-//            {
-//                PlaceModel *palceModel = [[PlaceModel alloc] initWithDictionary:dictionary];
-//                [placesArray addObject:palceModel];
-//            }
-//            
-//            success(placesArray);
-//        }
-//        else
-//            failure(error, response.status);
-//    }
-//    else
-//        failure(error, @"error");
 }
 
 - (void)GMSUpdatePlace:(PlaceModel *)place
@@ -1114,7 +847,7 @@ NSString *URLMethod(NSString *rout) {
                failure:(void (^)(NSError *error, NSInteger code))failure
 {
     STLogMethod;
-    [[GMSPlacesClient sharedClient] lookUpPlaceID:STRING(place.place_id) callback:^(GMSPlace * _Nullable result, NSError * _Nullable error) {
+    [[GMSPlacesClient sharedClient] lookUpPlaceID:STRING(place.place_id) callback:^(GMSPlace *result, NSError *error) {
         STLogDebug(@"STRING(place.place_id): %@",STRING(place.place_id));
         if (error) {
             NSLog(@"Update place error %@", [error localizedDescription]);
@@ -1146,12 +879,10 @@ NSString *URLMethod(NSString *rout) {
         
             STLogDebug(@"name: %@",placeModel.name);
             STLogDebug(@"formattedAddress: %@",placeModel.formatted_address);
-
             
             if (success) {
                 success(@[placeModel]);
             }
-            
         }
     }];
 }
