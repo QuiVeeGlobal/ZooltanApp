@@ -301,6 +301,7 @@
 "msg.error.repeatPassword"                  = "Enter confirm password please.";
 "msg.error.enteredPhoneNumber"              = "Incorrect phone number";
 "msg.error.enteredPhoneNumberCharacters"    = "Phone number should contain minimum 9 characters";
+"msg.error.enteredSamePhone"                = "Phone number that you are trying to register already exists in the database";
 "msg.error.enteredOldPassword"              = "Incorrect password";
 "msg.error.enteredNameCharacters"           = "Name should contain minimum 3 characters";
 "msg.error.enteredDifferentPasswords"       = "New password and confirm password are different";

@@ -157,13 +157,16 @@ NSString* _deteckScreen()
     {
         NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-        [[CheckMobi instance] verifyPhoneNumber:phone
-                                completionBlock:^(NSError *error) {
-                                    
-                                    if (!error) {
-                                        [self showValidationScreen];
-                                    }
-                                }];
+        [[Server instance] checkPhoneNumber:phone success:^{
+            [[CheckMobi instance] verifyPhoneNumber:phone
+                                    completionBlock:^(NSError *error) {
+                                        if (!error)
+                                            [self showValidationScreen];
+                                    }];
+        } failure:^(NSError *error, NSInteger code) {
+            [Utilities showAlertMessage:@"msg.error.enteredSamePhone" target:self];
+            self.signUpBtn.enabled = YES;
+        }];
     }
 }
 

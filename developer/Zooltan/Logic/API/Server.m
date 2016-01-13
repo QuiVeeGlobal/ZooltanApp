@@ -41,44 +41,55 @@ NSString *URLMethod(NSString *rout) {
                  success:(void (^)(void))success
                  failure:(void (^)(NSError *error, NSInteger code))failure {
     
-    phone = [phone stringByReplacingOccurrencesOfString:@"+" withString:@""];
-    NSString *method = @"/user/check";
+    //phone = [phone stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    NSString *method = @"check-phone-existence";
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"phone"] = STRING(phone);
     
     PRTParameters(param, URLMethod(method));
     
-    //[REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
-    [REQUEST GET:method parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  formData) {
+    } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
         PRTSuccessOperation(operation);
-        
-
-        if ([responseObject isKindOfClass:[NSArray class]]) {
-            
-            [(NSArray*)responseObject enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                STLogDebug(@"<--- %@",obj);
-            }];
-            
-            
-            
-        } else {
-//            if (failure) {
-//                failure([Errors defaultErrorWithMessage:@"User not found"],409);
-//            }
-        }
-        
-        
-        
-        if (success) {
-            success();
-        }
+        @try { success();}
+        @catch (NSException *exception) { STLogException(exception); }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PRTFailureOperation(operation);
         @try { failure (error, operation.response.statusCode); }
         @catch (NSException *exception) { STLogException(exception); }
     }];
+    
+//    [REQUEST GET:method parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        PRTSuccessOperation(operation);
+//        
+//
+//        if ([responseObject isKindOfClass:[NSArray class]]) {
+//            
+//            [(NSArray*)responseObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                STLogDebug(@"<--- %@",obj);
+//            }];
+//            
+//            
+//            
+//        } else {
+////            if (failure) {
+////                failure([Errors defaultErrorWithMessage:@"User not found"],409);
+////            }
+//        }
+//        
+//        
+//        
+//        if (success) {
+//            success();
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        PRTFailureOperation(operation);
+//        @try { failure (error, operation.response.statusCode); }
+//        @catch (NSException *exception) { STLogException(exception); }
+//    }];
 }
 
 

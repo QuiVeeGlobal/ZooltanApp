@@ -90,12 +90,16 @@
         self.userModel.phone = phone;
         self.userModel.isFB = YES;
         
-        [[CheckMobi instance] verifyPhoneNumber:phone
-                                completionBlock:^(NSError *error) {
-                                    
-                                    if (!error)
-                                        [self showValidationScreen];
-                                }];
+        [[Server instance] checkPhoneNumber:phone success:^{
+            [[CheckMobi instance] verifyPhoneNumber:phone
+                                    completionBlock:^(NSError *error) {
+                                        if (!error)
+                                            [self showValidationScreen];
+                                    }];
+        } failure:^(NSError *error, NSInteger code) {
+            [Utilities showAlertMessage:@"msg.error.enteredSamePhone" target:self];
+            self.sendBtn.enabled = YES;
+        }];
     }
 }
 
