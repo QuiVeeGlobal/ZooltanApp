@@ -61,8 +61,10 @@
 // Recovery Password
 "ctrl.recoveryPassword.main.title"           = "PASSWORD RECOVERY";
 "ctrl.recoveryPassword.main.description"     = "To recover your password, enter your phone number and click \"SEND\". You will come with a code to change the password.";
+"ctrl.recoveryPassword.main.descr"           = "To recover your password, please call the office.";
 "ctrl.recoveryPassword.placeholder.phone"    = "Phone number";
 "ctrl.recoveryPassword.button.send"          = "SEND";
+"ctrl.recoveryPassword.button.call"          = "CALL THE OFFICE";
 
 
 // New Password

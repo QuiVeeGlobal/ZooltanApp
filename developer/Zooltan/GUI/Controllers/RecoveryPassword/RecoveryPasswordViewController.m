@@ -43,9 +43,15 @@
     [self addCornerRadius:self.sendBtn];
     
     self.mainTitle.text = NSLocalizedString(@"ctrl.recoveryPassword.main.title", nil);
-    self.descriptionTitle.text = NSLocalizedString(@"ctrl.recoveryPassword.main.description", nil);
     self.phoneField.placeholder = NSLocalizedString(@"ctrl.recoveryPassword.placeholder.phone", nil);
-    self.sendBtn.titleLabel.text = NSLocalizedString(@"ctrl.recoveryPassword.placeholder.phone", nil);
+    
+    if (IS_CUSTOMER_APP) {
+        self.descriptionTitle.text = NSLocalizedString(@"ctrl.recoveryPassword.main.description", nil);
+        [self.sendBtn setTitle: NSLocalizedString(@"ctrl.recoveryPassword.button.send", nil) forState: UIControlStateNormal];
+    } else {
+        self.descriptionTitle.text = NSLocalizedString(@"ctrl.recoveryPassword.main.descr", nil);
+        [self.sendBtn setTitle: NSLocalizedString(@"ctrl.recoveryPassword.button.call", nil) forState: UIControlStateNormal];
+    }
 }
 
 - (void) addCornerRadius:(UIButton *) btn
@@ -87,43 +93,59 @@
 
 - (IBAction) sendPhoneAction:(UIButton *)sender
 {
-    self.sendBtn.enabled = NO;
-    if ([self validateFields])
-    {
-        NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        [[AppDelegate instance] showLoadingView];
-        [[Server instance] checkForRecoveryPhoneNumber:phone success:^{
-            [[CheckMobi instance] verifyPhoneNumber:phone
-                                    completionBlock:^(NSError *error) {
-                                        [[AppDelegate instance] hideLoadingView];
-                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                            self.sendBtn.enabled = YES;
-                                        });
-                                        if (!error) {
-                                            [self showValidationScreen];
-                                        }
-                                    }];
-        } failure:^(NSError *error, NSInteger code) {
-            [[AppDelegate instance] hideLoadingView];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.sendBtn.enabled = YES;
-            });
+    if (IS_CUSTOMER_APP) {
+        self.sendBtn.enabled = NO;
+        if ([self validateFields])
+        {
+            NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
             
-            switch (code) {
-                case 404:
-                    [Utilities showErrorMessage:NSLocalizedString(@"msg.error.userNotFound", nil) target:self];
-                    break;
-                case 403:
-                    [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
-                    break;
-                default:
-                    [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
-                    break;
-            }
-        }];
+            [[AppDelegate instance] showLoadingView];
+            [[Server instance] checkForRecoveryPhoneNumber:phone success:^{
+                [[CheckMobi instance] verifyPhoneNumber:phone
+                                        completionBlock:^(NSError *error) {
+                                            [[AppDelegate instance] hideLoadingView];
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                self.sendBtn.enabled = YES;
+                                            });
+                                            if (!error) {
+                                                [self showValidationScreen];
+                                            }
+                                        }];
+            } failure:^(NSError *error, NSInteger code) {
+                [[AppDelegate instance] hideLoadingView];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.sendBtn.enabled = YES;
+                });
+                
+                switch (code) {
+                    case 404:
+                        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.userNotFound", nil) target:self];
+                        break;
+                    case 403:
+                        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
+                        break;
+                    default:
+                        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.general", nil) target:self];
+                        break;
+                }
+            }];
+        } else
+            self.sendBtn.enabled = YES;
+
     } else {
-        self.sendBtn.enabled = YES;
+        [[Server instance] supportPhoneSuccess:^(NSString *phoneNumber) {
+            NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", phoneNumber]];
+            if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+                [[UIApplication sharedApplication] openURL:phoneUrl];
+            }
+            else {
+                [UIAlertView showAlertWithTitle:NSLocalizedString(@"generic.call", nil)
+                                        message:NSLocalizedString(@"ctrl.regestration.call.incopatible", nil)
+                                       delegate:nil
+                              cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
+                              otherButtonTitles:nil, nil];
+            }
+        } failure:^(NSError *error, NSInteger code) {}];
     }
 }
 
