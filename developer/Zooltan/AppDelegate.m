@@ -10,7 +10,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "AuthorizationViewController.h"
 #import "Analytics.h"
-#import <LeanTesting/LeanTesting.h>
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 @interface AppDelegate ()
@@ -72,9 +71,6 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
-    
-    //Lean Testing
-    [LeanTesting activateSDKWithKey:[Constants leanTestingKey] projectID:[Constants leanTestingId]];
     
     //Google Analytics
     [[Analytics instance] startGAI];

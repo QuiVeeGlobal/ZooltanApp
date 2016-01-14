@@ -87,11 +87,11 @@
 
 - (IBAction) sendPhoneAction:(UIButton *)sender
 {
-     self.sendBtn.enabled = NO;
+    self.sendBtn.enabled = NO;
     if ([self validateFields])
     {
         NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-       
+        
         [[AppDelegate instance] showLoadingView];
         [[Server instance] checkForRecoveryPhoneNumber:phone success:^{
             [[CheckMobi instance] verifyPhoneNumber:phone

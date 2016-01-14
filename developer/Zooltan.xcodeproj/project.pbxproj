@@ -271,10 +271,6 @@
 		FA4FA2E01B970299005B7229 /* CourierHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */; };
 		FA4FA2E31B970341005B7229 /* CourierHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA2E21B970341005B7229 /* CourierHistoryCell.m */; };
 		FA5045801BE774190032EF74 /* Courier.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446389001B958E7E008B4B0B /* Courier.storyboard */; };
-		FA5A09541BBE7FA2005FFEC2 /* LeanTesting.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */; };
-		FA5A09551BBE7FA2005FFEC2 /* LeanTesting.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */; };
-		FA5A09561BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */; };
-		FA5A09571BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */; };
 		FA5A09591BBE8026005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA5A095A1BBE802F005FFEC2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5A09581BBE8026005FFEC2 /* CoreData.framework */; };
 		FA6F0A471C03D87200FD1D31 /* BLMultiColorLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */; };
@@ -551,8 +547,6 @@
 		FA4FA2DF1B970299005B7229 /* CourierHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierHistoryViewController.m; sourceTree = "<group>"; };
 		FA4FA2E11B970341005B7229 /* CourierHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierHistoryCell.h; sourceTree = "<group>"; };
 		FA4FA2E21B970341005B7229 /* CourierHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierHistoryCell.m; sourceTree = "<group>"; };
-		FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LeanTesting.bundle; sourceTree = "<group>"; };
-		FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LeanTesting.framework; sourceTree = "<group>"; };
 		FA5A09581BBE8026005FFEC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FA6F0A451C03D87200FD1D31 /* BLMultiColorLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLMultiColorLoader.h; path = BLMultiColorLoader/BLMultiColorLoader.h; sourceTree = "<group>"; };
 		FA6F0A461C03D87200FD1D31 /* BLMultiColorLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLMultiColorLoader.m; path = BLMultiColorLoader/BLMultiColorLoader.m; sourceTree = "<group>"; };
@@ -590,7 +584,6 @@
 				446388CF1B958E04008B4B0B /* CoreGraphics.framework in Frameworks */,
 				446388D01B958E04008B4B0B /* UIKit.framework in Frameworks */,
 				446388D21B958E04008B4B0B /* AssetsLibrary.framework in Frameworks */,
-				FA5A09571BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */,
 				446388D51B958E04008B4B0B /* CoreText.framework in Frameworks */,
 				446388D61B958E04008B4B0B /* MobileCoreServices.framework in Frameworks */,
 				446388D71B958E04008B4B0B /* QuickLook.framework in Frameworks */,
@@ -613,7 +606,6 @@
 				671A9F441B5005BC00DDBF25 /* CoreGraphics.framework in Frameworks */,
 				678BAD251B5002BF008CA5A3 /* UIKit.framework in Frameworks */,
 				6774F7641B39A168005B5043 /* AssetsLibrary.framework in Frameworks */,
-				FA5A09561BBE7FA2005FFEC2 /* LeanTesting.framework in Frameworks */,
 				6774F7631B39A165005B5043 /* CoreText.framework in Frameworks */,
 				6774F7621B39A162005B5043 /* MobileCoreServices.framework in Frameworks */,
 				6774F7611B39A15F005B5043 /* QuickLook.framework in Frameworks */,
@@ -838,8 +830,6 @@
 				FA3441BF1C1B65F9006FA726 /* FBSDKLoginKit.framework */,
 				FA3EEE5B1C03B3C700ED1E48 /* Foundation.framework */,
 				FA5A09581BBE8026005FFEC2 /* CoreData.framework */,
-				FA5A09521BBE7FA2005FFEC2 /* LeanTesting.bundle */,
-				FA5A09531BBE7FA2005FFEC2 /* LeanTesting.framework */,
 				1E271D071BB0DAD500914CDC /* CoreTelephony.framework */,
 				670595E11B69169100A899E2 /* CoreLocation.framework */,
 				67050A771B611A5700D916EB /* MMDrawerController */,
@@ -1503,7 +1493,6 @@
 				446388E41B958E04008B4B0B /* OPENSANS-LIGHT.TTF in Resources */,
 				446389031B958EFB008B4B0B /* Main.storyboard in Resources */,
 				446388E51B958E04008B4B0B /* HockeySDK.xcconfig in Resources */,
-				FA5A09551BBE7FA2005FFEC2 /* LeanTesting.bundle in Resources */,
 				446388E61B958E04008B4B0B /* HockeySDKResources.bundle in Resources */,
 				446388E71B958E04008B4B0B /* OpenSans-BoldItalic_0.ttf in Resources */,
 				446388E81B958E04008B4B0B /* OPENSANS-LIGHTITALIC.TTF in Resources */,
@@ -1553,7 +1542,6 @@
 				67F1AC801B386F8800C76F75 /* OpenSans-Bold_0.ttf in Resources */,
 				676A429B1B6F70330046408C /* Localizable.strings in Resources */,
 				675727831B555A0600F77702 /* map@2x.png in Resources */,
-				FA5A09541BBE7FA2005FFEC2 /* LeanTesting.bundle in Resources */,
 				67F1AC241B3806D200C76F75 /* LaunchScreen.xib in Resources */,
 				67F1AC921B386F8800C76F75 /* OpenSans-SemiboldItalic_0.ttf in Resources */,
 				67F1AC851B386F8800C76F75 /* OPENSANS-EXTRABOLDITALIC.TTF in Resources */,
