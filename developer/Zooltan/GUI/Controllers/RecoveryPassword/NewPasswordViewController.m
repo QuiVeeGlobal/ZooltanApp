@@ -103,7 +103,7 @@
     
     NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceId"];
     
-    UserModel *userModel = self.userModel;
+    UserModel *userModel = [[UserModel alloc] init];
     userModel.phone = self.userModel.phone;
     userModel.password = self.nPassField.text;
     userModel.deviceId = deviceId;
@@ -111,6 +111,8 @@
     [[Server instance] loginWithModel:userModel
                               success:^(UserModel *userModel) {
                                   [[AppDelegate instance] hideLoadingView];
+                                  [[Settings instance] setCurrentUser:userModel];
+                                  [super getUserData];
                                   [self dismissViewControllerAnimated:YES completion:^{
                                       [[NSNotificationCenter defaultCenter] postNotificationName:showCenterView object:nil];
                                   }];

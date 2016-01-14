@@ -710,14 +710,16 @@ NSString *URLMethod(NSString *rout) {
     PRTParameters(param, URLMethod(method));
     
     [REQUEST.requestSerializer setValue:[[Settings instance] token] forHTTPHeaderField:@"token"];
-    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [REQUEST POST:URLMethod(method) parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  formData) {
     } success:^(AFHTTPRequestOperation *operation, id responseObject)  {
         PRTSuccessOperation(operation);
-        if (success) { success(); }
+        @try { success();}
+        @catch (NSException *exception) { STLogException(exception); }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PRTFailureOperation(operation);
-        if (failure) failure(error, operation.response.statusCode);
+        @try { failure (error, operation.response.statusCode); }
+        @catch (NSException *exception) { STLogException(exception); }
     }];
 }
 

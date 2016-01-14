@@ -153,7 +153,7 @@
 {
     NSString *phone = [self.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    UserModel *userModel = [[Settings instance] currentUser];
+    UserModel *userModel = [[UserModel alloc] init];
     userModel.phone = phone;
     
     ValidationViewController *ctr = [self.storyboard instantiateViewControllerWithIdentifier:@"ValidationViewController"];
