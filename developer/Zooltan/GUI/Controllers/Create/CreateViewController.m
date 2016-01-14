@@ -521,6 +521,10 @@
         [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredSameAdresses", nil) target:self];
         return NO;
     }
+    else if (self.receiverNumberField.text.length < 15) {
+        [Utilities showErrorMessage:NSLocalizedString(@"msg.error.enteredPhoneNumberCharacters", nil) target:self];
+        return NO;
+    }
     
     return YES;
 }
