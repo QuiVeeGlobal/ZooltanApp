@@ -195,7 +195,6 @@
     self.commentsTextField.tintColor = [Colors yellowColor];
     
     self.segmentedControl.tintColor = [Colors yellowColor];
-    self.sendBtn.backgroundColor = [Colors yellowColor];
     
     [self addCornerRadius:self.sendBtn radius:layerCornerRadius];
     

@@ -39,8 +39,6 @@
 
 @property (nonatomic, retain) BaseNavigationCtrl *navigation;
 
-- (NSURL *)applicationDocumentsDirectory;
-
 - (MMDrawerController *)configureDrawerMenuWithLeft:(id)left andCenter:(id)center;
 
 + (AppDelegate *)instance;
