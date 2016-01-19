@@ -164,7 +164,7 @@ NSString* _deteckScreen()
                                             [self showValidationScreen];
                                     }];
         } failure:^(NSError *error, NSInteger code) {
-            [Utilities showAlertMessage:@"msg.error.enteredSamePhone" target:self];
+            [Utilities showAlertMessage:NSLocalizedString(@"msg.error.enteredSamePhone", nil) target:self];
             self.signUpBtn.enabled = YES;
         }];
     }

@@ -292,7 +292,9 @@ typedef enum : NSUInteger {
 
 - (IBAction)callSupportAction:(id)sender
 {
+    [[AppDelegate instance] showLoadingView];
     [[Server instance] supportPhoneSuccess:^(NSString *phoneNumber) {
+        [[AppDelegate instance] hideLoadingView];
         NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", phoneNumber]];
         if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
             [[UIApplication sharedApplication] openURL:phoneUrl];
@@ -304,7 +306,9 @@ typedef enum : NSUInteger {
                           cancelButtonTitle:NSLocalizedString(@"generic.ok", nil)
                           otherButtonTitles:nil, nil];
         }
-    } failure:^(NSError *error, NSInteger code) {}];
+    } failure:^(NSError *error, NSInteger code) {
+        [[AppDelegate instance] hideLoadingView];
+    }];
 }
 
 #pragma mark -
